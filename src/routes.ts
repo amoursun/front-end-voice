@@ -1,0 +1,48 @@
+import React from 'react';
+import {
+    SITE_MAP_SPEECH_RECOGNITION,
+    SITE_MAP_SPEECH_SYNTHESIS,
+    SITE_MAP_SOCKET_GROUP,
+    SITE_MAP_MEDIA_DEVICE,
+    SITE_MAP_AUDIO_CONTEXT,
+    SITE_MAP_IMG_VIDEO_PREVIEW,
+    SITE_MAP_MEDIA_RECORDER,
+} from './site-map';
+
+export const routes = [
+    {
+        key: SITE_MAP_SPEECH_RECOGNITION.key,
+        path: SITE_MAP_SPEECH_RECOGNITION.path,
+        component: React.lazy(() => import('./pages/speech-recognition/index')),
+    },
+    {
+        key: SITE_MAP_SPEECH_SYNTHESIS.key,
+        path: SITE_MAP_SPEECH_SYNTHESIS.path,
+        component: React.lazy(() => import('./pages/speech-synthesis/index')),
+    },
+    {
+        key: SITE_MAP_SOCKET_GROUP.key,
+        path: SITE_MAP_SOCKET_GROUP.path,
+        component: React.lazy(() => import('./pages/socket-group/index')),
+    },
+    {
+        key: SITE_MAP_MEDIA_DEVICE.key,
+        path: SITE_MAP_MEDIA_DEVICE.path,
+        component: React.lazy(() => import('./pages/media-devices/index')),
+    },
+    {
+        key: SITE_MAP_AUDIO_CONTEXT.key,
+        path: SITE_MAP_AUDIO_CONTEXT.path,
+        component: React.lazy(() => import('./pages/audio-context/index')),
+    },
+    {
+        key: SITE_MAP_IMG_VIDEO_PREVIEW.key,
+        path: SITE_MAP_IMG_VIDEO_PREVIEW.path,
+        component: React.lazy(() => import('./pages/img-video-preview/index')),
+    },
+    {
+        key: SITE_MAP_MEDIA_RECORDER.key,
+        path: SITE_MAP_MEDIA_RECORDER.path,
+        component: React.lazy(() => import('./pages/media-recorder-api/index')),
+    }
+];
