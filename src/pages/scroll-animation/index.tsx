@@ -17,7 +17,7 @@ export function ScrollAnimation() {
     const animation = () => {
       const {height} = scroll.getBoundingClientRect();
       const triggerBottom = height / 5 * 4;
-      console.log(height, triggerBottom, boxList);
+      // console.log(height, triggerBottom, boxList);
       boxList.forEach(box => {
         if (!box) {
           return;

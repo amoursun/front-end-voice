@@ -61,8 +61,6 @@ export const SITE_MAP_SCROLL_ANIMATION = {
     path: '/scroll-animation',
 };
 
-
-
 // web worker
 export const SITE_WEB_WORKER_SHARE = {
     entry: ENTRY_MAIN,
@@ -77,6 +75,47 @@ export const SITE_MAP_WEB_WORKER = {
     path: '/web-worker',
     children: [
         SITE_WEB_WORKER_SHARE,
+    ],
+};
+
+// intersectionObserver 实现
+export const SITE_WEB_OBSERVER_LAZY_LOAD = {
+    entry: ENTRY_MAIN,
+    key: 'lazy-load',
+    label: () => '懒加载',
+    path: '/intersection-observer/lazy-load',
+};
+export const SITE_WEB_OBSERVER_INFINITE_SCROLL = {
+    entry: ENTRY_MAIN,
+    key: 'infinite-scroll',
+    label: () => '无限滚动',
+    path: '/intersection-observer/infinite-scroll',
+};
+export const SITE_WEB_OBSERVER_INFINITE_SCROLL_ANIMATE = {
+    entry: ENTRY_MAIN,
+    key: 'infinite-scroll-animate',
+    label: () => '滚动动画',
+    path: '/intersection-observer/infinite-scroll-animate',
+};
+
+export const SITE_WEB_OBSERVER_VIRTUAL_LIST = {
+    entry: ENTRY_MAIN,
+    key: 'virtual-list',
+    label: () => '虚拟列表',
+    path: '/intersection-observer/virtual-list',
+};
+
+
+export const SITE_MAP_INTERSECTION_OBSERVER = {
+    entry: ENTRY_MAIN,
+    key: 'intersection-observer',
+    label: () => 'intersectionObserver',
+    path: '/intersection-observer',
+    children: [
+        SITE_WEB_OBSERVER_LAZY_LOAD,
+        SITE_WEB_OBSERVER_INFINITE_SCROLL_ANIMATE,
+        SITE_WEB_OBSERVER_INFINITE_SCROLL,
+        SITE_WEB_OBSERVER_VIRTUAL_LIST,
     ],
 };
 
@@ -95,6 +134,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_WEB_WORKER,
         SITE_MAP_SSE,
         SITE_MAP_SCROLL_ANIMATION,
+        SITE_MAP_INTERSECTION_OBSERVER,
     ],
 };
 
