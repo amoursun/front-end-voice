@@ -26,4 +26,7 @@
     .app-content {
         width: 100%;
     }
+    .ant-menu.ant-menu-root.ant-menu-inline {
+        transform: translateX(-24px);
+    }
 }

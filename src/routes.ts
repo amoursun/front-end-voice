@@ -7,6 +7,8 @@ import {
     SITE_MAP_AUDIO_CONTEXT,
     SITE_MAP_IMG_VIDEO_PREVIEW,
     SITE_MAP_MEDIA_RECORDER,
+
+    SITE_WEB_WORKER_SHARE,
 } from './site-map';
 
 export const routes = [
@@ -44,5 +46,10 @@ export const routes = [
         key: SITE_MAP_MEDIA_RECORDER.key,
         path: SITE_MAP_MEDIA_RECORDER.path,
         component: React.lazy(() => import('./pages/media-recorder-api/index')),
-    }
+    },
+    {
+        key: SITE_WEB_WORKER_SHARE.key,
+        path: SITE_WEB_WORKER_SHARE.path,
+        component: React.lazy(() => import('./pages/web-worker/share-worker/index')),
+    },
 ];

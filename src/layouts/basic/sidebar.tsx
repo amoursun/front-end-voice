@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {RouteComponentProps, withRouter, RouteProps} from 'react-router-dom';
-import {Menu} from 'antd';
-import {useMenu} from './menu';
+import {Menu, MenuProps} from 'antd';
+import {MenuItemObject, useMenu} from './menu';
 import {MenuLabel} from './menu-label';
 
 export interface RouteItem extends RouteProps {
@@ -13,28 +13,35 @@ export interface RouteItem extends RouteProps {
 interface SideMenuProps extends RouteComponentProps {
     className?: string;
     routes: RouteItem[];
-}
-
+}type MenuItem = Required<MenuProps>['items'][number];
 export const Sidebar = withRouter((props: SideMenuProps) => {
     const {menu, selectedIds} = useMenu(props);
     const collapsed = true;
-    // console.log(menu, selectedIds);
-    return (
-        <Menu
-            items={menu.map(item => {
+    const menuList = useMemo(() => {
+        const handleMenu = (list: MenuItemObject[]): MenuItem[] => {
+            return list.map(item => {
+                const children = item.children || [];
                 return {
                     key: item.id,
-                    type: 'group',
                     label: (
                         <MenuLabel
                             ids={selectedIds}
                             item={item}
                         />
                     ),
+                    children: children.length ? handleMenu(children) : undefined,
                 };
-            })}
+            }) as MenuItem[];
+        };
+        return handleMenu(menu);
+    }, [menu]);
+    console.log(menuList, selectedIds);
+    return (
+        <Menu
+            items={menuList}
             mode="inline"
             theme={'light'}
+            style={{width: 225}}
             inlineCollapsed={collapsed}
             selectedKeys={selectedIds}
         />

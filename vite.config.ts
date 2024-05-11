@@ -1,10 +1,12 @@
 import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
+import workerLoader from 'worker-loader';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react()
+    react(),
+    workerLoader(),
   ],
   server: {
     hmr: true, // 启用热模块替换

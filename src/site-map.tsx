@@ -48,6 +48,23 @@ export const SITE_MAP_MEDIA_RECORDER = {
     path: '/media-recorder-api',
 };
 
+// web worker
+export const SITE_WEB_WORKER_SHARE = {
+    entry: ENTRY_MAIN,
+    key: 'web-worker-share',
+    label: () => 'Web Worker - Share',
+    path: '/web-worker/share',
+};
+export const SITE_MAP_WEB_WORKER = {
+    entry: ENTRY_MAIN,
+    key: 'web-worker',
+    label: () => 'Web Worker',
+    path: '/web-worker',
+    children: [
+        SITE_WEB_WORKER_SHARE,
+    ],
+};
+
 export const SITE_MAP_MAIN = {
     label: () => '主菜单',
     entry: ENTRY_MAIN,
@@ -60,6 +77,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_AUDIO_CONTEXT,
         SITE_MAP_IMG_VIDEO_PREVIEW,
         SITE_MAP_MEDIA_RECORDER,
+        SITE_MAP_WEB_WORKER,
     ],
 };
 
