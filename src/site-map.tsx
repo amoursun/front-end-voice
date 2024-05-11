@@ -54,6 +54,15 @@ export const SITE_MAP_SSE = {
     path: '/sse',
 };
 
+export const SITE_MAP_SCROLL_ANIMATION = {
+    entry: ENTRY_MAIN,
+    key: 'scroll-animation',
+    label: () => '滚动动画',
+    path: '/scroll-animation',
+};
+
+
+
 // web worker
 export const SITE_WEB_WORKER_SHARE = {
     entry: ENTRY_MAIN,
@@ -85,6 +94,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_MEDIA_RECORDER,
         SITE_MAP_WEB_WORKER,
         SITE_MAP_SSE,
+        SITE_MAP_SCROLL_ANIMATION,
     ],
 };
 

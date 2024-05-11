@@ -10,6 +10,7 @@ import {
 
     SITE_WEB_WORKER_SHARE,
     SITE_MAP_SSE,
+    SITE_MAP_SCROLL_ANIMATION,
 } from './site-map';
 
 export const routes = [
@@ -57,5 +58,10 @@ export const routes = [
         key: SITE_MAP_SSE.key,
         path: SITE_MAP_SSE.path,
         component: React.lazy(() => import('./pages/sse/index')),
+    },
+    {
+        key: SITE_MAP_SCROLL_ANIMATION.key,
+        path: SITE_MAP_SCROLL_ANIMATION.path,
+        component: React.lazy(() => import('./pages/scroll-animation/index')),
     },
 ];

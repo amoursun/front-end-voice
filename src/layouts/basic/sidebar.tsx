@@ -35,7 +35,7 @@ export const Sidebar = withRouter((props: SideMenuProps) => {
         };
         return handleMenu(menu);
     }, [menu]);
-    console.log(menuList, selectedIds);
+    // console.log(menuList, selectedIds);
     return (
         <Menu
             items={menuList}
