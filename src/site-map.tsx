@@ -47,6 +47,12 @@ export const SITE_MAP_MEDIA_RECORDER = {
     label: () => 'MediaRecorder音频/视频录制',
     path: '/media-recorder-api',
 };
+export const SITE_MAP_SSE = {
+    entry: ENTRY_MAIN,
+    key: 'sse',
+    label: () => 'SSE',
+    path: '/sse',
+};
 
 // web worker
 export const SITE_WEB_WORKER_SHARE = {
@@ -78,6 +84,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_IMG_VIDEO_PREVIEW,
         SITE_MAP_MEDIA_RECORDER,
         SITE_MAP_WEB_WORKER,
+        SITE_MAP_SSE,
     ],
 };
 
