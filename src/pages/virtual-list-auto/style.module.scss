@@ -1,10 +1,32 @@
 
 .virtual-list {
+    overflow: auto;
+    position: relative;
+    height: 100%;
+    width: 360px;
+    margin: 0 auto;
+    border: 1px solid #999;
+    padding: 10px;
     .content-item {
-        margin-bottom: 30px;
-        min-height: 30px;
-        width: 20%;
-        border: 1px solid #0000008d;
+        padding: 6px 10px;
         color: #333;
+
+        .content-inner {
+            border: 1px solid #999;
+        }
+    }
+    .phantom {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+    }
+    
+    .content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        text-align: center;
     }
 }
