@@ -17,6 +17,7 @@ import {
     SITE_WEB_OBSERVER_INFINITE_SCROLL,
     SITE_WEB_OBSERVER_INFINITE_SCROLL_ANIMATE,
     SITE_WEB_OBSERVER_VIRTUAL_LIST,
+    SITE_WEB_OBSERVER_VIRTUAL_LIST_AUTO,
 
 } from './site-map';
 
@@ -93,4 +94,10 @@ export const routes = [
         path: SITE_WEB_OBSERVER_VIRTUAL_LIST.path,
         component: React.lazy(() => import('./pages/intersection-observer/virtual-list/index')),
     },
+    {
+        key: SITE_WEB_OBSERVER_VIRTUAL_LIST_AUTO.key,
+        path: SITE_WEB_OBSERVER_VIRTUAL_LIST_AUTO.path,
+        component: React.lazy(() => import('./pages/intersection-observer/virtual-list-auto/index')),
+    },
+    
 ];

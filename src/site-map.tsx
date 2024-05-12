@@ -104,6 +104,12 @@ export const SITE_WEB_OBSERVER_VIRTUAL_LIST = {
     label: () => '虚拟列表',
     path: '/intersection-observer/virtual-list',
 };
+export const SITE_WEB_OBSERVER_VIRTUAL_LIST_AUTO = {
+    entry: ENTRY_MAIN,
+    key: 'virtual-list-auto',
+    label: () => '虚拟列表高度不定',
+    path: '/intersection-observer/virtual-list-auto',
+};
 
 
 export const SITE_MAP_INTERSECTION_OBSERVER = {
@@ -116,6 +122,7 @@ export const SITE_MAP_INTERSECTION_OBSERVER = {
         SITE_WEB_OBSERVER_INFINITE_SCROLL_ANIMATE,
         SITE_WEB_OBSERVER_INFINITE_SCROLL,
         SITE_WEB_OBSERVER_VIRTUAL_LIST,
+        SITE_WEB_OBSERVER_VIRTUAL_LIST_AUTO,
     ],
 };
 

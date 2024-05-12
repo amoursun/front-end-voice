@@ -32,4 +32,12 @@
     .ant-menu.ant-menu-root.ant-menu-inline {
         transform: translateX(-24px);
     }
+
+    .ant-layout-sider.ant-layout-sider-light.sidebar {
+        .ant-layout-sider-children {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100%;
+        }
+    }
 }
