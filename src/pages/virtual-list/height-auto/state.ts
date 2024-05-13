@@ -2,45 +2,8 @@ import {get} from 'lodash-es';
 import {computed, observable, action, makeAutoObservable, runInAction} from 'mobx';
 import {ReactionManager} from '../../../utils/mobx/reaction-manager';
 import {generateList, IListItem} from '../method';
-
-const binarySearch = function(list: IPosition[], scrollTop: number): number {  
-    const len = list.length;
-    let left = 0;
-    let right = len - 1;
-    let tempIndex = -1;
-    while (left <= right) {  
-        let midIndex = Math.floor((left + right) / 2);
-        let midVal = list[midIndex].bottom;
-        console.log('midVal', {
-            midIndex,
-            item: list[midIndex],
-            left,
-            right,
-            tempIndex
-        });
-        if (midVal === scrollTop) {
-            return midIndex;
-        }
-        else if (midVal < scrollTop) {
-            left = midIndex + 1;
-        }
-        else {
-            // list不一定存在与target相等的项，不断收缩右区间，寻找最匹配的项
-            if(tempIndex === -1 || tempIndex > midIndex) {
-                tempIndex = midIndex;
-            }
-            right--;
-        }
-    }
-    console.log('binarySearch', {
-        tempIndex: tempIndex,
-        scrollTop,
-        list,
-    });
-    // 如果没有搜索到完全匹配的项 就返回最匹配的项
-    return tempIndex;
-};
-interface IPosition {
+import { binarySearch } from './binary-search';
+export interface IPosition {
     index: number;
     top: number;
     bottom: number;
@@ -51,39 +14,47 @@ class State {
     constructor() {
         makeAutoObservable(this, {
             listHeight: computed,
-            visibleCount: computed,
+            visibleSize: computed,
             visibleData: computed,
-            bufferCount: computed,
+            bufferSize: computed,
             aboveCount: computed,
             belowCount: computed,
             length: computed,
             end: computed,
-            currentOffset: computed,
         });
-        this.initPositions(this.list, this.preItemSize);
+        const {list, itemSize} = this;
+        this.positions = list.map((_, index) => {
+            return  {
+                index,
+                top: index * itemSize,
+                bottom: (index + 1) * itemSize,
+                height: itemSize, 
+            };
+        });
         this.reaction();
     }
     list: IListItem[] = generateList();
     positions: IPosition[] = [];
-    preItemSize = 50; // 初始给一个开始高度
+    itemSize = 80; // 初始给一个开始高度
     screenHeight = 0;
-    // currentOffset = 0;
+    currentOffset = 0;
     start = 0;
-    // /即每个缓冲区只缓冲 1 * 最大可见列表项数 个元素
-    bufferPercent = 1;
+    /**
+     * 可视区 上下 缓冲可视区屏幕比率
+     * 每个缓冲区只缓冲 1 * 最大可见列表项数 个元素
+     * - 上下两个缓冲区
+     */
+    bufferRatio = 1;
     refs: Array<HTMLDivElement | null> = [];
 
-    created() {
-        this.initPositions(this.list, this.preItemSize);
-    };
     get length() {
         return this.list.length;
     }
     get listHeight() {
         return this.positions[this.positions.length - 1].bottom;
     }
-    get visibleCount() {
-        return Math.ceil(this.screenHeight / this.preItemSize);
+    get visibleSize() {
+        return Math.ceil(this.screenHeight / this.itemSize);
     };
     get visibleData() {
         return this.list.slice(
@@ -92,26 +63,41 @@ class State {
         );
     };
     /**
+     * 可视区显示的 end 索引
+     */
+    get end(): number {
+        return Math.min(this.start + this.visibleSize, this.length - 1);
+    }
+    /**
      * 可视区域 上下各 在显示个数
      */
-    get bufferCount() {
-        return Math.floor(this.visibleCount * this.bufferPercent); // 向下取整
+    get bufferSize(): number {
+        return Math.floor(this.visibleSize * this.bufferRatio); // 向下取整
     };
+    /**
+     * 下面 使用索引和缓冲数量的最小值 避免缓冲不存在或者过多的数据
+     * virtualStart 向上缓冲
+     * virtualEnd 向下缓冲
+     */
+    // get virtualStart(): number {
+    //     return Math.max(0, this.start - this.bufferSize);
+    // };
+    // get virtualEnd(): number {
+    //     return Math.min(this.length - 1, this.end + this.bufferSize);
+    // };
     /**
      * 下面 使用索引和缓冲数量的最小值 避免缓冲不存在或者过多的数据
      * aboveCount 向上缓冲
      * belowCount 向下缓冲
      */
     get aboveCount() {
-        return Math.min(this.start, this.bufferCount);
+        return Math.min(this.start, this.bufferSize);
     };
     get belowCount() {
-        return Math.min(this.length - this.end, this.bufferCount);
+        return Math.min(this.length - this.end, this.bufferSize);
     };
-    get end(): number {
-        return Math.min(this.start + this.visibleCount, this.length - 1);
-    }
-    get currentOffset() {
+
+    getCurrentOffset() {
         if(this.start >= 1) {
             // return this.positions[this.start].top;
             // 计算偏移量时包括上缓冲区的列表项
@@ -124,6 +110,23 @@ class State {
             return 0;
         }
     }
+    // getCurrentOffset() {
+    //     if(this.start >= 1) {
+    //         return this.positions[this.start].top;
+    //         // 计算偏移量时包括上缓冲区的列表项
+    //         const safetyStart = this.start - this.aboveCount;
+    //         const {top} = this.positions[safetyStart] || {top: 0};
+    //         const offset = this.positions[this.start].top - top;
+    //         return this.positions[this.start - 1].bottom - offset;
+    //     }
+    //     else {
+    //         return 0;
+    //     }
+    // };
+
+    getStartIndex(scrollTop = 0) {
+        return binarySearch(this.positions, scrollTop);
+    };
     // 滚动回调
     scrollEvent(target: HTMLElement | null) {
         if (!target) {
@@ -132,7 +135,7 @@ class State {
         const {scrollTop} = target;
         this.start = this.getStartIndex(scrollTop);
         this.updatePositions();
-        // this.currentOffset = this.getCurrentOffset();
+        this.currentOffset = this.getCurrentOffset();
         console.log('scrollEvent', {
             start: this.start,
             scrollTop,
@@ -154,17 +157,6 @@ class State {
         //         });
         //     });
         // });
-    };
-    // 初始化列表
-    initPositions(list: Item[], itemSize: number) {
-        this.positions = list.map((item, index) => {
-            return  {
-                index,
-                top: index * itemSize,
-                bottom: (index + 1) * itemSize,
-                height: itemSize, 
-            };
-        });
     };
     // 渲染后更新positions
     updatePositions() {
@@ -193,22 +185,6 @@ class State {
             }
         }
     };
-    getStartIndex(scrollTop = 0) {
-        return binarySearch(this.positions, scrollTop);
-    };
-    // getCurrentOffset() {
-    //     if(this.start >= 1) {
-    //         return this.positions[this.start].top;
-    //         // 计算偏移量时包括上缓冲区的列表项
-    //         const safetyStart = this.start - this.aboveCount;
-    //         const {top} = this.positions[safetyStart] || {top: 0};
-    //         const offset = this.positions[this.start].top - top;
-    //         return this.positions[this.start - 1].bottom - offset;
-    //     }
-    //     else {
-    //         return 0;
-    //     }
-    // };
 
     reaction() {
         // this.reactions.reaction(
