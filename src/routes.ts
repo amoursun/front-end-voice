@@ -18,7 +18,8 @@ import {
     SITE_WEB_OBSERVER_INFINITE_SCROLL_ANIMATE,
     SITE_WEB_OBSERVER_VIRTUAL_LIST,
     
-    SITE_WEB_VIRTUAL_LIST_AUTO,
+    SITE_VIRTUAL_LIST_AUTO,
+    SITE_VIRTUAL_LIST_FIXED,
 
 } from './site-map';
 
@@ -95,10 +96,15 @@ export const routes = [
         path: SITE_WEB_OBSERVER_VIRTUAL_LIST.path,
         component: React.lazy(() => import('./pages/intersection-observer/virtual-list/index')),
     },
+
     {
-        key: SITE_WEB_VIRTUAL_LIST_AUTO.key,
-        path: SITE_WEB_VIRTUAL_LIST_AUTO.path,
-        component: React.lazy(() => import('./pages/virtual-list-auto/index')),
+        key: SITE_VIRTUAL_LIST_FIXED.key,
+        path: SITE_VIRTUAL_LIST_FIXED.path,
+        component: React.lazy(() => import('./pages/virtual-list/height-fixed/index')),
     },
-    
+    {
+        key: SITE_VIRTUAL_LIST_AUTO.key,
+        path: SITE_VIRTUAL_LIST_AUTO.path,
+        component: React.lazy(() => import('./pages/virtual-list/height-auto/index')),
+    },
 ];

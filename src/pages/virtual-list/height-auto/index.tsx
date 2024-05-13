@@ -1,4 +1,4 @@
-import {useState, useEffect, useLayoutEffect, useRef} from 'react';
+import {useCallback, useEffect, useLayoutEffect, useRef} from 'react';
 import {runInAction} from 'mobx';
 import {observer, Observer} from 'mobx-react';
 import {store} from './state';
@@ -8,34 +8,23 @@ import {debounce, throttle} from 'lodash-es';
 export const VirtualList = observer(() => {
   const ref = useRef<HTMLDivElement | null>(null);
   const {visibleData, listHeight, currentOffset, refs} = store;
+  const handleScroll = useCallback(debounce(() => {
+    store.scrollEvent(ref.current);
+  }, 50), []);
   useLayoutEffect(() => {
-    // 绑定滚动事件
     const target = ref.current;
-    const handleScroll = (event: Event) => store.scrollEvent(event.target as HTMLElement)
-    const debounceScroll = debounce(handleScroll, 160);
-    const throttleScroll = throttle(handleScroll, 80);
     if (target) {
       runInAction(() => {
         store.screenHeight = target.clientHeight;
       });
-      target.addEventListener('scroll',  debounceScroll);
-      target.addEventListener('scroll',  throttleScroll);
     }
-    return () => {
-      if (target) {
-        target.removeEventListener('scroll',  debounceScroll);
-        target.removeEventListener('scroll',  throttleScroll);
-      }
-    };
-  }, [ref, store]);
-  useEffect(() => {
     return () => {
       store.dispose();
     };
-  }, []);
+  }, [ref, store]);
   // console.log(store, refs, 'store')
   return (
-    <div className={style.virtualList} ref={ref}>
+    <div className={style.virtualListAuto} ref={ref} onScroll={handleScroll}>
       <div className={style.phantom} style={{height: listHeight}}></div>
       <div
         className={style.content}

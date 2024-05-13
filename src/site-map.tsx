@@ -104,16 +104,6 @@ export const SITE_WEB_OBSERVER_VIRTUAL_LIST = {
     label: () => '虚拟列表',
     path: '/intersection-observer/virtual-list',
 };
-
-export const SITE_WEB_VIRTUAL_LIST_AUTO = {
-    entry: ENTRY_MAIN,
-    key: 'virtual-list-auto',
-    label: () => '虚拟列表高度不定',
-    path: '/virtual-list-auto',
-};
-
-
-
 export const SITE_MAP_INTERSECTION_OBSERVER = {
     entry: ENTRY_MAIN,
     key: 'intersection-observer',
@@ -124,6 +114,30 @@ export const SITE_MAP_INTERSECTION_OBSERVER = {
         SITE_WEB_OBSERVER_INFINITE_SCROLL_ANIMATE,
         SITE_WEB_OBSERVER_INFINITE_SCROLL,
         SITE_WEB_OBSERVER_VIRTUAL_LIST,
+    ],
+};
+
+// 虚拟列表
+export const SITE_VIRTUAL_LIST_AUTO = {
+    entry: ENTRY_MAIN,
+    key: 'virtual-list-auto',
+    label: () => '高度不定',
+    path: '/virtual-list/height-auto',
+};
+export const SITE_VIRTUAL_LIST_FIXED = {
+    entry: ENTRY_MAIN,
+    key: 'virtual-list-fixed',
+    label: () => '高度固定',
+    path: '/virtual-list/height-fixed',
+};
+export const SITE_MAP_VIRTUAL_LIST = {
+    entry: ENTRY_MAIN,
+    key: 'virtual-list',
+    label: () => '虚拟列表',
+    path: '/virtual-list',
+    children: [
+        SITE_VIRTUAL_LIST_FIXED,
+        SITE_VIRTUAL_LIST_AUTO,
     ],
 };
 
@@ -143,7 +157,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_SSE,
         SITE_MAP_SCROLL_ANIMATION,
         SITE_MAP_INTERSECTION_OBSERVER,
-        SITE_WEB_VIRTUAL_LIST_AUTO,
+        SITE_MAP_VIRTUAL_LIST,
     ],
 };
 

@@ -1,16 +1,17 @@
 
-.virtual-list {
+.virtual-list-auto {
     overflow: auto;
     position: relative;
     height: 100%;
     width: 360px;
     margin: 0 auto;
     border: 1px solid #999;
-    padding: 10px;
     .content-item {
-        padding: 6px 10px;
+        padding: 10px 10px 0;
         color: #333;
-
+        &:last-child {
+            padding-bottom: 10px;
+        }
         .content-inner {
             border: 1px solid #999;
         }

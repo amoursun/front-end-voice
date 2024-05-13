@@ -1,0 +1,26 @@
+
+.virtual-list-fixed {
+    overflow: auto;
+    height: 100%;
+    width: 360px;
+    margin: 0 auto;
+    border: 1px solid #999;
+    .content {
+        position: relative;
+    }
+    .content-item {
+        position: absolute;
+        left: 0;
+        right: 0;
+        padding: 10px 10px 0;
+        color: #333;
+        &:last-child {
+            padding-bottom: 10px;
+        }
+        .content-inner {
+            border: 1px solid #999;
+            height: 100%;
+            overflow: hidden;
+        }
+    }
+}
