@@ -1,16 +1,11 @@
-import {start} from './common';
-import {BasicLayout} from './layouts/basic';
-import {routes} from './routes';
-import './index.scss'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './app.tsx';
+import './index.scss';
 
-async function render() {
-    void start(() => {
-        return (
-            <BasicLayout
-                routes={routes}
-            />
-        );
-    });
-}
-
-void render();
+// React.StrictMode 执行多次
+ReactDOM.createRoot(document.getElementById('root')!).render(
+    // <React.StrictMode>
+        <App />
+    // </React.StrictMode>,
+);

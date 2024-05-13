@@ -59,11 +59,12 @@ export const routes = [
         path: SITE_MAP_MEDIA_RECORDER.path,
         component: React.lazy(() => import('./pages/media-recorder-api/index')),
     },
-    {
-        key: SITE_WEB_WORKER_SHARE.key,
-        path: SITE_WEB_WORKER_SHARE.path,
-        component: React.lazy(() => import('./pages/web-worker/share-worker/index')),
-    },
+    
+    // {
+    //     key: SITE_WEB_WORKER_SHARE.key,
+    //     path: SITE_WEB_WORKER_SHARE.path,
+    //     component: React.lazy(() => import('./pages/web-worker/share-worker/index')),
+    // },
 
     {
         key: SITE_MAP_SSE.key,
