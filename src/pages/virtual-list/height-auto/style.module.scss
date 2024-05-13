@@ -3,8 +3,6 @@
     overflow: auto;
     position: relative;
     height: 100%;
-    width: 360px;
-    margin: 0 auto;
     border: 1px solid #999;
     .content-item {
         padding: 10px 10px 0;
@@ -35,6 +33,5 @@
         top: 0;
         right: 0;
         left: 0;
-        text-align: center;
     }
 }

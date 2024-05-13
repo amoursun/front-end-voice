@@ -10,7 +10,7 @@ export const VirtualList = observer(() => {
   const {visibleData, listHeight, currentOffset, refs} = store;
   const handleScroll = useCallback(debounce(() => {
     store.scrollEvent(ref.current);
-  }, 50), []);
+  }, 15), []);
   useLayoutEffect(() => {
     const target = ref.current;
     if (target) {
