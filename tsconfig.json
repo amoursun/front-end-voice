@@ -16,7 +16,9 @@
 
     /* Linting */
     "strict": true,
+    /* 未使用的依赖构建会拦截 */
     "noUnusedLocals": true,
+    /* 未使用的参数构建会拦截 */
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
