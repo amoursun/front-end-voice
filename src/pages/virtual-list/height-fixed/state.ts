@@ -1,26 +1,7 @@
-import {get} from 'lodash-es';
-import {computed, observable, action, makeAutoObservable, runInAction} from 'mobx';
+import {computed, observable, action, makeAutoObservable} from 'mobx';
 import {ReactionManager} from '../../../utils/mobx/reaction-manager';
+import {generateList, IListItem} from '../method';
 
-function repeat(value: string, count: number) {
-    return value.repeat(count);
-}
-const getList = () => {
-    const data = [];
-    for (let i = 1; i <= 10000; i++) {
-        data.push({
-            id: i,
-            value: `${i}${repeat('字符内容', 50)}`,
-        });
-    }
-    return data;
-};
-
-export interface Item {
-    id: number;
-    value: string;
-    visible?: boolean;
-}
 interface IPosition {
     index: number;
     top: number;
@@ -43,7 +24,7 @@ class State {
         this.created();
         this.reaction();
     }
-    list: Item[] = [];
+    list: IListItem[] = [];
     positions: IPosition[] = [];
     itemHeight = 150; // 高度
     screenHeight = 0;
@@ -52,7 +33,7 @@ class State {
     bufferPercent = 1;
 
     created() {
-        const data = getList();
+        const data = generateList();
         this.list = data;
         this.positions = data.map((_, index) => {
             return  {

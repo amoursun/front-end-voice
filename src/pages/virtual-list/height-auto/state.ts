@@ -1,20 +1,7 @@
 import {get} from 'lodash-es';
 import {computed, observable, action, makeAutoObservable, runInAction} from 'mobx';
-import { ReactionManager } from '../../../utils/mobx/reaction-manager';
-
-function repeat(value: string, count: number) {
-    return value.repeat(count);
-}
-const getList = () => {
-    const data = [];
-    for (let i = 1; i <= 10000; i++) {
-        data.push({
-            id: i,
-            value: `${i}${repeat('字符内容', Math.random() * 50)}`,
-        });
-    }
-    return data;
-};
+import {ReactionManager} from '../../../utils/mobx/reaction-manager';
+import {generateList, IListItem} from '../method';
 
 const binarySearch = function(list: IPosition[], scrollTop: number): number {  
     const len = list.length;
@@ -53,11 +40,6 @@ const binarySearch = function(list: IPosition[], scrollTop: number): number {
     // 如果没有搜索到完全匹配的项 就返回最匹配的项
     return tempIndex;
 };
-
-interface Item {
-    id: number;
-    value: string;
-}
 interface IPosition {
     index: number;
     top: number;
@@ -78,10 +60,10 @@ class State {
             end: computed,
             currentOffset: computed,
         });
-        this.created();
+        this.initPositions(this.list, this.preItemSize);
         this.reaction();
     }
-    list: Item[] = [];
+    list: IListItem[] = generateList();
     positions: IPosition[] = [];
     preItemSize = 50; // 初始给一个开始高度
     screenHeight = 0;
@@ -92,8 +74,6 @@ class State {
     refs: Array<HTMLDivElement | null> = [];
 
     created() {
-        const data = getList();
-        this.list = data;
         this.initPositions(this.list, this.preItemSize);
     };
     get length() {
