@@ -26,14 +26,17 @@ export const VirtualList = observer(() => {
   return (
     <div className={style.virtualListFixed} ref={ref} onScroll={handleScroll}>
       <div className={style.content} style={{height: listHeight}}>
-        {visibleData.map((({id, value}) => (
+        {visibleData.map((({id, value, title}) => (
           <div
             className={style.contentItem}
             key={id}
             style={{height: itemHeight, top: (id - 1) * itemHeight}}
             data-id={id}
           >
-            <div className={style.contentInner}>{value}</div>
+            <div className={style.contentInner}>
+              <div className={style.title}>{title}</div>
+              <div className={style.value}>{value}</div>
+            </div>
           </div>
         )))}
       </div>

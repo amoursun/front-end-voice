@@ -44,7 +44,10 @@ export const VirtualList = observer(() => {
                   data-id={item.id}
                   key={item.id || index}
                 >
-                  <div className={style.contentInner}>{item.value}</div>
+                  <div className={style.contentInner}>
+                    <div className={style.title}>{item.title}</div>
+                    <div className={style.value}>{item.value}</div>
+                  </div>
                 </div>
               )}
             </Observer>
