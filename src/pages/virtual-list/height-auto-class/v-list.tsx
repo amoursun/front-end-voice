@@ -1,12 +1,13 @@
+import React, { ReactNode } from 'react';
 import { binarySearch, CompareResult } from './binary-search';
-import { Empty } from "antd";
-import React, { ReactNode } from "react";
+import { get } from 'lodash-es';
+import style from './style.module.scss';
 
 export interface VirtualListProps {
   height: number;
   total: number;
   estimateRowHeight: number;
-  rowRenderer: (index: number, styleData: any) => any;
+  renderItem(index: number): ReactNode;
   bufferSize?: number;
   noDataContent?: ReactNode;
 }
@@ -46,7 +47,7 @@ export default class VirtualList extends React.Component<VirtualListProps> {
   actualContentRef = React.createRef<HTMLDivElement>();
   phantomHeight = this.estimatedRowHeight * this.total;
 
-  constructor(props) {
+  constructor(props: VirtualListProps) {
     super(props);
     this.initCachedPositions();
   }
@@ -83,37 +84,38 @@ export default class VirtualList extends React.Component<VirtualListProps> {
     }
   };
 
+  getIndexFromNode(node: Element) {
+    return Number(get(node, 'dataset.index', 0));
+  }
   /**
    * Update cached positions when componentDidMount Triggered...
    */
   updateCachedPositions = () => {
-    // update cached item height
-    const nodes: NodeListOf<any> = this.actualContentRef.current.childNodes;
+    const nodes = this.actualContentRef.current?.children || [];
     const start = nodes[0];
 
-    // calculate height diff for each visible node...
-    nodes.forEach((node: HTMLDivElement) => {
+    for (const node of nodes) {
       if (!node) {
-        // scroll too fast?...
-        return;
+          continue;
       }
-      const rect = node.getBoundingClientRect();
-      const { height } = rect;
-      const index = Number(node.id.split("-")[1]);
+      // 获取 真实DOM高度
+      const {height} = node.getBoundingClientRect();
+      // 根据 元素索引 获取 缓存列表对应的列表项
+      const index = this.getIndexFromNode(node);
       const oldHeight = this.cachedPositions[index].height;
       const dValue = oldHeight - height;
-
+      // 如果有高度差 !!dValue === true
       if (dValue) {
         this.cachedPositions[index].bottom -= dValue;
         this.cachedPositions[index].height = height;
         this.cachedPositions[index].dValue = dValue;
       }
-    });
+    }
 
     // perform one time height update...
     let startIdx = 0;
     if (start) {
-      startIdx = Number(start.id.split("-")[1]);
+      startIdx = this.getIndexFromNode(start);;
     }
     const cachedPositionsLen = this.cachedPositions.length;
     let cumulativeDiffHeight = this.cachedPositions[startIdx].dValue;
@@ -135,7 +137,9 @@ export default class VirtualList extends React.Component<VirtualListProps> {
     // update our phantom div height
     const height = this.cachedPositions[cachedPositionsLen - 1].bottom;
     this.phantomHeight = height;
-    this.phantomContentRef.current.style.height = `${height}px`;
+    if (this.phantomContentRef.current) {
+      this.phantomContentRef.current.style.height = `${height}px`;
+    }
   };
 
   getStartIndex = (scrollTop = 0) => {
@@ -156,6 +160,9 @@ export default class VirtualList extends React.Component<VirtualListProps> {
       }
     );
 
+    if (idx === null) {
+      idx = 0;
+    }
     const targetItem = this.cachedPositions[idx];
 
     // Incase of binarySearch give us a not visible data(an idx of current visible - 1)...
@@ -176,7 +183,9 @@ export default class VirtualList extends React.Component<VirtualListProps> {
       this.originStartIdx + this.limit + this.bufferSize,
       this.total - 1
     );
-    this.scrollingContainer.current.scrollTop = 0;
+    if (this.scrollingContainer.current) {
+      this.scrollingContainer.current.scrollTop = 0;
+    }
     this.initCachedPositions();
 
     // rest phantom div height
@@ -210,13 +219,11 @@ export default class VirtualList extends React.Component<VirtualListProps> {
   renderDisplayContent = () => {
     const content = [];
     for (let i = this.startIndex; i <= this.endIndex; ++i) {
-      content.push(
-        this.props.rowRenderer(i, {
-          left: 0,
-          right: 0,
-          width: "100%"
-        })
-      );
+      content.push((
+        <div data-index={i} key={i}>
+          {this.props.renderItem(i)}
+        </div>
+      ));
     }
     return content;
   };
@@ -230,34 +237,18 @@ export default class VirtualList extends React.Component<VirtualListProps> {
 
   render() {
     const { height, phantomHeight, total } = this;
-    const { noDataContent } = this.props;
     return (
-      <div
-        ref={this.scrollingContainer}
-        style={{
-          overflowX: "hidden",
-          overflowY: "auto",
-          height,
-          position: "relative"
-        }}
-        onScroll={this.onScroll}
-      >
+      <div className={style.virtualListAuto} ref={this.scrollingContainer} onScroll={this.onScroll}>
+      <div className={style.phantom} ref={this.phantomContentRef} style={{height: phantomHeight}}></div>
         <div
-          ref={this.phantomContentRef}
-          style={{ height: phantomHeight, position: "relative" }}
-        />
-        <div
+          className={style.content}
+          ref={this.actualContentRef}
           style={{
-            width: "100%",
-            position: "absolute",
-            top: 0,
             transform: this.getTransform()
           }}
-          ref={this.actualContentRef}
         >
           {this.renderDisplayContent()}
         </div>
-        {total === 0 && (noDataContent || <Empty />)}
       </div>
     );
   }

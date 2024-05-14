@@ -19,6 +19,7 @@ import {
     SITE_WEB_OBSERVER_VIRTUAL_LIST,
     
     SITE_VIRTUAL_LIST_AUTO,
+    SITE_VIRTUAL_LIST_AUTO_CLASS,
     SITE_VIRTUAL_LIST_FIXED,
 
 } from './site-map';
@@ -102,14 +103,14 @@ export const routes = [
         path: SITE_VIRTUAL_LIST_FIXED.path,
         component: React.lazy(() => import('./pages/virtual-list/height-fixed/index')),
     },
-    // {
-    //     key: SITE_VIRTUAL_LIST_AUTO.key,
-    //     path: SITE_VIRTUAL_LIST_AUTO.path,
-    //     component: React.lazy(() => import('./pages/virtual-list/height-auto/index')),
-    // },
     {
         key: SITE_VIRTUAL_LIST_AUTO.key,
         path: SITE_VIRTUAL_LIST_AUTO.path,
-        component: React.lazy(() => import('./pages/virtual-list/height-auto/new-page/index')),
+        component: React.lazy(() => import('./pages/virtual-list/height-auto/index')),
+    },
+    {
+        key: SITE_VIRTUAL_LIST_AUTO_CLASS.key,
+        path: SITE_VIRTUAL_LIST_AUTO_CLASS.path,
+        component: React.lazy(() => import('./pages/virtual-list/height-auto-class/index')),
     },
 ];

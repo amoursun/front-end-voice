@@ -124,6 +124,12 @@ export const SITE_VIRTUAL_LIST_AUTO = {
     label: () => '高度不定',
     path: '/virtual-list/height-auto',
 };
+export const SITE_VIRTUAL_LIST_AUTO_CLASS = {
+    entry: ENTRY_MAIN,
+    key: 'virtual-list-auto-class',
+    label: () => '高度不定(class)',
+    path: '/virtual-list/height-auto-class',
+};
 export const SITE_VIRTUAL_LIST_FIXED = {
     entry: ENTRY_MAIN,
     key: 'virtual-list-fixed',
@@ -138,6 +144,7 @@ export const SITE_MAP_VIRTUAL_LIST = {
     children: [
         SITE_VIRTUAL_LIST_FIXED,
         SITE_VIRTUAL_LIST_AUTO,
+        SITE_VIRTUAL_LIST_AUTO_CLASS,
     ],
 };
 
