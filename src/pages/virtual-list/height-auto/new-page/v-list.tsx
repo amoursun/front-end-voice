@@ -1,4 +1,4 @@
-import { binarySearch, compareResult } from "./binary-search";
+import { binarySearch, CompareResult } from './binary-search';
 import { Empty } from "antd";
 import React, { ReactNode } from "react";
 

@@ -102,9 +102,14 @@ export const routes = [
         path: SITE_VIRTUAL_LIST_FIXED.path,
         component: React.lazy(() => import('./pages/virtual-list/height-fixed/index')),
     },
+    // {
+    //     key: SITE_VIRTUAL_LIST_AUTO.key,
+    //     path: SITE_VIRTUAL_LIST_AUTO.path,
+    //     component: React.lazy(() => import('./pages/virtual-list/height-auto/index')),
+    // },
     {
         key: SITE_VIRTUAL_LIST_AUTO.key,
         path: SITE_VIRTUAL_LIST_AUTO.path,
-        component: React.lazy(() => import('./pages/virtual-list/height-auto/index')),
+        component: React.lazy(() => import('./pages/virtual-list/height-auto/new-page/index')),
     },
 ];
