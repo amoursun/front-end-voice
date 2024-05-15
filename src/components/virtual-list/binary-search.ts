@@ -1,24 +1,23 @@
-import {IPosition} from './state';
+import {IPosition} from '.';
 
-enum ICompareEnum {
+export enum ICompareEnum {
     equal = 'equal',
-    left = 'left',
-    right = 'right',
+    less = 'less',
+    greater = 'greater',
 }
 function compareResult(targetNumber: number, value: number): ICompareEnum {
     if (targetNumber === value) {
         return ICompareEnum.equal;
     }
     if (targetNumber < value) {
-        return ICompareEnum.left;
+        return ICompareEnum.less;
     }
-    return ICompareEnum.right;
+    return ICompareEnum.greater;
 }
 export const binarySearch = function(list: IPosition[], scrollTop: number): number {  
     let left = 0;
     let right = list.length - 1;
     let tempIndex = -1;
-    console.log('list', list);
     while (left <= right) {
         /**
          * 正好处于临界点
@@ -36,10 +35,10 @@ export const binarySearch = function(list: IPosition[], scrollTop: number): numb
         if (compareType === ICompareEnum.equal) {
             return midIndex;
         }
-        else if (compareType === ICompareEnum.left) {
+        else if (compareType === ICompareEnum.less) {
             left = midIndex + 1;
         }
-        else if (compareType === ICompareEnum.right) {
+        else if (compareType === ICompareEnum.greater) {
             right = midIndex - 1;
         }
     }

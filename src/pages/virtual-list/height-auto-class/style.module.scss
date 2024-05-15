@@ -1,18 +1,6 @@
 
 .virtual-list-auto {
-    overflow: auto;
-    position: relative;
     height: 100%;
-    border: 1px solid #999;
-    .phantom {
-        position: relative;
-    }
-    
-    .content {
-        position: absolute;
-        top: 0;
-    }
-
     .content-item {
         padding: 10px 10px 0;
         color: #333;
