@@ -1,4 +1,10 @@
-import {IPosition} from '.';
+export interface IPosition {
+    index: number;
+    top: number;
+    bottom: number;
+    height: number;
+    dValue: number;
+}
 
 export enum ICompareEnum {
     equal = 'equal',
@@ -19,29 +25,35 @@ export const binarySearch = function(list: IPosition[], scrollTop: number): numb
     let right = list.length - 1;
     let tempIndex = -1;
     while (left <= right) {
-        /**
-         * 正好处于临界点
-         * 8(left)          9(right)
-         * 6590     6600    6610
-         * 下来一步: left + 1 => 9   ===  right  或 right - 1 => left
-         * 结果 left === right
-         */
-        if (left === right) {
-            return left;
-        }
-        let midIndex = Math.floor((left + right) / 2);
-        let midVal = list[midIndex].bottom;
+        tempIndex = Math.floor((left + right) / 2);
+        let midVal = list[tempIndex].bottom;
         const compareType: ICompareEnum = compareResult(midVal, scrollTop);
         if (compareType === ICompareEnum.equal) {
-            return midIndex;
+            return tempIndex;
         }
         else if (compareType === ICompareEnum.less) {
-            left = midIndex + 1;
+            left = tempIndex + 1;
         }
         else if (compareType === ICompareEnum.greater) {
-            right = midIndex - 1;
+            right = tempIndex - 1;
         }
     }
     // 如果没有搜索到完全匹配的项 就返回最匹配的项
     return tempIndex;
+};
+
+export function getStartIndex(params: {
+    scrollTop: number;
+    positions: IPosition[];
+}) {
+    const {scrollTop = 0, positions = []} = params;
+    let idx = binarySearch(positions, scrollTop);
+    if (idx === -1) {
+        idx = 0;
+    }
+    const targetItem = positions[idx];
+    if (targetItem.bottom < scrollTop) {
+        idx += 1;
+    }
+    return idx;
 };

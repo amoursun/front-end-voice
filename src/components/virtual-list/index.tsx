@@ -2,33 +2,16 @@ import {
   forwardRef,
   useCallback,
   useMemo,
-  useState,
-  useEffect,
-  useLayoutEffect,
   useRef,
 } from 'react';
 import style from './style.module.scss';
-import {debounce, get} from 'lodash-es';
-import {binarySearch} from './binary-search';
+import {debounce} from 'lodash-es';
+import {getStartIndex} from './binary-search';
+import {useVirtualIndex} from './use-virtual-index';
+import {usePositions} from './use-positions';
+import {useScreenHeight} from './use-screen-height';
 
-function getIndexFromNode(node: Element) {
-  return Number(get(node, 'dataset.index', 0));
-}
-function getStartIndex(params: {
-  scrollTop: number;
-  positions: IPosition[];
-}) {
-  const {scrollTop = 0, positions = []} = params;
-  let idx = binarySearch(positions, scrollTop);
-  if (idx === -1) {
-    idx = 0;
-  }
-  const targetItem = positions[idx];
-  if (targetItem.bottom < scrollTop) {
-    idx += 1;
-  }
-  return idx;
-};
+
 export interface VirtualSizeListProps {
   /**
    * 列表总个数
@@ -60,13 +43,7 @@ export interface VirtualSizeListProps {
    */
   renderItem: (index: number) => React.ReactNode;
 }
-export interface IPosition {
-  index: number;
-  top: number;
-  bottom: number;
-  height: number;
-  dValue: number;
-}
+
 export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => {
   const {
     total,
@@ -76,107 +53,40 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
   } = props;
   const containerRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
-  const [phantomHeight, setPhantomHeight] = useState(itemHeight * total);
-  const [positions, setPositions] = useState<IPosition[]>(() => {
-    const positions = [];
-    for (let i = 0; i < total; ++i) {
-      positions.push({
-        index: i,
-        height: itemHeight,
-        top: i * itemHeight,
-        bottom: (i + 1) * itemHeight,
-        dValue: 0,
-      });
-    }
-    return positions;
+  const screenHeight = useScreenHeight(containerRef);
+  const {
+    startIndex,
+    endIndex,
+    viewStartIndex,
+    setViewStartIndex,
+  } = useVirtualIndex({
+    height: screenHeight,
+    total,
+    bufferRange,
+    itemHeight,
   });
-  const [screenHeight, setScreenHeight] = useState(0);
-  const [startIndex, setStartIndex] = useState(0);
-  const [visibleStartIndex, setVisibleStartIndex] = useState(0);
-  useLayoutEffect(() => {
-    const target = containerRef.current;
-    if (target) {
-      setScreenHeight(target.clientHeight);
-    }
-  }, [containerRef]);
-
-  const visibleSize = Math.ceil(screenHeight / itemHeight);
-  const bufferSize = bufferRange * visibleSize;
-  const endIndex = useMemo(() => {
-    return Math.min(
-      visibleStartIndex + visibleSize + bufferSize,
-      total - 1
-    );
-  }, [total, visibleSize, visibleStartIndex, bufferSize]);
-  const updatePositions = useCallback(() => {
-    const nodes = contentRef.current?.children || [];
-    const start = nodes[0];
-    for (const node of nodes) {
-      if (!node) {
-          continue;
-      }
-      // 获取 真实DOM高度
-      const {height} = node.getBoundingClientRect();
-      // 根据 元素索引 获取 缓存列表对应的列表项
-      const index = getIndexFromNode(node);
-      const oldHeight = positions[index].height;
-      const dValue = oldHeight - height;
-      // 如果有高度差 !!dValue === true
-      if (dValue) {
-        positions[index].bottom -= dValue;
-        positions[index].height = height;
-        positions[index].dValue = dValue;
-      }
-    }
-    let startIdx = 0;
-    if (start) {
-      startIdx = getIndexFromNode(start);;
-    }
-    const length = positions.length;
-    let diff = positions[startIdx].dValue;
-    positions[startIdx].dValue = 0;
-    for (let i = startIdx + 1; i < length; ++i) {
-      const item = positions[i];
-      positions[i].top = positions[i - 1].bottom;
-      positions[i].bottom = positions[i].bottom - diff;
-
-      if (item.dValue !== 0) {
-        diff += item.dValue;
-        item.dValue = 0;
-      }
-    }
-    const height = positions[length - 1].bottom;
-    setPhantomHeight(height);
-    setPositions(positions);
-  }, [contentRef, positions]);
-  useEffect(() => {
-    updatePositions();
-  }, []);
+  const {positions} = usePositions({
+    total,
+    itemHeight,
+    itemType,
+    startIndex,
+    renderContainerRef: contentRef,
+  });
   
-  const handleScroll = useCallback(() => {
+  const handleScroll = useCallback(debounce(() => {
     const container = containerRef.current;
     if (container) {
       const {scrollTop} = container;
-
       const currentStartIndex = getStartIndex({
         scrollTop,
         positions,
       });
-
-      if (currentStartIndex !== visibleStartIndex) {
-        setVisibleStartIndex(currentStartIndex);
-        setStartIndex(Math.max(currentStartIndex - bufferSize, 0));
-        // setState({ scrollTop });
+      if (currentStartIndex !== viewStartIndex) {
+        setViewStartIndex(currentStartIndex);
       }
     }
-  }, [visibleStartIndex, bufferSize, total, positions]);
-  const transform = useMemo(() => {
-    return `translate3d(0,${
-      startIndex >= 1
-        ? positions[startIndex - 1].bottom
-        : 0
-    }px,0)`
-  }, [startIndex, positions]);
+  }, 15), [viewStartIndex, total, positions]);
+  const transformValue = startIndex >= 1 ? positions[startIndex - 1].bottom : 0;
   const visibleList = useMemo(() => {
     const contents = [];
     for (let i = startIndex; i <= endIndex; ++i) {
@@ -190,11 +100,14 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
   }, [startIndex, endIndex]);
   return (
     <div className={style.virtualListAuto} ref={containerRef} onScroll={handleScroll}>
-      <div className={style.phantom} style={{height: phantomHeight}}></div>
+      <div
+        className={style.phantom}
+        style={{height: positions[positions.length - 1].bottom}}
+      />
       <div
         className={style.content}
         ref={contentRef}
-        style={{transform: transform}}
+        style={{transform: `translate3d(0,${transformValue}px,0)`}}
       >
         {visibleList}
       </div>
