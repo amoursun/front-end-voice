@@ -7,7 +7,7 @@ import {IPosition} from './binary-search';
 import {VirtualSizeListProps} from '.';
 import {getIndexFromNode} from './utils';
 
-interface IUsePositionsParams extends Pick<VirtualSizeListProps, 'total' | 'itemType'> {
+interface IUsePositionsParams extends Pick<VirtualSizeListProps, 'total' | 'renderType'> {
     itemHeight: number;
     /**
      * 开始索引
@@ -20,7 +20,7 @@ export function usePositions(props: IUsePositionsParams) {
         total,
         itemHeight,
         startIndex,
-        itemType = 'auto',
+        renderType = 'auto',
         renderContainerRef,
     } = props;
     const [positions, setPositions] = useState<IPosition[]>(() => {
@@ -77,10 +77,10 @@ export function usePositions(props: IUsePositionsParams) {
     }, [renderContainerRef, positions]);
     useEffect(() => {
         // 高度不定时候计算
-        if (itemType === 'auto') {
+        if (renderType === 'auto') {
             updatePositions();
         }
-    }, [itemType, startIndex]);
+    }, [renderType, startIndex]);
     return {
         positions,
         updatePositions,

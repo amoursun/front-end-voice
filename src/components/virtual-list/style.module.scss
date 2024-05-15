@@ -1,5 +1,5 @@
 
-.virtual-list-auto {
+.virtual-list-wrapper {
     overflow: auto;
     position: relative;
     height: 100%;
@@ -10,5 +10,8 @@
     .content {
         position: absolute;
         top: 0;
+    }
+    .content-area.fixed {
+        overflow: hidden;
     }
 }

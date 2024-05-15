@@ -136,6 +136,13 @@ export const SITE_VIRTUAL_LIST_FIXED = {
     label: () => '高度固定',
     path: '/virtual-list/height-fixed',
 };
+export const SITE_VIRTUAL_LIST_FIXED_V2 = {
+    entry: ENTRY_MAIN,
+    key: 'virtual-list-fixed-v2',
+    label: () => '高度固定(虚拟组件)',
+    path: '/virtual-list/height-fixed-v2',
+};
+
 export const SITE_MAP_VIRTUAL_LIST = {
     entry: ENTRY_MAIN,
     key: 'virtual-list',
@@ -143,6 +150,7 @@ export const SITE_MAP_VIRTUAL_LIST = {
     path: '/virtual-list',
     children: [
         SITE_VIRTUAL_LIST_FIXED,
+        SITE_VIRTUAL_LIST_FIXED_V2,
         SITE_VIRTUAL_LIST_AUTO,
         SITE_VIRTUAL_LIST_AUTO_CLASS,
     ],

@@ -1,5 +1,5 @@
 
-.virtual-list-auto {
+.virtual-list-wrapper {
     overflow: auto;
     position: relative;
     height: 100%;
@@ -11,24 +11,5 @@
     .content {
         position: absolute;
         top: 0;
-    }
-
-    .content-item {
-        padding: 10px 10px 0;
-        color: #333;
-        &:last-child {
-            padding-bottom: 10px;
-        }
-        .content-inner {
-            border: 1px solid #999;
-            padding: 10px;
-        }
-        .title {
-            font-size: 16px;
-            font-weight: 500;
-            padding-bottom: 10px;
-        }
-        .value {
-        }
     }
 }

@@ -1,4 +1,5 @@
 import React, {ReactNode} from 'react';
+import cx from 'classnames';
 import {binarySearch, ICompareEnum, IPosition} from './binary-search';
 import {get} from 'lodash-es';
 import style from './style.module.scss';
@@ -7,6 +8,7 @@ function getIndexFromNode(node: Element) {
   return Number(get(node, 'dataset.index', 0));
 }
 export interface VirtualSizeListProps {
+  className?: string;
   /**
    * 列表总个数
    */
@@ -23,7 +25,7 @@ export interface VirtualSizeListProps {
    * 固定高度：fixed
    * 自动高度：auto
    */
-  itemType?: 'fixed' | 'auto';
+  renderType?: 'fixed' | 'auto';
   /**
    * 列表渲染上下缓冲区 bufferRange
    * 渲染高度: 可视区列表高度(screenHeight) 可视区top(top)
@@ -219,8 +221,9 @@ export class VirtualSizeList extends React.PureComponent<VirtualSizeListProps> {
   }
 
   render() {
+    const {className} = this.props;
     return (
-      <div className={style.virtualListAuto} ref={this.containerRef} onScroll={this.onScroll}>
+      <div className={cx(style.virtualListWrapper, className)} ref={this.containerRef} onScroll={this.onScroll}>
         <div className={style.phantom} style={{height: this.state.phantomHeight}}></div>
         <div
           className={style.content}

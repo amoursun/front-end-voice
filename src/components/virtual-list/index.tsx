@@ -4,6 +4,7 @@ import {
   useMemo,
   useRef,
 } from 'react';
+import cx from 'classnames';
 import style from './style.module.scss';
 import {debounce} from 'lodash-es';
 import {getStartIndex} from './binary-search';
@@ -13,6 +14,7 @@ import {useScreenHeight} from './use-screen-height';
 
 
 export interface VirtualSizeListProps {
+  className?: string;
   /**
    * 列表总个数
    */
@@ -28,7 +30,7 @@ export interface VirtualSizeListProps {
    * 固定高度：fixed
    * 自动高度：auto
    */
-  itemType?: 'fixed' | 'auto';
+  renderType?: 'fixed' | 'auto';
   /**
    * 列表渲染上下缓冲区 bufferRange
    * 渲染高度: 可视区列表高度(screenHeight) 可视区top(top)
@@ -46,10 +48,11 @@ export interface VirtualSizeListProps {
 
 export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => {
   const {
+    className,
     total,
     bufferRange = 1,
     itemHeight = 100,
-    itemType = 'auto',
+    renderType = 'auto',
   } = props;
   const containerRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -68,7 +71,7 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
   const {positions} = usePositions({
     total,
     itemHeight,
-    itemType,
+    renderType,
     startIndex,
     renderContainerRef: contentRef,
   });
@@ -91,7 +94,16 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
     const contents = [];
     for (let i = startIndex; i <= endIndex; ++i) {
       contents.push((
-        <div data-index={i} key={i}>
+        <div
+          className={cx(style.contentArea, {
+            [style.fixed]: renderType === 'fixed',
+          })}
+          style={{
+            height: renderType === 'fixed' ? itemHeight : 'auto',
+          }}
+          data-index={i}
+          key={i}
+        >
           {props.renderItem(i)}
         </div>
       ));
@@ -99,7 +111,7 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
     return contents;
   }, [startIndex, endIndex]);
   return (
-    <div className={style.virtualListAuto} ref={containerRef} onScroll={handleScroll}>
+    <div className={cx(style.virtualListWrapper, className)} ref={containerRef} onScroll={handleScroll}>
       <div
         className={style.phantom}
         style={{height: positions[positions.length - 1].bottom}}

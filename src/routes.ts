@@ -21,6 +21,7 @@ import {
     SITE_VIRTUAL_LIST_AUTO,
     SITE_VIRTUAL_LIST_AUTO_CLASS,
     SITE_VIRTUAL_LIST_FIXED,
+    SITE_VIRTUAL_LIST_FIXED_V2,
 
 } from './site-map';
 
@@ -104,6 +105,11 @@ export const routes = [
         component: React.lazy(() => import('./pages/virtual-list/height-fixed/index')),
     },
     {
+        key: SITE_VIRTUAL_LIST_FIXED_V2.key,
+        path: SITE_VIRTUAL_LIST_FIXED_V2.path,
+        component: React.lazy(() => import('./pages/virtual-list/height-fixed-v2/index')),
+    },
+    {
         key: SITE_VIRTUAL_LIST_AUTO.key,
         path: SITE_VIRTUAL_LIST_AUTO.path,
         component: React.lazy(() => import('./pages/virtual-list/height-auto/index')),
@@ -113,4 +119,5 @@ export const routes = [
         path: SITE_VIRTUAL_LIST_AUTO_CLASS.path,
         component: React.lazy(() => import('./pages/virtual-list/height-auto-class/index')),
     },
+
 ];
