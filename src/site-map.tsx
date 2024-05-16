@@ -66,8 +66,12 @@ export const SITE_MAP_JS_FRAGMENTATION = {
     label: () => 'JS分片任务',
     path: '/js-fragmentation',
 };
-
-
+export const SITE_MAP_SEARCH_IMAGE_TEXT = {
+    entry: ENTRY_MAIN,
+    key: 'search-image-text',
+    label: () => '搜索图片文字',
+    path: '/search-image-text',
+};
 
 // web worker
 export const SITE_WEB_WORKER_SHARE = {
@@ -187,6 +191,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_SSE,
         SITE_MAP_SCROLL_ANIMATION,
         SITE_MAP_JS_FRAGMENTATION,
+        SITE_MAP_SEARCH_IMAGE_TEXT,
         SITE_MAP_INTERSECTION_OBSERVER,
         SITE_MAP_VIRTUAL_LIST,
     ],

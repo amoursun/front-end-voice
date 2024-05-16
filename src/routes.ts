@@ -14,6 +14,7 @@ import {
     SITE_MAP_SSE,
     SITE_MAP_SCROLL_ANIMATION,
     SITE_MAP_JS_FRAGMENTATION,
+    SITE_MAP_SEARCH_IMAGE_TEXT,
 
     SITE_WEB_OBSERVER_LAZY_LOAD,
     SITE_WEB_OBSERVER_INFINITE_SCROLL,
@@ -89,6 +90,11 @@ export const routes = [
         key: SITE_MAP_JS_FRAGMENTATION.key,
         path: SITE_MAP_JS_FRAGMENTATION.path,
         component: React.lazy(() => import('./pages/js-fragmentation/index')),
+    },
+    {
+        key: SITE_MAP_SEARCH_IMAGE_TEXT.key,
+        path: SITE_MAP_SEARCH_IMAGE_TEXT.path,
+        component: React.lazy(() => import('./pages/search-image-text/index')),
     },
 
     {
