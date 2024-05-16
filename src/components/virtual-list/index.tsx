@@ -6,7 +6,6 @@ import {
 } from 'react';
 import cx from 'classnames';
 import style from './style.module.scss';
-import {debounce} from 'lodash-es';
 import {getStartIndex} from './binary-search';
 import {useVirtualIndex} from './use-virtual-index';
 import {usePositions} from './use-positions';
@@ -76,19 +75,21 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
     renderContainerRef: contentRef,
   });
   
-  const handleScroll = useCallback(debounce(() => {
-    const container = containerRef.current;
-    if (container) {
-      const {scrollTop} = container;
-      const currentStartIndex = getStartIndex({
-        scrollTop,
-        positions,
-      });
-      if (currentStartIndex !== viewStartIndex) {
-        setViewStartIndex(currentStartIndex);
+  const handleScroll = useCallback(() => {
+    requestAnimationFrame(() => {
+      const container = containerRef.current;
+      if (container) {
+        const {scrollTop} = container;
+        const currentStartIndex = getStartIndex({
+          scrollTop,
+          positions,
+        });
+        if (currentStartIndex !== viewStartIndex) {
+          setViewStartIndex(currentStartIndex);
+        }
       }
-    }
-  }, 15), [viewStartIndex, total, positions]);
+    });
+  }, [viewStartIndex, total, positions]);
   const transformValue = startIndex >= 1 ? positions[startIndex - 1].bottom : 0;
   const visibleList = useMemo(() => {
     const contents = [];
