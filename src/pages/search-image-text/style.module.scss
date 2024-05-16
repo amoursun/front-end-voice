@@ -1,5 +1,9 @@
 
 .search-image-text {
     
-    
+    .img-container {
+        > img {
+            margin-bottom: 12px;
+        }
+    }
 }
