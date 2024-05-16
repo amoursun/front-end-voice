@@ -1,7 +1,7 @@
 import {useState, useEffect, useMemo, useRef} from 'react';
 import {createWorker} from 'tesseract.js';
 import style from './style.module.scss';
-import {Input} from 'antd';
+import {Input, Spin} from 'antd';
 import engPng from './images/eng.png';
 import chiSimPng from './images/chi_sim.png';
 import {getId} from '../../utils/util-get-id';
@@ -18,8 +18,9 @@ interface IResult {
   error?: any;
 }
 export function SearchImageText() {
-  const [value, setValue] = useState('');
   const workerRef = useRef<Tesseract.Worker>();
+  const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState('');
   const [imageValues, setImageValues] = useState<IResult[]>([]);
   useEffect(() => {
     const requestImg = (item: Pick<IResult, 'name' | 'src' | 'id'>): Promise<IResult> => {
@@ -35,6 +36,7 @@ export function SearchImageText() {
         });
     };
     const request = async () => {
+      setLoading(true);
       /**
        * eng: 英文
        * chi_sim: 简体中文
@@ -48,6 +50,7 @@ export function SearchImageText() {
           .map(img => ({name: img, src: img, id: getId()}))
           .map(requestImg)
       );
+      setLoading(false);
       setImageValues(data);
     };
     request();
@@ -64,15 +67,17 @@ export function SearchImageText() {
   }, [imageValues, value]);
   console.log(searchImages, 'searchImages');
   return (
-    <div className={style.searchImageText}>
-      <Input value={value} onChange={handleChange} />
-      <div className={style.imgContainer}>
-        {searchImages.map((item) => {
-          return <img src={item.src} key={item.id} />
-        })}
+    <Spin tip={'Loading...'} spinning={loading}>
+      <div className={style.searchImageText}>
+        <Input value={value} onChange={handleChange} />
+        <div className={style.imgContainer}>
+          {searchImages.map((item) => {
+            return <img src={item.src} key={item.id} />
+          })}
+        </div>
       </div>
-    </div>
-  )
+    </Spin>
+  );
 }
 
 export default SearchImageText;
