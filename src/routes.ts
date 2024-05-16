@@ -13,6 +13,7 @@ import {
 
     SITE_MAP_SSE,
     SITE_MAP_SCROLL_ANIMATION,
+    SITE_MAP_JS_FRAGMENTATION,
 
     SITE_WEB_OBSERVER_LAZY_LOAD,
     SITE_WEB_OBSERVER_INFINITE_SCROLL,
@@ -83,6 +84,11 @@ export const routes = [
         key: SITE_MAP_SCROLL_ANIMATION.key,
         path: SITE_MAP_SCROLL_ANIMATION.path,
         component: React.lazy(() => import('./pages/scroll-animation/index')),
+    },
+    {
+        key: SITE_MAP_JS_FRAGMENTATION.key,
+        path: SITE_MAP_JS_FRAGMENTATION.path,
+        component: React.lazy(() => import('./pages/js-fragmentation/index')),
     },
 
     {

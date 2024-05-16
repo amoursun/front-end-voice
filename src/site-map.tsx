@@ -60,6 +60,14 @@ export const SITE_MAP_SCROLL_ANIMATION = {
     label: () => '滚动动画',
     path: '/scroll-animation',
 };
+export const SITE_MAP_JS_FRAGMENTATION = {
+    entry: ENTRY_MAIN,
+    key: 'js-fragmentation',
+    label: () => 'JS分片任务',
+    path: '/js-fragmentation',
+};
+
+
 
 // web worker
 export const SITE_WEB_WORKER_SHARE = {
@@ -178,6 +186,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_WEB_WORKER,
         SITE_MAP_SSE,
         SITE_MAP_SCROLL_ANIMATION,
+        SITE_MAP_JS_FRAGMENTATION,
         SITE_MAP_INTERSECTION_OBSERVER,
         SITE_MAP_VIRTUAL_LIST,
     ],

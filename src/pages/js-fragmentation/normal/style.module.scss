@@ -1,0 +1,22 @@
+
+.normal {
+    position: relative;
+    padding-bottom: 200px;
+    .ball {
+        width: 100px;
+        height: 100px;
+        background: #FF4400;
+        border-radius: 50%;
+        margin: 30px;
+    }
+    .ball-animate {
+        position: absolute;
+        left: 0;
+        animation: move1 1s alternate infinite ease-in-out;
+    }
+    @keyframes move1 {
+        to {
+            left: 100px;
+        }
+    }
+}
