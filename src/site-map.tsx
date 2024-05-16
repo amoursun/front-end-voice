@@ -73,6 +73,13 @@ export const SITE_MAP_SEARCH_IMAGE_TEXT = {
     path: '/search-image-text',
 };
 
+export const SITE_WEB_IMAGE_ANNOTATION_TOOL = {
+    entry: ENTRY_MAIN,
+    key: 'image-annotation-tool',
+    label: () => '图片标注工具',
+    path: '/image-annotation-tool',
+};
+
 // web worker
 export const SITE_WEB_WORKER_SHARE = {
     entry: ENTRY_MAIN,
@@ -184,6 +191,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_SPEECH_SYNTHESIS,
         SITE_MAP_SOCKET_GROUP,
         SITE_MAP_MEDIA_DEVICE,
+        SITE_WEB_IMAGE_ANNOTATION_TOOL,
         SITE_MAP_AUDIO_CONTEXT,
         SITE_MAP_IMG_VIDEO_PREVIEW,
         SITE_MAP_MEDIA_RECORDER,

@@ -7,6 +7,7 @@ import {
     SITE_MAP_AUDIO_CONTEXT,
     SITE_MAP_IMG_VIDEO_PREVIEW,
     SITE_MAP_MEDIA_RECORDER,
+    SITE_WEB_IMAGE_ANNOTATION_TOOL,
 
     SITE_WEB_WORKER_SHARE,
     SITE_WEB_WORKER_NORMAL,
@@ -95,6 +96,11 @@ export const routes = [
         key: SITE_MAP_SEARCH_IMAGE_TEXT.key,
         path: SITE_MAP_SEARCH_IMAGE_TEXT.path,
         component: React.lazy(() => import('./pages/search-image-text/index')),
+    },
+    {
+        key: SITE_WEB_IMAGE_ANNOTATION_TOOL.key,
+        path: SITE_WEB_IMAGE_ANNOTATION_TOOL.path,
+        component: React.lazy(() => import('./pages/image-annotation-tool/index')),
     },
 
     {
