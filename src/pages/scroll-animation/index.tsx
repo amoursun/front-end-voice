@@ -2,7 +2,7 @@ import {useState, useEffect, useContext, useRef} from 'react';
 import style from './style.module.scss';
 import {BasicLayoutContext} from '../../layouts/basic/context';
 
-const data = new Array(10).fill(0).map((_, index) => {
+const data = new Array(100).fill(0).map((_, index) => {
   return {id: index, value: `Content${index}`};
 });
 export function ScrollAnimation() {
