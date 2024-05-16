@@ -68,12 +68,19 @@ export const SITE_WEB_WORKER_SHARE = {
     label: () => 'Web Worker - Share',
     path: '/web-worker/share',
 };
+export const SITE_WEB_WORKER_NORMAL = {
+    entry: ENTRY_MAIN,
+    key: 'web-worker-normal',
+    label: () => 'Web Worker',
+    path: '/web-worker/normal',
+};
 export const SITE_MAP_WEB_WORKER = {
     entry: ENTRY_MAIN,
     key: 'web-worker',
     label: () => 'Web Worker',
     path: '/web-worker',
     children: [
+        SITE_WEB_WORKER_NORMAL,
         SITE_WEB_WORKER_SHARE,
     ],
 };

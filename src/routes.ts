@@ -9,6 +9,7 @@ import {
     SITE_MAP_MEDIA_RECORDER,
 
     SITE_WEB_WORKER_SHARE,
+    SITE_WEB_WORKER_NORMAL,
 
     SITE_MAP_SSE,
     SITE_MAP_SCROLL_ANIMATION,
@@ -60,6 +61,12 @@ export const routes = [
         key: SITE_MAP_MEDIA_RECORDER.key,
         path: SITE_MAP_MEDIA_RECORDER.path,
         component: React.lazy(() => import('./pages/media-recorder-api/index')),
+    },
+
+    {
+        key: SITE_WEB_WORKER_NORMAL.key,
+        path: SITE_WEB_WORKER_NORMAL.path,
+        component: React.lazy(() => import('./pages/web-worker/normal-worker/index')),
     },
     {
         key: SITE_WEB_WORKER_SHARE.key,
