@@ -24,9 +24,6 @@ export class AudioMusic extends React.Component {
   constructor(props: Record<string, any>) {
     super(props);
   }
-
-  
-
   componentDidMount(): void {
   }
 
@@ -75,7 +72,7 @@ export class AudioMusic extends React.Component {
   /**
    * 处理器连接分析器, 波普分析
    */
-  createScriptProcessor () {
+  createScriptProcessor() {
     // 创建处理器，参数分别是缓存区大小、输入声道数、输出声道数
     this.processor = this.audioContext.createScriptProcessor(4096, 1, 1);
     // 分析器连接处理器，处理器连接扬声器
@@ -114,7 +111,7 @@ export class AudioMusic extends React.Component {
   handlePlay = () => {
     const audio = this.audioRef.current;
     if (audio) {
-      audio.crossOrigin='anonymous';
+      audio.crossOrigin = 'anonymous';
       if (!this.audioSource) {
         this.create();
         this.createMediaElementSource(audio);
@@ -122,8 +119,13 @@ export class AudioMusic extends React.Component {
       audio.play();
     }
   }
+  closePlay = () => {
+    const audio = this.audioRef.current;
+    audio?.pause();
+  };
 
   handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    
     if (event.target.files) {
       const file = event.target.files[0];
       this.stream = URL.createObjectURL(file);
