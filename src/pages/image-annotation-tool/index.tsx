@@ -1,6 +1,7 @@
 import {useState, useEffect, useMemo, useRef} from 'react';
 import style from './style.module.scss';
 import {Input, Spin} from 'antd';
+import {annotationState} from './annotation';
 import dogPng from './images/dog.png';
 
 const canvasRect = {
@@ -13,23 +14,24 @@ export function ImageAnnotationTool() {
   useEffect(() => {
     const canvas = ref.current;
     if (canvas) {
-      const {width, height} = canvasRect;
-      const ctx = canvas.getContext('2d');
-      const img = new Image();
-      img.src = dogPng;
-      img.onload = function () {
-        draw();
-      };
-      function draw() {
-        ctx?.drawImage(img, 0, 0, width, height);
-      }
+      annotationState
+        .createContext(canvas)
+        .loadImage(dogPng);
     }
+    annotationState.eventListener();
+    return () => {
+      annotationState.dispose();
+    };
     
   }, [ref]);
   return (
     <Spin tip={'Loading...'} spinning={loading}>
       <div className={style.imageAnnotationTool}>
-        <canvas ref={ref} width={canvasRect.width} height={canvasRect.height}></canvas>
+        <canvas
+          ref={ref}
+          width={canvasRect.width}
+          height={canvasRect.height}
+        />
       </div>
     </Spin>
   );
