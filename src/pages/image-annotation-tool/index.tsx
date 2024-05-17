@@ -26,6 +26,7 @@ export function ImageAnnotationTool() {
   }, [ref]);
   return (
     <Spin tip={'Loading...'} spinning={loading}>
+      <a href={'https://juejin.cn/post/7350954669742768147'} target="_blank">解锁前端难题：亲手实现一个图片标注工具</a>
       <div className={style.imageAnnotationTool}>
         <canvas
           ref={ref}
