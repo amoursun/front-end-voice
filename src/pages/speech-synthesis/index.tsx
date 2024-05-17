@@ -12,7 +12,7 @@ export type FieldType = {
 };
 export function SpeechSynthesis() {
   const {speak, stop, reading, langList} = useSpeechSynthesis();
-  const [lang, setLang] = useState(langList[0].name);
+  const [lang, setLang] = useState(langList[0]?.name);
   const langOption = useMemo(() => {
     return langList.find(item => item.name === lang);
   }, [lang, langList]);
