@@ -3,6 +3,8 @@ import {
   useCallback,
   useMemo,
   useRef,
+  useImperativeHandle,
+  useEffect,
 } from 'react';
 import cx from 'classnames';
 import style from './style.module.scss';
@@ -10,10 +12,15 @@ import {getStartIndex} from './binary-search';
 import {useVirtualIndex} from './use-virtual-index';
 import {usePositions} from './use-positions';
 import {useScreenHeight} from './use-screen-height';
+import { Spin } from 'antd';
 
 
 export interface VirtualSizeListProps {
   className?: string;
+  /**
+   * 加载 更新 loading
+   */
+  loading?: boolean;
   /**
    * 列表总个数
    */
@@ -43,15 +50,22 @@ export interface VirtualSizeListProps {
    * @param index 渲染索引
    */
   renderItem: (index: number) => React.ReactNode;
+  /**
+   * 回调更新数据, 懒加载
+   */
+  updateData?: () => void;
 }
-
+export interface IVirtualSizeListRefProps {
+}
 export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => {
   const {
     className,
+    loading = false,
     total,
     bufferRange = 1,
     itemHeight = 100,
     renderType = 'auto',
+    updateData,
   } = props;
   const containerRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -67,7 +81,7 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
     bufferRange,
     itemHeight,
   });
-  const {positions} = usePositions({
+  const {positions, transformValue, scrollHeight} = usePositions({
     total,
     itemHeight,
     renderType,
@@ -80,6 +94,11 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
       const container = containerRef.current;
       if (container) {
         const {scrollTop} = container;
+        const lastBottom = positions[positions.length - 1].bottom;
+        // 更新数据长度
+        if (Math.abs(scrollTop + screenHeight - lastBottom) < 1) {
+          updateData?.();
+        }
         const currentStartIndex = getStartIndex({
           scrollTop,
           positions,
@@ -89,8 +108,7 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
         }
       }
     });
-  }, [viewStartIndex, total, positions]);
-  const transformValue = startIndex >= 1 ? positions[startIndex - 1].bottom : 0;
+  }, [viewStartIndex, screenHeight, total, positions]);
   const visibleList = useMemo(() => {
     const contents = [];
     for (let i = startIndex; i <= endIndex; ++i) {
@@ -111,20 +129,33 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
     }
     return contents;
   }, [startIndex, endIndex]);
+  /**
+   * 对外暴露的内部方法
+   */
+  useImperativeHandle(ref, () => ({
+    
+  }));
   return (
-    <div className={cx(style.virtualListWrapper, className)} ref={containerRef} onScroll={handleScroll}>
-      <div
-        className={style.phantom}
-        style={{height: positions[positions.length - 1].bottom}}
-      />
-      <div
-        className={style.content}
-        ref={contentRef}
-        style={{transform: `translate3d(0,${transformValue}px,0)`}}
-      >
-        {visibleList}
+    <div className={style.virtualArea}>
+      <div className={cx(style.loading, {[style.show]: loading})}>
+        <div className={style.mask}></div>
+        <Spin tip={'加载中...'}><div /></Spin>
+      </div>
+      <div className={cx(style.virtualListWrapper, className)} ref={containerRef} onScroll={handleScroll}>
+        <div
+          className={style.phantom}
+          style={{height: scrollHeight}}
+        />
+        <div
+          className={style.content}
+          ref={contentRef}
+          style={{transform: `translate3d(0,${transformValue}px,0)`}}
+        >
+          {visibleList}
+        </div>
       </div>
     </div>
+    
   );
 });
 

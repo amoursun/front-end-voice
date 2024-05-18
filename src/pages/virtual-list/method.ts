@@ -9,6 +9,7 @@ export interface IListItem {
 export const GENERATE_LIST_NUM = 100 * 1000;
 export const generateList = (params?: {
     num?: number;
+    calculate?: number;
     repeatNum?: number;
     isAuto?: boolean;
 }) => {
@@ -17,6 +18,7 @@ export const generateList = (params?: {
         num = GENERATE_LIST_NUM,
         repeatNum = 50,
         isAuto = false,
+        calculate = 0,
     } = params || {};
     const getRepeatNum = () => {
         if (isAuto) {
@@ -27,9 +29,10 @@ export const generateList = (params?: {
     const data = [];
     const value = Math.random().toString(36).substring(2, 15);
     for (let i = 1; i <= num; i++) {
+        const id = calculate + i;
         data.push({
-            id: i,
-            title: `标题${i}`,
+            id,
+            title: `标题${id}`,
             value: repeat(`内容${value}`, getRepeatNum()),
         });
     }
