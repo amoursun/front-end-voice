@@ -16,7 +16,7 @@ export const generateList = (params?: {
     
     const {
         num = GENERATE_LIST_NUM,
-        repeatNum = 50,
+        repeatNum = 100,
         isAuto = false,
         calculate = 0,
     } = params || {};
