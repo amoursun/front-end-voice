@@ -6,7 +6,7 @@ export interface IListItem {
     title: string;
     value: string;
 }
-export const GENERATE_LIST_NUM = 100 * 1000;
+export const GENERATE_LIST_NUM = 10 * 1000;
 export const generateList = (params?: {
     num?: number;
     calculate?: number;

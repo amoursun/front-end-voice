@@ -9,9 +9,9 @@ export const VirtualList = () => {
   const [list, setList] = useState<IListItem[]>(generateList({isAuto: true}));
   const ref = useRef<IVirtualSizeListRefProps>({});
   const updateLoadList = useCallback(() => {
-    setLoading(true);
     const l = list.length;
     if (l < limit) {
+      setLoading(true);
       const nextList = generateList({
         isAuto: true,
         calculate: l,
