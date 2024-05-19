@@ -53,6 +53,12 @@ export const SITE_MAP_SSE = {
     label: () => 'SSE',
     path: '/sse',
 };
+export const SITE_MAP_BIG_FILE_CHUNK_UPLOAD = {
+    entry: ENTRY_MAIN,
+    key: 'big-file-chunk-upload',
+    label: () => '大文件分片上传',
+    path: '/big-file-chunk-upload',
+};
 
 export const SITE_MAP_SCROLL_ANIMATION = {
     entry: ENTRY_MAIN,
@@ -197,6 +203,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_MEDIA_RECORDER,
         SITE_MAP_WEB_WORKER,
         SITE_MAP_SSE,
+        SITE_MAP_BIG_FILE_CHUNK_UPLOAD,
         SITE_MAP_SCROLL_ANIMATION,
         SITE_MAP_JS_FRAGMENTATION,
         SITE_MAP_SEARCH_IMAGE_TEXT,

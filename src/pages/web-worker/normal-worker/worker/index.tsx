@@ -21,6 +21,7 @@ export function CountWorker() {
             console.time('NormalWorker');
             worker.postMessage(total);
             worker.onmessage = function(event) {
+                console.log(event);
                 setCount(event.data);
                 console.timeEnd('NormalWorker');
                 setLoading(false);
