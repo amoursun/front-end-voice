@@ -1,5 +1,6 @@
 
 export const ENTRY_MAIN = 'main';
+
 export const SITE_MAP_SOCKET_GROUP = {
     label: () => 'socket群聊',
     key: 'socket-group',
@@ -86,6 +87,37 @@ export const SITE_WEB_IMAGE_ANNOTATION_TOOL = {
     path: '/image-annotation-tool',
 };
 
+// 编辑器
+export const SITE_REACT_MONACO_EDITOR = {
+    label: () => 'react-monaco-editor',
+    key: 'react-monaco-editor',
+    path: '/editor/react-monaco-editor',
+    entry: ENTRY_MAIN,
+};
+export const SITE_MONACO_EDITOR__REACT = {
+    label: () => '@monaco-editor/react',
+    key: 'monaco-editor__react',
+    path: '/editor/monaco-editor__react',
+    entry: ENTRY_MAIN,
+};
+export const SITE_EDITOR_MONACO = {
+    label: () => 'monaco-editor',
+    key: 'monaco-editor',
+    path: '/editor/monaco-editor',
+    entry: ENTRY_MAIN,
+};
+export const SITE_MAP_EDITOR = {
+    label: () => '编辑器',
+    key: 'editor',
+    path: '/editor',
+    entry: ENTRY_MAIN,
+    children: [
+        SITE_EDITOR_MONACO,
+        SITE_REACT_MONACO_EDITOR,
+        SITE_MONACO_EDITOR__REACT,
+    ],
+};
+
 // web worker
 export const SITE_WEB_WORKER_SHARE = {
     entry: ENTRY_MAIN,
@@ -129,7 +161,6 @@ export const SITE_WEB_OBSERVER_INFINITE_SCROLL_ANIMATE = {
     label: () => '滚动动画',
     path: '/intersection-observer/infinite-scroll-animate',
 };
-
 export const SITE_WEB_OBSERVER_VIRTUAL_LIST = {
     entry: ENTRY_MAIN,
     key: 'virtual-list',
@@ -174,7 +205,6 @@ export const SITE_VIRTUAL_LIST_FIXED_V2 = {
     label: () => '高度固定(虚拟组件)',
     path: '/virtual-list/height-fixed-v2',
 };
-
 export const SITE_MAP_VIRTUAL_LIST = {
     entry: ENTRY_MAIN,
     key: 'virtual-list',
@@ -201,12 +231,13 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_AUDIO_CONTEXT,
         SITE_MAP_IMG_VIDEO_PREVIEW,
         SITE_MAP_MEDIA_RECORDER,
-        SITE_MAP_WEB_WORKER,
         SITE_MAP_SSE,
         SITE_MAP_BIG_FILE_CHUNK_UPLOAD,
         SITE_MAP_SCROLL_ANIMATION,
         SITE_MAP_JS_FRAGMENTATION,
         SITE_MAP_SEARCH_IMAGE_TEXT,
+        SITE_MAP_EDITOR,
+        SITE_MAP_WEB_WORKER,
         SITE_MAP_INTERSECTION_OBSERVER,
         SITE_MAP_VIRTUAL_LIST,
     ],

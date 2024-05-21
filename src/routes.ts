@@ -18,6 +18,10 @@ import {
     SITE_MAP_JS_FRAGMENTATION,
     SITE_MAP_SEARCH_IMAGE_TEXT,
 
+    SITE_EDITOR_MONACO,
+    SITE_REACT_MONACO_EDITOR,
+    SITE_MONACO_EDITOR__REACT,
+
     SITE_WEB_OBSERVER_LAZY_LOAD,
     SITE_WEB_OBSERVER_INFINITE_SCROLL,
     SITE_WEB_OBSERVER_INFINITE_SCROLL_ANIMATE,
@@ -128,6 +132,22 @@ export const routes = [
         key: SITE_WEB_OBSERVER_VIRTUAL_LIST.key,
         path: SITE_WEB_OBSERVER_VIRTUAL_LIST.path,
         component: React.lazy(() => import('./pages/intersection-observer/virtual-list/index')),
+    },
+
+    {
+        key: SITE_EDITOR_MONACO.key,
+        path: SITE_EDITOR_MONACO.path,
+        component: React.lazy(() => import('./pages/editor/monaco-editor/index')),
+    },
+    {
+        key: SITE_REACT_MONACO_EDITOR.key,
+        path: SITE_REACT_MONACO_EDITOR.path,
+        component: React.lazy(() => import('./pages/editor/react-monaco-editor/index')),
+    },
+    {
+        key: SITE_MONACO_EDITOR__REACT.key,
+        path: SITE_MONACO_EDITOR__REACT.path,
+        component: React.lazy(() => import('./pages/editor/monaco-editor__react/index')),
     },
 
     {

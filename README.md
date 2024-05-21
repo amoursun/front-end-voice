@@ -1,2 +1,13 @@
 # front-end-voice
-前端语音摄像头
+
+## start
+```
+    npm i -g pnpm
+    pnpm install -dd
+    pnpm run dev
+```
+
+## build
+```
+    pnpm run build
+```
