@@ -1,12 +1,22 @@
-import {defineConfig, UserConfig} from 'vite';
+import {defineConfig, UserConfig, Plugin} from 'vite';
 import react from '@vitejs/plugin-react';
 import workerLoader from 'worker-loader';
+import {monacoEditorPlugin} from './vite-plugin/plugin-monaco-editor';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     workerLoader(),
+    monacoEditorPlugin({
+      forceBuildCDN: true,
+      globalAPI: true,
+      languageWorkers: ['css', 'html', 'json', 'editorWorkerService', 'typescript'],
+      customWorkers: [{
+        label: 'graphql',
+        entry: 'monaco-graphql/dist/graphql.worker',
+      }],
+    }),
   ],
   server: {
     hmr: true, // 启用热模块替换
