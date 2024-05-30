@@ -1,7 +1,3 @@
+import * as monaco from 'monaco-editor';
 
-export const EDITOR_LANGUAGES = [
-    'plaintext', 'css', 'go', 'html', 'java',
-    'javascript', 'less', 'mysql', 'objective-c', 'php',
-    'python', 'shell', 'typescript', 'vb', 'xml',
-    'yaml', 'json',
-].map(key => ({value: key, label: key}));
+export const EDITOR_LANGUAGES =  monaco.languages.getLanguages().map(it => ({...it, value: it.id, label: it.id}));

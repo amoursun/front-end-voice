@@ -8,6 +8,7 @@ import {
     SITE_MAP_IMG_VIDEO_PREVIEW,
     SITE_MAP_MEDIA_RECORDER,
     SITE_WEB_IMAGE_ANNOTATION_TOOL,
+    SITE_MAP_PHOTO_ALBUM,
 
     SITE_WEB_WORKER_SHARE,
     SITE_WEB_WORKER_NORMAL,
@@ -80,6 +81,11 @@ export const routes = [
         key: SITE_WEB_WORKER_SHARE.key,
         path: SITE_WEB_WORKER_SHARE.path,
         component: React.lazy(() => import('./pages/web-worker/share-worker/index')),
+    },
+    {
+        key: SITE_MAP_PHOTO_ALBUM.key,
+        path: SITE_MAP_PHOTO_ALBUM.path,
+        component: React.lazy(() => import('./pages/photo-album/index')),
     },
 
     {

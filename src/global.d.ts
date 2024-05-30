@@ -4,3 +4,7 @@ declare global {
         SpeechRecognition?: any;
     }
 }
+
+declare namespace NodeJS {
+    type Timeout = any;
+}

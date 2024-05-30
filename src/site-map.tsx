@@ -41,6 +41,13 @@ export const SITE_MAP_IMG_VIDEO_PREVIEW = {
     label: () => '图片视频上传预览',
     path: '/img-video-preview',
 };
+export const SITE_MAP_PHOTO_ALBUM = {
+    entry: ENTRY_MAIN,
+    key: 'photo-album',
+    label: () => '相片集',
+    path: '/photo-album',
+};
+
 
 export const SITE_MAP_MEDIA_RECORDER = {
     entry: ENTRY_MAIN,
@@ -231,6 +238,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_AUDIO_CONTEXT,
         SITE_MAP_IMG_VIDEO_PREVIEW,
         SITE_MAP_MEDIA_RECORDER,
+        SITE_MAP_PHOTO_ALBUM,
         SITE_MAP_SSE,
         SITE_MAP_BIG_FILE_CHUNK_UPLOAD,
         SITE_MAP_SCROLL_ANIMATION,
