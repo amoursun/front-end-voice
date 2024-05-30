@@ -1,4 +1,22 @@
 
 .photo-album {
-    
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .audio-item {
+        padding-bottom: 16px;
+    }
+
+    .container {
+        flex: 1;
+        min-height: 0;
+        background-color: #000;
+    }
+
+    .canvas {
+        
+    }
+
+    .photo-animate {
+    }
 }
