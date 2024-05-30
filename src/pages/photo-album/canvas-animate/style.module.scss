@@ -1,0 +1,159 @@
+
+$width: 100px;
+$height: 100px;
+.photo-animate {
+    position: relative;
+    height: 100%;
+    .photo-box {
+        width: $width;
+        height: $height;
+        // background-size: cover;
+        // background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        transform-style: preserve-3d;
+        transform: rotateX(13deg);
+        animation: move 5s linear infinite;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    li {
+        list-style: none;
+    }
+    
+    .min-box {
+        $min-width: $width / 2;
+        $min-height: $height / 2;
+        width: $min-width;
+        height: $min-height;
+        position: absolute;
+        // left: 50px;
+        // top: 30px;
+        left: 22px;
+        top: 6px;
+        transform-style: preserve-3d;
+        .photo-in {
+            width: $min-width;
+            height: $min-height;
+            position: absolute;
+            left: 0;
+            top: 0;
+            .img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        $translate-z-size: $min-width / 2;
+        .photo-in-item1 {
+            transform: translateZ($translate-z-size);
+        }
+        .photo-in-item2 {
+            transform: rotateX(180deg) translateZ($translate-z-size);
+            // transform: rotate(180deg);
+            // background-size: cover;
+        }
+        .photo-in-item3 {
+            transform: rotateX(-90deg) translateZ($translate-z-size);
+        }
+        .photo-in-item4 {
+            transform: rotateX(90deg) translateZ($translate-z-size);
+        }
+        .photo-in-item5 {
+            transform: rotateY(-90deg) translateZ($translate-z-size);
+        }
+        .photo-in-item6 {
+            transform: rotateY(90deg) translateZ($translate-z-size);
+        }
+    }
+    
+    .max-box {
+        width: 400px;
+        height: 200px;
+        position: absolute;
+        left: 0;
+        top: -20px;
+        transform-style: preserve-3d;
+
+        $max-width: $width;
+        $max-height: $height;
+        .photo-out {
+            width: $max-width;
+            height: $max-height;
+            background: #fff;
+            border: 1px solid #ccc;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.2;
+            transition: all 1s ease;
+            .img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        $translate-z-size: $max-width / 2;
+        .photo-out-item1 {
+            transform: translateZ($translate-z-size);
+        }
+        .photo-out-item2 {
+            transform: rotateX(180deg) translateZ($translate-z-size);
+        }
+        .photo-out-item3 {
+            transform: rotateX(-90deg) translateZ($translate-z-size);
+        }
+        .photo-out-item4 {
+            transform: rotateX(90deg) translateZ($translate-z-size);
+        }
+        .photo-out-item5 {
+            transform: rotateY(-90deg) translateZ($translate-z-size);
+        }
+        .photo-out-item6 {
+            transform: rotateY(90deg) translateZ($translate-z-size);
+        }
+    }
+
+    &:hover .max-box {
+        $hover-max-width: $width * 2;
+        $hover-max-height: $height * 2;
+        .photo-out {
+            width: $hover-max-width;
+            height: $hover-max-height;
+            opacity: 0.8;
+            left: -$width / 2;
+            top: -$height / 2;
+        }
+        $hover-translate-z-size: $width * 1.5;
+        .photo-out-item1 {
+            transform: translateZ($hover-translate-z-size);
+            
+        }
+        .photo-out-item2 {
+            transform: rotateX(180deg) translateZ($hover-translate-z-size);
+        }
+        .photo-out-item3 {
+            transform: rotateX(-90deg) translateZ($hover-translate-z-size);
+        }
+        .photo-out-item4 {
+            transform: rotateX(90deg) translateZ($hover-translate-z-size);
+        }
+        .photo-out-item5 {
+            transform: rotateY(-90deg) translateZ($hover-translate-z-size);
+        }
+        .photo-out-item6 {
+            transform: rotateY(90deg) translateZ($hover-translate-z-size);
+        }
+    }
+    
+    
+    @keyframes move {
+        0% {
+            transform: rotateX(13deg) rotateY(0deg);
+        }
+    
+        100% {
+            transform: rotateX(13deg) rotateY(360deg);
+        }
+    }
+}

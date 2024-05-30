@@ -7,10 +7,7 @@ export function PhotoAlbum() {
   return (
     <div className={style.photoAlbum}>
       <AudioItem className={style.audioItem} />
-      <div className={style.container}>
-        <PhotoAnimate className={style.photoAnimate} />
-        <canvas className={style.canvas}></canvas>
-      </div>
+      <PhotoAnimate className={style.photoAnimate} />
     </div>
   );
 }
