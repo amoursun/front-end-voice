@@ -3,6 +3,9 @@
     display: inline-flex;
     align-items: center;
     color: #333;
+    .select {
+        min-width: 200px;
+    }
     .play-box {
         display: flex;
         align-items: center;

@@ -21,15 +21,21 @@ function createTime(max?: number) {
 }
 export const AudioItem: React.FC<Props> = (props) => {
   const {className} = props;
-  const [video, setVideo] = useState(audioList[0]);
-  const [slider, setSlider] = useState(0);
   const audioRef = useRef<HTMLVideoElement>(null);
   const constantRef = useRef<{timer: NodeJS.Timeout}>({
     timer: null,
   });
+  const [video, setVideo] = useState(audioList[0]);
+  const [slider, setSlider] = useState(0);
   const [play, setPlay] = useState(false);
   const [time, setTime] = useState(createTime());
 
+  const handleSelectVideo = (video: IAudioItem) => {
+    setVideo(video);
+    setTime(createTime());
+    setSlider(0);
+    handlePlay(false)
+  };
   // 音频控制播放/暂停
   const handlePlay = (isPlay?: boolean) => {
     if (typeof isPlay === 'undefined') {
@@ -42,8 +48,8 @@ export const AudioItem: React.FC<Props> = (props) => {
     if (isPlay) {
       audio.play();
       constantRef.current.timer = setInterval(() => {
-        const currentTime = Math.floor(audio.currentTime);
-        const duration = Math.floor(audio.duration);
+        const currentTime = Math.ceil(audio.currentTime);
+        const duration = Math.ceil(audio.duration);
         const value = (currentTime / duration) * 100;
         const {minute, second} = getTime(currentTime);
         setTime(state => ({
@@ -59,22 +65,20 @@ export const AudioItem: React.FC<Props> = (props) => {
       audio.pause();
     }
   };
+  const handleNextPlay = () => {
+    const index = audioList.findIndex((item) => item.value === video.value);
+    handleSelectVideo(audioList[index === audioList.length - 1 ? 0 : index + 1]);
+  };
+  const onLoadedMetadata = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    setTime(createTime(Math.ceil(audio.duration)));
+  };
   const handleSlider = (value: number) => {
     const audio = audioRef.current;
     if (!audio) return;
     setSlider(value);
     audio.currentTime = value;
-  };
-  const onLoadedMetadata = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    setTime(createTime(Math.floor(audio.duration)));
-  };
-  const handleSelectVideo = (video: IAudioItem) => {
-    setVideo(video);
-    setTime(createTime());
-    setSlider(0);
-    handlePlay(false)
   };
   // useEffect(() => {
   // }, [audioRef]);
@@ -103,6 +107,7 @@ export const AudioItem: React.FC<Props> = (props) => {
           />
         </div>
         <Select
+          className={style.select}
           value={video.value}
           options={audioList}
           onChange={(_, opt) => handleSelectVideo(opt as IAudioItem)}
@@ -115,6 +120,7 @@ export const AudioItem: React.FC<Props> = (props) => {
           key={video.value}
           ref={audioRef}
           className={style.video}
+          onEnded={() => handleNextPlay()}
           onPlay={() => handlePlay(true)}
           onLoadedMetadata={onLoadedMetadata}
         >
