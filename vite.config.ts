@@ -6,11 +6,12 @@ import {monacoEditorPlugin} from './vite-plugin/plugin-monaco-editor';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // resolve: {
-  //   alias: {
-  //     'src': path.resolve(__dirname, 'src'),
-  //   },
-  // },
+  resolve: {
+    alias: {
+      // 'src': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname),
+    },
+  },
   plugins: [
     react(),
     workerLoader(),

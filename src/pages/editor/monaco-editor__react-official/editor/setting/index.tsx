@@ -19,9 +19,9 @@ export const Setting = observer((props: {className?: string}) => {
       options,
       setSelectedLanguageId,
       setOptions,
-      setMonacoTheme
+      setMonacoTheme,
+      monacoTheme,
     },
-    monacoTheme,
   } = store;
 
   const editorRef = useRef<editor.IStandaloneCodeEditor>();
@@ -35,7 +35,7 @@ export const Setting = observer((props: {className?: string}) => {
       setMonacoTheme(theme);
     }
     else {
-      defineTheme(theme as IMonacoTheme).then(_ => setMonacoTheme(theme));
+      defineTheme(theme as IMonacoTheme).then(() => setMonacoTheme(theme));
     }
   };
   const handleEditorDidMount = (editor: editor.IStandaloneCodeEditor) => {

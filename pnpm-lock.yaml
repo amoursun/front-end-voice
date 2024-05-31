@@ -41,6 +41,9 @@ importers:
       monaco-editor:
         specifier: ^0.48.0
         version: 0.48.0
+      monaco-themes:
+        specifier: ^0.4.4
+        version: 0.4.4
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -1093,6 +1096,9 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
+  fast-plist@0.1.3:
+    resolution: {integrity: sha512-d9cEfo/WcOezgPLAC/8t8wGb6YOD6JTCPMw2QcG2nAdFmyY+9rTUizCTaGjIZAloWENTEUMAPpkUAIJJJ0i96A==}
+
   fastq@1.17.1:
     resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
 
@@ -1386,6 +1392,9 @@ packages:
 
   monaco-editor@0.48.0:
     resolution: {integrity: sha512-goSDElNqFfw7iDHMg8WDATkfcyeLTNpBHQpO8incK6p5qZt5G/1j41X0xdGzpIkGojGXM+QiRQyLjnfDVvrpwA==}
+
+  monaco-themes@0.4.4:
+    resolution: {integrity: sha512-Hbb9pvRrpSi0rZezcB/IOdQnpx10o55Lx4zFdRAAVpFMa1HP7FgaqEZdKffb4ovd90fETCixeFO9JPYFMAq+TQ==}
 
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
@@ -3230,6 +3239,8 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
+  fast-plist@0.1.3: {}
+
   fastq@1.17.1:
     dependencies:
       reusify: 1.0.4
@@ -3486,6 +3497,10 @@ snapshots:
   mobx@6.12.3: {}
 
   monaco-editor@0.48.0: {}
+
+  monaco-themes@0.4.4:
+    dependencies:
+      fast-plist: 0.1.3
 
   ms@2.1.2: {}
 

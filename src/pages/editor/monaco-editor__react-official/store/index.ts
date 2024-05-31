@@ -1,5 +1,5 @@
 import {makeAutoObservable, computed, runInAction} from 'mobx';
-import {IEditorEnum, IThemeEnum, IThemeType} from './type';
+import {IEditorEnum} from './type';
 import {EditorState} from './editor';
 import { DiffEditorState } from './diff-editor';
 import {ReactionManager} from '../../../../utils/mobx/reaction-manager';
@@ -9,7 +9,6 @@ class State {
     makeAutoObservable(this);
   }
   isEditorReady = false;
-  monacoTheme: IThemeType = IThemeEnum.VS_DARK;
   editorMode: IEditorEnum = IEditorEnum.editor;
   setIsEditorReady = (isReady: boolean) => {
     this.isEditorReady = isReady;
