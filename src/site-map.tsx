@@ -107,6 +107,12 @@ export const SITE_MONACO_EDITOR__REACT = {
     path: '/editor/monaco-editor__react',
     entry: ENTRY_MAIN,
 };
+export const SITE_MONACO_EDITOR__REACT_OFFICIAL = {
+    label: () => '@monaco-editor/react 官方示例',
+    key: 'monaco-editor__react-official',
+    path: '/editor/monaco-editor__react-official',
+    entry: ENTRY_MAIN,
+};
 export const SITE_EDITOR_MONACO = {
     label: () => 'monaco-editor',
     key: 'monaco-editor',
@@ -122,6 +128,7 @@ export const SITE_MAP_EDITOR = {
         SITE_EDITOR_MONACO,
         SITE_REACT_MONACO_EDITOR,
         SITE_MONACO_EDITOR__REACT,
+        SITE_MONACO_EDITOR__REACT_OFFICIAL
     ],
 };
 

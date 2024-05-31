@@ -1,7 +1,8 @@
 import React from 'react';
 import {Layout} from 'antd';
 import './style.scss';
-import { BasicLayoutContext } from './context';
+import {BasicLayoutContext} from './context';
+import {siderWidth} from './sidebar';
 
 const {Header, Content, Footer, Sider} = Layout;
 interface LayoutPageProps {
@@ -33,7 +34,7 @@ export const LayoutPage = (props: LayoutPageProps) => {
                     {renderBreadcrumb?.()}
                 </div>
                 <Layout>
-                    <Sider className={'sidebar'} theme={'light'}>
+                    <Sider className={'sidebar'} theme={'light'} width={siderWidth}>
                         {renderSidebar?.()}
                     </Sider>
                     <BasicLayoutContext.Provider value={{scrollRef}}>

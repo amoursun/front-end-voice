@@ -22,6 +22,7 @@ import {
     SITE_EDITOR_MONACO,
     SITE_REACT_MONACO_EDITOR,
     SITE_MONACO_EDITOR__REACT,
+    SITE_MONACO_EDITOR__REACT_OFFICIAL,
 
     SITE_WEB_OBSERVER_LAZY_LOAD,
     SITE_WEB_OBSERVER_INFINITE_SCROLL,
@@ -154,6 +155,11 @@ export const routes = [
         key: SITE_MONACO_EDITOR__REACT.key,
         path: SITE_MONACO_EDITOR__REACT.path,
         component: React.lazy(() => import('./pages/editor/monaco-editor__react/index')),
+    },
+    {
+        key: SITE_MONACO_EDITOR__REACT_OFFICIAL.key,
+        path: SITE_MONACO_EDITOR__REACT_OFFICIAL.path,
+        component: React.lazy(() => import('./pages/editor/monaco-editor__react-official/index')),
     },
 
     {

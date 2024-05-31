@@ -4,6 +4,7 @@ import {Menu, MenuProps} from 'antd';
 import {MenuItemObject, useMenu} from './menu';
 import {MenuLabel} from './menu-label';
 
+export const siderWidth = 300;
 export interface RouteItem extends RouteProps {
     key: string;
     path: string;
@@ -41,7 +42,7 @@ export const Sidebar = withRouter((props: SideMenuProps) => {
             items={menuList}
             mode="inline"
             theme={'light'}
-            style={{width: 225}}
+            style={{width: siderWidth + 25}}
             inlineCollapsed={collapsed}
             selectedKeys={selectedIds}
         />
