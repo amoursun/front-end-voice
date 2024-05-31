@@ -1,7 +1,6 @@
 
-.monaco-editor {
-    .language-select {
-        min-width: 300px;
-        margin-bottom: 12px;
-    }
+.monaco-editor-official {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }

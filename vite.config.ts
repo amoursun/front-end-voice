@@ -1,10 +1,16 @@
 import {defineConfig, UserConfig, Plugin} from 'vite';
+import path from 'path';
 import react from '@vitejs/plugin-react';
 import workerLoader from 'worker-loader';
 import {monacoEditorPlugin} from './vite-plugin/plugin-monaco-editor';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // resolve: {
+  //   alias: {
+  //     'src': path.resolve(__dirname, 'src'),
+  //   },
+  // },
   plugins: [
     react(),
     workerLoader(),

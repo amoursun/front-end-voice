@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Layout} from 'antd';
 import './style.scss';
 import {BasicLayoutContext} from './context';
@@ -23,7 +23,7 @@ export const LayoutPage = (props: LayoutPageProps) => {
         renderContent,
     } = props;
     const scrollRef = React.useRef<HTMLDivElement>(null);
-
+    const [collapsed, setCollapsed] = useState(false);
     return (
         <Layout className={`layout-page ${className}`} >
             <Header className={'header'}>
@@ -34,7 +34,14 @@ export const LayoutPage = (props: LayoutPageProps) => {
                     {renderBreadcrumb?.()}
                 </div>
                 <Layout>
-                    <Sider className={'sidebar'} theme={'light'} width={siderWidth}>
+                    <Sider
+                        className={'sidebar'}
+                        theme={'light'}
+                        width={siderWidth}
+                        collapsible
+                        collapsed={collapsed}
+                        onCollapse={(value) => setCollapsed(value)}
+                    >
                         {renderSidebar?.()}
                     </Sider>
                     <BasicLayoutContext.Provider value={{scrollRef}}>

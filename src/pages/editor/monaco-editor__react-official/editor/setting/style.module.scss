@@ -1,0 +1,19 @@
+.setting {
+    flex-grow: 1;
+    padding-left: 10px;
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .languages, .themes {
+        display: flex;
+        .select {
+            flex: 1;
+            margin-left: 12px;
+        }
+    }
+    .editor {
+        margin-bottom: 12px;
+        margin-top: 12px;
+    }
+}
