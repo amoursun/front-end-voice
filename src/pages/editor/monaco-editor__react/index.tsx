@@ -2,11 +2,12 @@ import {useState, useRef, useMemo, useCallback, useEffect} from 'react'
 import {Button, Input, Select} from 'antd';
 import * as monaco from 'monaco-editor';
 import type {languages} from 'monaco-editor/esm/vs/editor/editor.api.d';
-import {language as jsLanguage} from 'monaco-editor/esm/vs/basic-languages/javascript/javascript';
+// import {language as jsLanguage} from 'monaco-editor/esm/vs/basic-languages/javascript/javascript';
 import MonacoEditor from '@monaco-editor/react';
 import style from './style.module.scss';
 import {EDITOR_LANGUAGES} from '../language';
 
+const jsLanguage: Record<string, any[]>= {};
 const transferSuggestions = (items: string[]) => {
   return [...items, 'and', 'or', '(', ')'].map((item) => {
     return {
@@ -51,7 +52,7 @@ export const MonacoEditorReact = () => {
             if (lastContents) {
               const configKey = ['keywords', 'operators']
               configKey.forEach(key => {
-                jsLanguage[key].forEach((k: string) => {
+                (jsLanguage[key as keyof typeof jsLanguage] || []).forEach((k: string) => {
                   suggestions.push(
                     {
                       label: k, // 显示的提示内容;默认情况下，这也是选择完成时插入的文本。
