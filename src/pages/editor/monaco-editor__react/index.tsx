@@ -3,7 +3,7 @@ import {Button, Input, Select} from 'antd';
 import * as monaco from 'monaco-editor';
 import type {languages} from 'monaco-editor/esm/vs/editor/editor.api.d';
 // import {language as jsLanguage} from 'monaco-editor/esm/vs/basic-languages/javascript/javascript';
-import MonacoEditor from '@monaco-editor/react';
+import MonacoEditor, {} from '@monaco-editor/react';
 import style from './style.module.scss';
 import {EDITOR_LANGUAGES} from '../language';
 
@@ -19,69 +19,104 @@ const transferSuggestions = (items: string[]) => {
   });
 };
 export const MonacoEditorReact = () => {
-  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>(); // 编辑器实例
+  const editorRef = useRef<monaco.IDisposable>(); // 编辑器实例
   const [language, setLanguage] = useState('plaintext'); // 当前语言
   
+  const editorBeforeMount = (editor: typeof monaco) => {
+    // monaco.editor.defineTheme('dpLightTheme', {
+    //   base: "vs-dark", // 基础主题
+    //     inherit: true,
+    //     rules: [], // 具体自定义内容
+    //     colors: {
+    //       "editor.background": "#313131", //编辑器背景色
+    //       // 'editor.lineHighlightBorder': '#E7F2FD', // 编辑行边框色
+    //     },
+    // });
+    editor.languages.registerCompletionItemProvider(language, {
+      provideCompletionItems(model, position) {
+        const {lineNumber} = position;
+        const word = model.getWordUntilPosition(position);
+        const range = {
+          startLineNumber: lineNumber,
+          endLineNumber: lineNumber,
+          startColumn: word.startColumn,
+          endColumn: word.endColumn
+        };
+        return {
+          suggestions: ["XID", "XML", "XOR", "YEAR", "YEAR_MONTH", "ZEROFILL", "我是自定义的"].map((item) => {
+            return {
+              insertText: item,
+              kind: monaco.languages.CompletionItemKind.Function, // 对应提示图标的不同
+              label: item,
+              range,
+            };
+          }),
+        };
+      },
+      triggerCharacters: ["$", ".", "=", ":"], // 触发提示的字符 可以定义多个
+    });
+
+  };
   const editorDidMount = (editor: monaco.editor.IStandaloneCodeEditor, instance: typeof monaco) => {
     console.log('editorDidMount', editor, instance);
     // editorRef.current = editor;
     // monacoRef.current = instance;
-    const transferList = transferSuggestions(['代码提示']);
-    if(transferList.length){
-      editorRef.current = monaco.languages.registerCompletionItemProvider(
-        language,
-        {
-          provideCompletionItems(model, position, ...args) {
-            const suggestions: Array<languages.CompletionItem> = []
-            const {lineNumber, column} = position
-            const textBeforePointer = model.getValueInRange({
-              startLineNumber: lineNumber,
-              startColumn: 0,
-              endLineNumber: lineNumber,
-              endColumn: column,
-            });
-            const word = model.getWordUntilPosition(position);
-            const range = {
-              startLineNumber: lineNumber,
-              endLineNumber: lineNumber,
-              startColumn: word.startColumn,
-              endColumn: word.endColumn
-            };
-            const contents = textBeforePointer.trim().split(/\s+/)
-            const lastContents = contents[contents?.length - 1] // 获取最后一段非空字符串
-            if (lastContents) {
-              const configKey = ['keywords', 'operators']
-              configKey.forEach(key => {
-                (jsLanguage[key as keyof typeof jsLanguage] || []).forEach((k: string) => {
-                  suggestions.push(
-                    {
-                      label: k, // 显示的提示内容;默认情况下，这也是选择完成时插入的文本。
-                      insertText: k, // 选择此完成时应插入到文档中的字符串或片段
-                      detail: '关键字', // 描述
-                      preselect: true, // 设置为true，表示预先选择此完成项
-                      documentation: '关键字', // 鼠标悬停时显示的文本
-                      kind: monaco.languages.CompletionItemKind['Function'], // 此完成项的种类。编辑器根据图标的种类选择图标。
-                      range,
-                    } as languages.CompletionItem
-                  )
-                });
-              })
-            }
-            // const suggestions = transferList.map((item) => ({
-            //   ...item,
-            //   kind: item.icon
-            //     ? monaco.languages.CompletionItemKind.Variable // 图标
-            //     : monaco.languages.CompletionItemKind.Text,
-            // })) as unknown as Array<languages.CompletionItem>;
-            return {
-              suggestions,
-              // incomplete: true, // 设置为true，表示不完整，会继续请求provideCompletionItems
-            };
-          },
-          triggerCharacters: [' '], // 触发代码提示的关键字，ps：可以有多个
-        },
-      );
-    }
+    // const transferList = transferSuggestions(['代码提示']);
+    // if(transferList.length){
+    //   editorRef.current = monaco.languages.registerCompletionItemProvider(
+    //     language,
+    //     {
+    //       provideCompletionItems(model, position, ...args) {
+    //         const suggestions: Array<languages.CompletionItem> = []
+    //         const {lineNumber, column} = position
+    //         const textBeforePointer = model.getValueInRange({
+    //           startLineNumber: lineNumber,
+    //           startColumn: 0,
+    //           endLineNumber: lineNumber,
+    //           endColumn: column,
+    //         });
+    //         const word = model.getWordUntilPosition(position);
+    //         const range = {
+    //           startLineNumber: lineNumber,
+    //           endLineNumber: lineNumber,
+    //           startColumn: word.startColumn,
+    //           endColumn: word.endColumn
+    //         };
+    //         const contents = textBeforePointer.trim().split(/\s+/)
+    //         const lastContents = contents[contents?.length - 1] // 获取最后一段非空字符串
+    //         if (lastContents) {
+    //           const configKey = ['keywords', 'operators']
+    //           configKey.forEach(key => {
+    //             (jsLanguage[key as keyof typeof jsLanguage] || []).forEach((k: string) => {
+    //               suggestions.push(
+    //                 {
+    //                   label: k, // 显示的提示内容;默认情况下，这也是选择完成时插入的文本。
+    //                   insertText: k, // 选择此完成时应插入到文档中的字符串或片段
+    //                   detail: '关键字', // 描述
+    //                   preselect: true, // 设置为true，表示预先选择此完成项
+    //                   documentation: '关键字', // 鼠标悬停时显示的文本
+    //                   kind: monaco.languages.CompletionItemKind['Function'], // 此完成项的种类。编辑器根据图标的种类选择图标。
+    //                   range,
+    //                 } as languages.CompletionItem
+    //               )
+    //             });
+    //           })
+    //         }
+    //         // const suggestions = transferList.map((item) => ({
+    //         //   ...item,
+    //         //   kind: item.icon
+    //         //     ? monaco.languages.CompletionItemKind.Variable // 图标
+    //         //     : monaco.languages.CompletionItemKind.Text,
+    //         // })) as unknown as Array<languages.CompletionItem>;
+    //         return {
+    //           suggestions,
+    //           // incomplete: true, // 设置为true，表示不完整，会继续请求provideCompletionItems
+    //         };
+    //       },
+    //       triggerCharacters: [' '], // 触发代码提示的关键字，ps：可以有多个
+    //     },
+    //   );
+    // }
   };
   return (
     <div className={style.monacoEditor}>
@@ -97,6 +132,7 @@ export const MonacoEditorReact = () => {
         // light
         theme="vs-dark"
         language={language}
+        beforeMount={editorBeforeMount}
         onMount={editorDidMount}
       />
     </div>
