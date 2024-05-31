@@ -9,7 +9,7 @@ interface IAxis {
     x: number;
     y: number;
 }
-export class CoreState {
+export class cherryBlossomState {
     x!: number;
     y!: number;
     z!: number;
@@ -61,14 +61,8 @@ export class CoreState {
         this.endPhi = false;
         this.rippleCount = 0;
 
-        var axis = this.getAxis(),
-            theta =
-            this.theta +
-            (Math.ceil(
-                    -(this.y + this.renderer.height * this.surfaceRate) / this.vy
-                ) *
-                Math.PI) /
-            500;
+        const axis = this.getAxis();
+        let theta = this.theta + Math.ceil(-(this.y + this.renderer.height * this.surfaceRate) / this.vy) * Math.PI / 500;
         theta %= Math.PI * 2;
 
         this.offsetY =
@@ -137,7 +131,7 @@ export class CoreState {
         context.bezierCurveTo(10, -60, 60, 20, 0, 40);
         context.fill();
 
-        for (var i = -4; i < 4; i++) {
+        for (let i = -4; i < 4; i++) {
             context.beginPath();
             context.moveTo(0, 40);
             context.quadraticCurveTo(i * 12, 10, i * 4, -24 + Math.abs(i) * 2);

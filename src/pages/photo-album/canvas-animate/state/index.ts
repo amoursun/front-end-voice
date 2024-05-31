@@ -1,11 +1,11 @@
-import {CoreState} from './core';
+import {cherryBlossomState} from './cherry-blossom';
 
 class State {
     canvas!: HTMLCanvasElement;
     context!: CanvasRenderingContext2D;
     width!: number;
     height!: number;
-    cherries: CoreState[] = [];
+    cherries: cherryBlossomState[] = [];
     maxInterval!: number;
     processInterval!: number;
     constructor() {
@@ -27,13 +27,10 @@ class State {
         this.maxInterval = Math.round((this.limitInterval * 1000) / this.width);
         this.processInterval = this.maxInterval;
     }
-    reconstructMethods() {
-        this.render = this.render.bind(this);
-    }
     createCherries() {
         const length = Math.round((this.cherryBlossomCount * this.width) / 1000);
         for (let i = 0; i < length; i++) {
-            this.cherries.push(new CoreState(this, true));
+            this.cherries.push(new cherryBlossomState(this, true));
         }
     }
     render = () => {
@@ -47,7 +44,7 @@ class State {
         }
         if (--this.processInterval === 0) {
             this.processInterval = this.maxInterval;
-            this.cherries.push(new CoreState(this, false));
+            this.cherries.push(new cherryBlossomState(this, false));
         }
     };
 }
