@@ -2,6 +2,7 @@ import {useState, useEffect, useMemo, useRef, useCallback} from 'react'
 import {Button, Select} from 'antd';
 import cx from 'classnames';
 import {imageContents} from '../images';
+import {CanvasAnimate} from '../canvas-animate';
 import style from './style.module.scss';
 
 interface IProps {
@@ -31,6 +32,7 @@ export function PhotoAnimate(props: IProps) {
           })}
         </ol>
       </div>
+      <CanvasAnimate />
     </div>
   )
 }

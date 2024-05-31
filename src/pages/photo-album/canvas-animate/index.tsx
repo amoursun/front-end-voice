@@ -1,36 +1,24 @@
-import {useState, useEffect, useMemo, useRef, useCallback} from 'react'
-import {Button, Select} from 'antd';
+import {useLayoutEffect, useRef} from 'react';
 import cx from 'classnames';
-import {imageContents} from '../images';
+import {state} from './state';
 import style from './style.module.scss';
 
 interface IProps {
   className?: string;
 }
-export function PhotoAnimate(props: IProps) {
+export function CanvasAnimate(props: IProps) {
   const {className} = props;
+  const ref = useRef<HTMLCanvasElement>(null);
+  useLayoutEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    state.init(canvas);
+  }, [ref]);
+  
   return (
-    <div className={cx(style.photoAnimate, className)}>
-      <div className={style.photoBox}>
-        <ul className={style.minBox}>
-          {imageContents.inList.map((item, index) => {
-            return (
-              <li className={cx(style.photoIn, style[`photoInItem${item.count}`])} key={item.value}>
-                <img className={style.img} src={item.url} alt={item.label} />
-              </li>
-            );
-          })}
-        </ul>
-        <ol className={style.maxBox}>
-          {imageContents.outList.map((item, index) => {
-            return (
-              <li className={cx(style.photoOut, style[`photoOutItem${item.count}`])} key={item.value}>
-                <img className={style.img} src={item.url} alt={item.label} />
-              </li>
-            );
-          })}
-        </ol>
-      </div>
-    </div>
-  )
+    <canvas
+      className={cx(style.canvasAnimate, className)}
+      ref={ref}
+    ></canvas>
+  );
 }
