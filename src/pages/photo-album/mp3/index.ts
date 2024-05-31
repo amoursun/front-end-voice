@@ -1,20 +1,19 @@
-import audio1 from './沉醉的青丝.mp3';
-import audio2 from './白月光与朱砂痣.mp3';
-
 export interface IAudioItem {
     value: string;
     label: string;
     url: string;
 }
-export const audioList: IAudioItem[] = [
-    {
-        value: 'audio1',
-        label: '沉醉的青丝.mp3',
-        url: audio1
-    },
-    {
-        value: 'audio2',
-        label: '白月光与朱砂痣.mp3',
-        url: audio2
-    }
-]
+// 音频文件
+const mp3Files: Record<string, {default: string}> = import.meta.glob('./files/*.mp3', {eager: true});
+export const audioList: IAudioItem[] = Object.keys(mp3Files).map((key) => {
+    const name = key
+        .replace('./files/', '');
+        // .replace('.mp3', '');
+    const audio = mp3Files[key];
+
+    return {
+        value: key,
+        label: name,
+        url: audio.default,
+    };
+});

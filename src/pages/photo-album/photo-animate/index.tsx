@@ -1,7 +1,7 @@
 import {useState, useEffect, useMemo, useRef, useCallback} from 'react'
 import {Button, Select} from 'antd';
 import cx from 'classnames';
-import {imageContents} from '../images';
+import {imagesPaths} from '../images';
 import {CanvasAnimate} from '../canvas-animate';
 import style from './style.module.scss';
 
@@ -14,7 +14,7 @@ export function PhotoAnimate(props: IProps) {
     <div className={cx(style.photoAnimate, className)}>
       <div className={style.photoBox}>
         <ul className={style.minBox}>
-          {imageContents.inList.map((item, index) => {
+          {imagesPaths.inList.map((item, index) => {
             return (
               <li className={cx(style.photoIn, style[`photoInItem${item.count}`])} key={item.value}>
                 <img className={style.img} src={item.url} alt={item.label} />
@@ -23,12 +23,12 @@ export function PhotoAnimate(props: IProps) {
           })}
         </ul>
         <ol className={style.maxBox}>
-          {imageContents.outList.map((item, index) => {
+          {imagesPaths.outList.map((item, index) => {
             return (
               <li className={cx(style.photoOut, style[`photoOutItem${item.count}`])} key={item.value}>
                 <img className={style.img} src={item.url} alt={item.label} />
               </li>
-            );
+            )
           })}
         </ol>
       </div>
