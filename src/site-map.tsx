@@ -61,12 +61,6 @@ export const SITE_MAP_SSE = {
     label: () => 'SSE',
     path: '/sse',
 };
-export const SITE_MAP_BIG_FILE_CHUNK_UPLOAD = {
-    entry: ENTRY_MAIN,
-    key: 'big-file-chunk-upload',
-    label: () => '大文件分片上传',
-    path: '/big-file-chunk-upload',
-};
 
 export const SITE_MAP_SCROLL_ANIMATION = {
     entry: ENTRY_MAIN,
@@ -92,6 +86,30 @@ export const SITE_WEB_IMAGE_ANNOTATION_TOOL = {
     key: 'image-annotation-tool',
     label: () => '图片标注工具',
     path: '/image-annotation-tool',
+};
+
+// 大文件分片上传
+export const SITE_BIG_FILE_CHUNK_UPLOAD = {
+    entry: ENTRY_MAIN,
+    key: 'big-file-chunk-upload',
+    label: () => '大文件分片上传1',
+    path: '/big-file-upload/chunk',
+};
+export const SITE_BIG_FILE_UNIT_UPLOAD = {
+    entry: ENTRY_MAIN,
+    key: 'big-file-unit-upload',
+    label: () => '大文件分片上传2',
+    path: '/big-file-upload/unit',
+};
+export const SITE_MAP_BIG_FILE_UPLOAD = {
+    entry: ENTRY_MAIN,
+    key: 'big-file-upload',
+    label: () => '大文件上传',
+    path: '/big-file-upload',
+    children: [
+        SITE_BIG_FILE_CHUNK_UPLOAD,
+        SITE_BIG_FILE_UNIT_UPLOAD,
+    ],
 };
 
 // 编辑器
@@ -247,10 +265,10 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_MEDIA_RECORDER,
         SITE_MAP_PHOTO_ALBUM,
         SITE_MAP_SSE,
-        SITE_MAP_BIG_FILE_CHUNK_UPLOAD,
         SITE_MAP_SCROLL_ANIMATION,
         SITE_MAP_JS_FRAGMENTATION,
         SITE_MAP_SEARCH_IMAGE_TEXT,
+        SITE_MAP_BIG_FILE_UPLOAD,
         SITE_MAP_EDITOR,
         SITE_MAP_WEB_WORKER,
         SITE_MAP_INTERSECTION_OBSERVER,

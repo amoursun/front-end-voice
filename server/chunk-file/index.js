@@ -52,8 +52,6 @@ app.post('/api/file/upload', upload.single('files'), async (req, res) => {
         'Set-Cookie': 'test=123; path=/; domain=127.0.0.1; HttpOnly',
         'Content-Language': 'utf-8',
     });
-    // 立即发送事件流的头部: 这是必需的, 因为浏览器将等待完整的HTTP头部才能开始处理数据
-    res.flushHeaders();  
     if (allChunksUploaded) {  
         await mergeChunks(chunksDir, finalFile, chunkName); // 合并切片 
         res.send(`文件 ${filename} 上传完成`);  
@@ -62,7 +60,9 @@ app.post('/api/file/upload', upload.single('files'), async (req, res) => {
     }
     else {  
         res.send(`${filename} 的 第${chunkIndex}切片已经上传完成，等待其他切片！`);  
-    }  
+    }
+    // 刷新请求头(立即发送事件流的头部): 浏览器将等待完整的HTTP头部才能开始处理数据
+    res.flushHeaders();
 }); 
 // 合并切片函数  
 async function mergeChunks(

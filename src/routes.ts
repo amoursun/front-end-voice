@@ -14,10 +14,12 @@ import {
     SITE_WEB_WORKER_NORMAL,
 
     SITE_MAP_SSE,
-    SITE_MAP_BIG_FILE_CHUNK_UPLOAD,
     SITE_MAP_SCROLL_ANIMATION,
     SITE_MAP_JS_FRAGMENTATION,
     SITE_MAP_SEARCH_IMAGE_TEXT,
+
+    SITE_BIG_FILE_CHUNK_UPLOAD,
+    SITE_BIG_FILE_UNIT_UPLOAD,
 
     SITE_EDITOR_MONACO,
     SITE_REACT_MONACO_EDITOR,
@@ -94,11 +96,18 @@ export const routes = [
         path: SITE_MAP_SSE.path,
         component: React.lazy(() => import('./pages/sse/index')),
     },
+
     {
-        key: SITE_MAP_BIG_FILE_CHUNK_UPLOAD.key,
-        path: SITE_MAP_BIG_FILE_CHUNK_UPLOAD.path,
-        component: React.lazy(() => import('./pages/file-chunk-upload/index')),
+        key: SITE_BIG_FILE_CHUNK_UPLOAD.key,
+        path: SITE_BIG_FILE_CHUNK_UPLOAD.path,
+        component: React.lazy(() => import('./pages/big-file-upload/file-chunk-upload/index')),
     },
+    {
+        key: SITE_BIG_FILE_UNIT_UPLOAD.key,
+        path: SITE_BIG_FILE_UNIT_UPLOAD.path,
+        component: React.lazy(() => import('./pages/big-file-upload/first/index')),
+    },
+
     {
         key: SITE_MAP_SCROLL_ANIMATION.key,
         path: SITE_MAP_SCROLL_ANIMATION.path,
