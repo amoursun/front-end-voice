@@ -36,6 +36,8 @@ import {
     SITE_VIRTUAL_LIST_FIXED,
     SITE_VIRTUAL_LIST_FIXED_V2,
 
+    SITE_MAP_WEBGL_SOUL_PLANET,
+
 } from './site-map';
 
 export const routes = [
@@ -190,6 +192,12 @@ export const routes = [
         key: SITE_VIRTUAL_LIST_AUTO_CLASS.key,
         path: SITE_VIRTUAL_LIST_AUTO_CLASS.path,
         component: React.lazy(() => import('./pages/virtual-list/height-auto-class/index')),
+    },
+
+    {
+        key: SITE_MAP_WEBGL_SOUL_PLANET.key,
+        path: SITE_MAP_WEBGL_SOUL_PLANET.path,
+        component: React.lazy(() => import('./pages/webgl-soul-planet/index')),
     },
 
 ];

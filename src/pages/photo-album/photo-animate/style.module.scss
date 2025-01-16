@@ -24,8 +24,8 @@ $height: 100px;
     }
     
     .min-box {
-        $min-width: $width / 2;
-        $min-height: $height / 2;
+        $min-width: calc($width / 2);
+        $min-height: calc($height / 2);
         width: $min-width;
         height: $min-height;
         position: absolute;
@@ -93,7 +93,7 @@ $height: 100px;
                 height: 100%;
             }
         }
-        $translate-z-size: $max-width / 2;
+        $translate-z-size: calc($max-width / 2);
         .photo-out-item1 {
             transform: translateZ($translate-z-size);
         }
@@ -115,16 +115,16 @@ $height: 100px;
     }
 
     &:hover .max-box {
-        $hover-max-width: $width * 2;
-        $hover-max-height: $height * 2;
+        $hover-max-width: calc($width * 2);
+        $hover-max-height: calc($height * 2);
         .photo-out {
             width: $hover-max-width;
             height: $hover-max-height;
             opacity: 0.8;
-            left: -$width / 2;
-            top: -$height / 2;
+            left: calc(-$width / 2);
+            top: calc(-$height / 2);
         }
-        $hover-translate-z-size: $width * 1.5;
+        $hover-translate-z-size: calc($width * 1.5);
         .photo-out-item1 {
             transform: translateZ($hover-translate-z-size);
             

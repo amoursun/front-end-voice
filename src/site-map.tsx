@@ -250,6 +250,13 @@ export const SITE_MAP_VIRTUAL_LIST = {
     ],
 };
 
+export const SITE_MAP_WEBGL_SOUL_PLANET  = {
+    entry: ENTRY_MAIN,
+    key: 'webgl-soul-planet',
+    label: () => 'WebGL soul星球',
+    path: '/webgl-soul-planet',
+};
+
 export const SITE_MAP_MAIN = {
     label: () => '主菜单',
     entry: ENTRY_MAIN,
@@ -265,6 +272,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_MEDIA_RECORDER,
         SITE_MAP_PHOTO_ALBUM,
         SITE_MAP_SSE,
+        SITE_MAP_WEBGL_SOUL_PLANET,
         SITE_MAP_SCROLL_ANIMATION,
         SITE_MAP_JS_FRAGMENTATION,
         SITE_MAP_SEARCH_IMAGE_TEXT,
