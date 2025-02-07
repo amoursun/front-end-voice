@@ -35,7 +35,7 @@ const AiHeader: React.FC<HeaderProps> = (props) => {
             <div className='ai-chat-header-options'>
                 <div className='ai-chat-header-beta'>Web内测版</div>
                 {/* <div ref={copyRef} className='ai-chat-header-group' data-clipboard-text="888888">群号888888</div> */}
-                <a className='ai-chat-header-group' href='baidu://viewobject/?type=group&id=1558388'>群号1558388</a>
+                <a className='ai-chat-header-group' href='https://jq.qq.com/?_wv=1027&k=5GwZdZvK'>群号1558388</a>
                 {/* <div className='ai-chat-header-feedback'>反馈</div> */}
                 <div className='ai-chat-header-close' onClick={handleClose}></div>
             </div>
