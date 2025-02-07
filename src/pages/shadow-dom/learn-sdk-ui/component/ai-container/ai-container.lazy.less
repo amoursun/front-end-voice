@@ -1,0 +1,18 @@
+.ai-container {
+    bottom: 0;
+    opacity: 0;
+    width: 468px;
+    height: 100%;
+    z-index: 999;
+    right: -800px;
+    position: fixed;
+    transform: translate(0, 0);
+    background: var(--learn-bg-color);
+    transition: opacity 200ms, right 180ms;
+    box-shadow: -4px 8px 8px rgba(0, 0, 0, 0.05);
+
+    &-open {
+        opacity: 1;
+        right: 0;
+    }
+}

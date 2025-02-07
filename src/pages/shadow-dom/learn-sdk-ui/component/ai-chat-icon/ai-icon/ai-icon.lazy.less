@@ -1,0 +1,76 @@
+.ai-chat-icon {
+    background: linear-gradient(to right, #C76CFF, #23BDFF);
+    box-shadow:0 0 6px 0 var(--learn-chat-icon-shadow);
+    // transition: opacity 200ms, right 180ms;
+    transition: opacity 200ms;
+    flex-direction: column;
+    pointer-events: none;
+    border-radius: 50%;
+    user-select: none;
+    position: fixed;
+    display: flex;
+    z-index: 999;
+    bottom: 20px;
+    right: -80px;
+    width: 60px;
+    opacity: 0;
+
+    &-open {
+        pointer-events: auto;
+        opacity: 1;
+        right: 6px;
+    }
+
+    &:hover {
+        box-shadow: 0 0 6px 0 var(--learn-chat-icon-shadow-hover);
+    }
+
+    &-ui {
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        height: 60px;
+
+        &::before {
+            content: '';
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+            background: url(../img/ai-chat-logo.gif) no-repeat;
+            background-size: contain;
+        }
+    }
+
+    [data-element="move-handler"] {
+        cursor: grab;
+    }
+
+    &-top {
+        top: 0;
+        height: 8px;
+        width: 100%;
+        position: absolute;
+    }
+
+    &-right {
+        right: 0;
+        width: 8px;
+        height: 100%;
+        position: absolute;
+    }
+
+    &-bottom {
+        bottom: 0;
+        height: 8px;
+        width: 100%;
+        position: absolute;
+    }
+
+    &-left {
+        left: 0;
+        width: 8px;
+        height: 100%;
+        position: absolute;
+    }
+}

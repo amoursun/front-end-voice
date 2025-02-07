@@ -60,7 +60,15 @@ export default defineConfig({
               // 全局变量
               // mainColor: 'red'
           }
-      }
+      },
+      less: {
+        // 整个的配置对象都会最终给到less的执行参数（全局参数）中去
+        math: 'always',
+        globalVars: {
+            // 全局变量
+            // mainColor: 'red'
+        }
+    }
     },
     modules: {
       // 配置当前的模块化行为是模块化还是全局化 (有hash就是开启了模块化的一个标志, 因为他可以保证产生不同的hash值来控制我们的样式类名不被覆盖)

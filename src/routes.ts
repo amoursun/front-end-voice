@@ -37,6 +37,7 @@ import {
     SITE_VIRTUAL_LIST_FIXED_V2,
 
     SITE_MAP_WEBGL_SOUL_PLANET,
+    SITE_MAP_SHADOW_DOM,
 
 } from './site-map';
 
@@ -199,5 +200,10 @@ export const routes = [
         path: SITE_MAP_WEBGL_SOUL_PLANET.path,
         component: React.lazy(() => import('./pages/webgl-soul-planet/index')),
     },
+    {
+        key: SITE_MAP_SHADOW_DOM.key,
+        path: SITE_MAP_SHADOW_DOM.path,
+        component: React.lazy(() => import('./pages/shadow-dom/index')),
+    }
 
 ];

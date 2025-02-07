@@ -257,6 +257,14 @@ export const SITE_MAP_WEBGL_SOUL_PLANET  = {
     path: '/webgl-soul-planet',
 };
 
+export const SITE_MAP_SHADOW_DOM  = {
+    entry: ENTRY_MAIN,
+    key: 'shadow-dom-sdk',
+    label: () => 'sdk: shadow-dom',
+    path: '/shadow-dom',
+};
+
+
 export const SITE_MAP_MAIN = {
     label: () => '主菜单',
     entry: ENTRY_MAIN,
@@ -272,6 +280,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_MEDIA_RECORDER,
         SITE_MAP_PHOTO_ALBUM,
         SITE_MAP_SSE,
+        SITE_MAP_SHADOW_DOM,
         SITE_MAP_WEBGL_SOUL_PLANET,
         SITE_MAP_SCROLL_ANIMATION,
         SITE_MAP_JS_FRAGMENTATION,

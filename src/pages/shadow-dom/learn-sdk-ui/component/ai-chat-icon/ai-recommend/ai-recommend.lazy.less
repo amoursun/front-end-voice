@@ -1,0 +1,106 @@
+@import '../../../assets/style/mixin.less';
+
+.ai-popover {
+    width: 382px;
+    min-width: 382px;
+    padding: 20px 10px;
+    font-family: PingFangSC-Regular;
+
+    .ai-popover-inner {
+        box-shadow: 0 4px 16px 0 rgba(153, 153, 153, 0.2);
+        border: 1px solid hsl(216, 12%, 92%);
+        padding: 14px 10px 20px;
+        border-radius: 12px;
+        background: #FFF;
+    }
+
+    .ai-popover-title {
+        margin-bottom: 14px;
+        line-height: 20px;
+    }
+
+    .ai-recommend-head {
+        display: flex;
+        cursor: pointer;
+        padding: 0 10px;
+        align-items: center;
+        justify-content: space-between;
+        .ai-recommend-close {
+            width: 16px;
+            height: 19px;
+            display: flex;
+            background: url(./img/icon-close.svg) no-repeat;
+            background-size: contain;
+        }
+        .ai-recommend-title {
+            font-size: 14px;
+            font-weight: 400;
+            color: #282C33;
+            position: relative;
+            padding-left: 56px;
+            &::before {
+                left: -8px;
+                top: -25px;
+                content: '';
+                width: 48px;
+                height: 48px;
+                position: absolute;
+                margin-right: 8px;
+                display: inline-block;
+                background: url(./img/icon-todo-logo.png) no-repeat;
+                background-size: contain;
+            }
+        }
+    }
+
+    .ai-popover-inner-content {
+        gap: 4px;
+        width: 100%;
+        display: flex;
+        font-size: 14px;
+        padding: 0 10px;
+        color: #282C33;
+        overflow-y: auto;
+        max-height: 297px;
+        flex-direction: column;
+        .mixin-scrollbar-thumb();
+        .ai-recommend-content-item {
+            background-image: linear-gradient(270deg, rgba(255, 247, 230, 0.2) 0%, #FFF7E6 100%);
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            height: 64px;
+        }
+        .ai-recommend-content-item-name {
+            font-size: 14px;
+            color: #282C33;
+            font-weight: 600;
+            .mixin-text-ellipsis();
+            &::before {
+                content: '';
+                width: 16px;
+                height: 16px;
+                margin-right: 8px;
+                vertical-align: sub;
+                display: inline-block;
+                background: url(./img/icon-course.svg) no-repeat;
+                background-size: contain;
+            }
+        }
+
+        .ai-recommend-content-item-time {
+            font-size: 12px;
+            span {
+                color: #8D9199;
+                .day {
+                    font-weight: 600;
+                    color: #FA8C16;
+                }
+                &:not(:last-child) {
+                    color: #FA8C16;
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+}

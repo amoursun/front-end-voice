@@ -1,0 +1,26 @@
+@ai: ai-chat;
+
+.@{ai}-textarea {
+    align-items: center;
+    position: relative;
+    display: flex;
+    textarea {
+        padding-right: 40px;
+    }
+
+    &.disabled {
+        .ai-chat-send {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.ai-chat-send {
+    right: 12px;
+    bottom: 4px;
+    cursor: pointer;
+    position: absolute;
+    display: inline-flex;
+    transition: opacity 0.2s;
+}

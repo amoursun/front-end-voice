@@ -1,0 +1,90 @@
+.ai-chat-header {
+    justify-content: space-between;
+    padding: 0 16px 0 10px;
+    align-items: center;
+    display: flex;
+    height: 60px;
+
+    &-title {
+        display: flex;
+        align-items: center;
+    }
+
+    &-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    &-name {
+        display: flex;
+        margin-left: 6px;
+        flex-direction: column;
+
+        span:nth-child(1) {
+            font-weight: 600;
+            font-size: 16px;
+            color: #11141A;
+        }
+
+        span:nth-child(2) {
+            color: #878D99;
+            font-size: 9px;
+        }
+    }
+
+    &-options {
+       display: flex;
+       align-items: center;
+    }
+
+    &-beta,
+    &-group {
+        font-size: 10px;
+        padding: 2px 6px;
+        color: #4957F2;
+        margin-left: 6px;
+        border-radius: 4px;
+        background: #F0F2FE;
+    }
+
+    &-group {
+        cursor: pointer;
+
+        &:hover {
+            color: #4957F2;
+        }
+    }
+
+    &-feedback {
+        align-items: center;
+        margin-left: 16px;
+        color: #5C6473;
+        cursor: pointer;
+        font-size: 12px;
+        display: flex;
+
+        &::before {
+            content: '';
+            width: 16px;
+            height: 18px;
+            margin-right: 4px;
+            display: inline-block;
+            background: url(./img/ai-chat-feedback.svg) no-repeat;
+            background-size: contain;
+        }
+    }
+
+    &-close {
+        background: url(./img/ai-chat-close.svg) no-repeat;
+        background-size: contain;
+        margin-left: 16px;
+        cursor: pointer;
+        height: 18px;
+        width: 16px;
+
+        &:hover {
+            background: url(./img/ai-chat-close-hover.svg) no-repeat;
+            background-size: contain;
+        }
+    }
+}
