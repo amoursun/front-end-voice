@@ -1,4 +1,4 @@
-@import '../../../assets/style/mixin.less';
+@import '../../../assets/style/mixin.scss';
 
 .ai-popover {
     width: 382px;
@@ -63,7 +63,7 @@
         overflow-y: auto;
         max-height: 297px;
         flex-direction: column;
-        .mixin-scrollbar-thumb();
+        @include mixin-scrollbar-thumb();
         .ai-recommend-content-item {
             background-image: linear-gradient(270deg, rgba(255, 247, 230, 0.2) 0%, #FFF7E6 100%);
             border-radius: 8px;
@@ -75,7 +75,7 @@
             font-size: 14px;
             color: #282C33;
             font-weight: 600;
-            .mixin-text-ellipsis();
+            @include mixin-text-ellipsis();
             &::before {
                 content: '';
                 width: 16px;

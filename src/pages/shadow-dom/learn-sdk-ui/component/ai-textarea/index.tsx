@@ -5,7 +5,7 @@ import {message} from '../../../hooks/useApp';
 import {useStyle} from '../../../hooks/useStyle';
 import {ChatValue} from '../../store/chat-store/initialState';
 import AiChatSearch from './img/ai-chat-search.svg';
-import style from './ai-textarea.lazy.less';
+import style from './style.module.scss';
 
 interface TextareaProps {
     onPressEnter: (value: ChatValue) => void;

@@ -10,7 +10,7 @@ import {useStyle} from '../../../hooks/useStyle';
 import {useStore} from '../../context/store-context';
 import {useMode} from '../../../hooks/useMode';
 import AiHeader from '../ai-header';
-import style from './ai-chat-room.lazy.less';
+import style from './style.module.scss';
 
 // 获取授权
 const getAuthorization = (ak: string) => {
@@ -66,7 +66,6 @@ const AiChatRoom = () => {
     return (
         <div className="">
             <AiHeader onClose={setChatMode} />
-            <AiChatSDK {...config} />
         </div>
     );
 };

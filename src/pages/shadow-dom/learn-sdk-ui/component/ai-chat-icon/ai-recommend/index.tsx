@@ -4,8 +4,7 @@ import React, {PropsWithChildren, forwardRef, FC} from 'react';
 import {Popover} from 'antd';
 import {useStyle} from '../../../../hooks/useStyle';
 import {addBehavior} from '../../../api';
-
-import style from './ai-recommend.lazy.less';
+import style from './style.module.scss';
 
 interface AiRecommendProps {
     getPopupContainer?: () => HTMLElement;

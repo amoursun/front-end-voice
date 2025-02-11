@@ -1,6 +1,7 @@
 import {useState, useEffect, useContext, useRef} from 'react';
 import {Button} from 'antd';
 import {setupLearnSDK} from './learn-sdk-bootstrap';
+// import {mainSdk} from './learn-sdk';
 import style from './style.module.scss';
 
 const createDom = () => {

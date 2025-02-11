@@ -38,7 +38,7 @@ export interface SDK {
     emit(name: string): this;
 }
 
-export class LearntingInstance implements SDK {
+export class LearnInstance implements SDK {
     private readonly _events = new EventEmitter();
 
     _options = {};

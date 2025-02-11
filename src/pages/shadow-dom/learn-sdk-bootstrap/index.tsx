@@ -9,7 +9,7 @@ import {
     LearnSDK_SetupOptions,
 } from '../common/common-public-type';
 import {getBaseURL} from './util-get-base-url';
-import '../learn-sdk/index.tsx';
+import {mainSdk} from '../learn-sdk';
 
 export function setupLearnSDK(
     opts: LearnSDK_SetupOptions
@@ -42,7 +42,7 @@ export function setupLearnSDK(
 
         getBaseURL,
     };
-
+    mainSdk();
     // @log
     // loadScript(
     //     // @todo: 更改此处配置

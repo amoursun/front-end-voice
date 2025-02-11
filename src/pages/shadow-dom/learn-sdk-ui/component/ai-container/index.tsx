@@ -2,9 +2,8 @@ import React, {forwardRef, PropsWithChildren} from 'react';
 import cx from 'classnames';
 import {CHAT_MODE_TYPE} from '../../store/chat-store/initialState';
 import {useStore} from '../../context/store-context';
-// import {useStyle} from '../../../hooks/useStyle';
-// import style from './ai-container.lazy.less';
-import './ai-container.lazy.less';
+import {useStyle} from '../../../hooks/useStyle';
+import style from './style.module.scss';
 
 interface ContainerProps {
     className?: string;
@@ -16,7 +15,7 @@ const AiContainer = forwardRef<HTMLDivElement, PropsWithChildren<ContainerProps>
     const store = useStore();
     const chatModeValue = store.use.chatModeValue();
 
-    // useStyle(style);
+    useStyle(style);
 
     return (
         <div

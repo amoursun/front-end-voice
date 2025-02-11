@@ -1,18 +1,18 @@
 /* eslint-disable no-underscore-dangle */
 import {getLNSDKContext} from '../common/common-learn-sdk';
-import {LearntingInstance} from './core';
+import {LearnInstance} from './core';
 
 function initLNSDKInstance() {
     const context = getLNSDKContext();
-
+    debugger;
     context._sdkBuildTime = '@${sdkBuildTime}$@';
 
-    const learnSDKInstance = new LearntingInstance({});
+    const learnSDKInstance = new LearnInstance({});
     context.__resolve(learnSDKInstance);
 }
 
-function main() {
+export function mainSdk() {
     initLNSDKInstance();
 }
 
-void main();
+// void mainSdk();

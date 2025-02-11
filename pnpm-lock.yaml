@@ -71,9 +71,6 @@ importers:
       three:
         specifier: ^0.172.0
         version: 0.172.0
-      zustand:
-        specifier: ^5.0.3
-        version: 5.0.3(@types/react@18.3.2)(react@18.3.1)(use-sync-external-store@1.2.2(react@18.3.1))
     devDependencies:
       '@types/crypto-js':
         specifier: ^4.2.2
@@ -114,9 +111,9 @@ importers:
       eslint-plugin-react-refresh:
         specifier: ^0.4.5
         version: 0.4.7(eslint@8.57.0)
-      less:
-        specifier: ^4.2.2
-        version: 4.2.2
+      immer:
+        specifier: ^10.1.1
+        version: 10.1.1
       postcss-modules:
         specifier: ^6.0.0
         version: 6.0.0(postcss@8.4.38)
@@ -141,6 +138,9 @@ importers:
       worker-loader:
         specifier: ^3.0.8
         version: 3.0.8(webpack@5.91.0)
+      zustand:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/react@18.3.2)(immer@10.1.1)(react@18.3.1)(use-sync-external-store@1.2.2(react@18.3.1))
 
 packages:
 
@@ -1272,6 +1272,9 @@ packages:
     resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
     hasBin: true
+
+  immer@10.1.1:
+    resolution: {integrity: sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==}
 
   immutable@4.3.6:
     resolution: {integrity: sha512-Ju0+lEMyzMVZarkTn/gqRpdqd5dOPaz1mCZ0SH3JV6iFw81PldE/PEB1hWVEA288HPt4WXW8O7AWxB10M+03QQ==}
@@ -3217,6 +3220,7 @@ snapshots:
   copy-anything@2.0.6:
     dependencies:
       is-what: 3.14.1
+    optional: true
 
   copy-to-clipboard@3.3.3:
     dependencies:
@@ -3537,6 +3541,8 @@ snapshots:
   image-size@0.5.5:
     optional: true
 
+  immer@10.1.1: {}
+
   immutable@4.3.6: {}
 
   import-fresh@3.3.0:
@@ -3571,7 +3577,8 @@ snapshots:
 
   is-url@1.2.4: {}
 
-  is-what@3.14.1: {}
+  is-what@3.14.1:
+    optional: true
 
   isarray@0.0.1: {}
 
@@ -3626,6 +3633,7 @@ snapshots:
       mime: 1.6.0
       needle: 3.3.1
       source-map: 0.6.1
+    optional: true
 
   levn@0.4.1:
     dependencies:
@@ -3769,7 +3777,8 @@ snapshots:
     dependencies:
       callsites: 3.1.0
 
-  parse-node-version@1.0.1: {}
+  parse-node-version@1.0.1:
+    optional: true
 
   path-exists@4.0.0: {}
 
@@ -4431,7 +4440,8 @@ snapshots:
     dependencies:
       typescript: 5.4.5
 
-  tslib@2.8.1: {}
+  tslib@2.8.1:
+    optional: true
 
   type-check@0.4.0:
     dependencies:
@@ -4546,8 +4556,9 @@ snapshots:
 
   zlibjs@0.3.1: {}
 
-  zustand@5.0.3(@types/react@18.3.2)(react@18.3.1)(use-sync-external-store@1.2.2(react@18.3.1)):
+  zustand@5.0.3(@types/react@18.3.2)(immer@10.1.1)(react@18.3.1)(use-sync-external-store@1.2.2(react@18.3.1)):
     optionalDependencies:
       '@types/react': 18.3.2
+      immer: 10.1.1
       react: 18.3.1
       use-sync-external-store: 1.2.2(react@18.3.1)

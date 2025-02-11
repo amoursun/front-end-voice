@@ -30,8 +30,7 @@
     "react-monaco-editor": "^0.55.0",
     "react-router-dom": "^5.3.4",
     "tesseract.js": "^5.1.0",
-    "three": "^0.172.0",
-    "zustand": "^5.0.3"
+    "three": "^0.172.0"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
@@ -47,7 +46,7 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "less": "^4.2.2",
+    "immer": "^10.1.1",
     "postcss-modules": "^6.0.0",
     "postcss-scss": "^4.0.9",
     "sass": "^1.70.0",
@@ -55,6 +54,7 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vite-plugin-monaco-editor": "^1.1.0",
-    "worker-loader": "^3.0.8"
+    "worker-loader": "^3.0.8",
+    "zustand": "^5.0.3"
   }
 }

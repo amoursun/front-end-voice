@@ -1,13 +1,13 @@
-.mixin-multi-text-ellipsis(@line: 2) {
+@mixin mixin-multi-text-ellipsis($line: 2) {
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-all;
     display: -webkit-box;
-    -webkit-line-clamp: @line;
+    -webkit-line-clamp: $line;
     -webkit-box-orient: vertical;
 };
 
-.mixin-text-ellipsis() {
+@mixin mixin-text-ellipsis() {
     white-space: nowrap;
     word-break: break-all;
     word-wrap: break-word;
@@ -16,34 +16,30 @@
 }
 
 // 滚动条样式
-.mixin-scrollbar-thumb(
-    @width: 4px,
-    @border-radius: 2px,
-    @thumbBackground: rgba(0, 0, 0, 0.2),
+@mixin mixin-scrollbar-thumb(
+    $width: 4px,
+    $border-radius: 2px,
+    $thumbBackground: rgba(0, 0, 0, 0.2),
 ) {
     &::-webkit-scrollbar {
-        width: @width;
+        width: $width;
         background-color: rgba(0, 0, 0, 0);
         box-shadow: none;
     }
- 
     /* Track:轨道 */
     &::-webkit-scrollbar-track {
         background: rgba(0, 0, 0, 0);
-        border-radius: @border-radius;
+        border-radius: $border-radius;
     }
- 
     /* Handle */
     &::-webkit-scrollbar-thumb {
         border-radius: 6px;
-        background: @thumbBackground;
+        background: $thumbBackground;
         box-shadow: none;
     }
- 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
         background: rgba(0, 0, 0, 0.2);
         box-shadow: none;
     }
 }
- 

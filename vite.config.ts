@@ -11,6 +11,7 @@ export default defineConfig({
       // 'src': path.resolve(__dirname, 'src'),
       '@': path.resolve(__dirname),
     },
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
   },
   plugins: [
     react(),
@@ -61,14 +62,6 @@ export default defineConfig({
               // mainColor: 'red'
           }
       },
-      less: {
-        // 整个的配置对象都会最终给到less的执行参数（全局参数）中去
-        math: 'always',
-        globalVars: {
-            // 全局变量
-            // mainColor: 'red'
-        }
-    }
     },
     modules: {
       // 配置当前的模块化行为是模块化还是全局化 (有hash就是开启了模块化的一个标志, 因为他可以保证产生不同的hash值来控制我们的样式类名不被覆盖)
@@ -92,7 +85,21 @@ export default defineConfig({
 
       // 代表不想参与到css模块化的路径
       // globalModulePaths: ['./component.module.css'], 
-    }
-
+    },
+    devSourcemap: true, // 开发环境下是否开启sourcemap
+  },
+  build: {
+    assetsDir: 'assets', // 静态资源目录
+    outDir: 'dist', // 构建输出的目录
+    sourcemap: true, // 是否生成sourcemap
+    minify: 'terser', // 生产环境下是否压缩代码
+    // 代码压缩配置
+    terserOptions: {
+      // 生产环境移除console和debugger
+      compress: {
+        drop_console: true, // 去除console
+        drop_debugger: true, // 去除debugger
+      },
+    },
   },
 } as UserConfig);
