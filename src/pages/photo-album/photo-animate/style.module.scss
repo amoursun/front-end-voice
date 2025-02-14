@@ -121,8 +121,8 @@ $height: 100px;
             width: $hover-max-width;
             height: $hover-max-height;
             opacity: 0.8;
-            left: calc(-$width / 2);
-            top: calc(-$height / 2);
+            left: -calc($width / 2);
+            top: -calc($height / 2);
         }
         $hover-translate-z-size: calc($width * 1.5);
         .photo-out-item1 {
