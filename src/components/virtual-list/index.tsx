@@ -159,3 +159,5 @@ export const VirtualSizeList = forwardRef((props: VirtualSizeListProps, ref) => 
   );
 });
 
+export default VirtualSizeList;
+

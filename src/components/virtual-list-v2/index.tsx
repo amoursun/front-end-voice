@@ -236,3 +236,5 @@ export class VirtualSizeList extends React.PureComponent<VirtualSizeListProps> {
     );
   }
 }
+
+export default VirtualSizeList;
