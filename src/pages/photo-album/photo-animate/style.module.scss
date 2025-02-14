@@ -1,3 +1,4 @@
+@use 'sass:math';
 
 $width: 100px;
 $height: 100px;
@@ -45,7 +46,7 @@ $height: 100px;
                 height: 100%;
             }
         }
-        $translate-z-size: $min-width / 2;
+        $translate-z-size: calc($min-width / 2); // math.div($min-width, 2)
         .photo-in-item1 {
             transform: translateZ($translate-z-size);
         }
@@ -121,8 +122,8 @@ $height: 100px;
             width: $hover-max-width;
             height: $hover-max-height;
             opacity: 0.8;
-            left: -calc($width / 2);
-            top: -calc($height / 2);
+            left: math.div(-$width, 2);
+            top: math.div(-$height, 2);
         }
         $hover-translate-z-size: calc($width * 1.5);
         .photo-out-item1 {

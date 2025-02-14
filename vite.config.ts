@@ -102,5 +102,28 @@ export default defineConfig({
         drop_debugger: true, // 去除debugger
       },
     },
+    // 打包分割配置
+    // rollupOptions: {
+    //   output: {
+    //     entryFileNames: 'js/[name]-[hash].js', // 入口文件名
+    //     chunkFileNames: 'js/[name]-[hash].js', // 代码分割文件名
+    //     // 其他 css, svg 认为是资源, 需要找资源配置 assetFileNames
+    //     // assetFileNames: 'assets/[name]-[hash].[ext]', // 资源文件名
+    //     assetFileNames(assetInfo) {
+    //       const {name} = assetInfo;
+    //       if (name.endsWith('.css')) {
+    //         return 'css/[name]-[hash].css';
+    //       }
+    //       const imgExts = ['.png', '.jpg', '.jpeg', '.gif', '.ico', '.svg', '.webp', '.tif', '.bmp'];
+    //       if (imgExts.some((ext) => name.endsWith(ext))) {
+    //         return 'images/[name]-[hash].[ext]';
+    //       }
+    //       if (name.endsWith('.mp3')) {
+    //         return 'media/[name]-[hash].[ext]';
+    //       }
+    //       return 'other/[name]-[hash].[ext]';
+    //     }
+    //   },
+    // },
   },
 } as UserConfig);
