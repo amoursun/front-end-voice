@@ -3,7 +3,7 @@ import cx from 'classnames';
 import {CHAT_MODE_TYPE} from '../../store/chat-store/initialState';
 import {useStore} from '../../context/store-context';
 import {useStyle} from '../../../hooks/useStyle';
-import style from './style.module.scss';
+import style from './style.scss?inline';
 
 interface ContainerProps {
     className?: string;

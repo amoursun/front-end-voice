@@ -44,6 +44,7 @@ const insertIntoTarget = (element: HTMLStyleElement, target: ShadowRoot) => {
 export const useStyle = (style: string) => {
     // 组件加载时，将样式挂载到shadowRoot上
     const {shadowRoot} = useShadow();
+    // console.log(style, 'style');
 
     useEffect(() => {
         const element = createStyle(style);

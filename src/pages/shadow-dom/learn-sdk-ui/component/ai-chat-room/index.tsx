@@ -10,18 +10,19 @@ import {useStyle} from '../../../hooks/useStyle';
 import {useStore} from '../../context/store-context';
 import {useMode} from '../../../hooks/useMode';
 import AiHeader from '../ai-header';
-import style from './style.module.scss';
+import style from './style.scss?inline';
 
 // 获取授权
 const getAuthorization = (ak: string) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const auth = await axios.get(`${getBaseURL()}/duxuetang/rs/auth/getApiToken?targetAppKey=${ak}`);
-            if (auth.data && auth.data.code === 200) {
-                resolve(auth.data.data);
-            } else {
-                reject('获取授权失败');
-            }
+            // 请求 token
+            resolve('token');
+            // if () {
+            //     resolve('token');
+            // } else {
+            //     reject('获取授权失败');
+            // }
         } catch (error) {
             reject('获取授权失败');
         }

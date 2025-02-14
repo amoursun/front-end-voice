@@ -3,8 +3,7 @@
 import React, {PropsWithChildren, forwardRef, FC} from 'react';
 import {Popover} from 'antd';
 import {useStyle} from '../../../../hooks/useStyle';
-import {addBehavior} from '../../../api';
-import style from './style.module.scss';
+import style from './style.scss?inline';
 
 interface AiRecommendProps {
     getPopupContainer?: () => HTMLElement;
@@ -29,10 +28,6 @@ const ToDoContent: FC<ToDoContentProps> = (props) => {
                             key={item.name}
                             href={item.href}
                             className="ai-recommend-content-item"
-                            onClick={() => {
-                                // 点击埋点: 97 待办任务
-                                void addBehavior({resourceType: 97});
-                            }}
                         >
                             <div className="ai-recommend-content-item-name" title={item.name}>{item.name}</div>
                             <div className="ai-recommend-content-item-time">

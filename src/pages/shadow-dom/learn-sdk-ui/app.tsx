@@ -4,7 +4,7 @@ import {StoreProvider} from './context/store-context';
 import {Provider} from './component/config-provider';
 import AiChatRoom from './component/ai-chat-room';
 import AiChatIcon from './component/ai-chat-icon';
-import style from './style.module.scss';
+import style from './style.scss?inline';
 
 const App = () => {
     // 注册全局样式

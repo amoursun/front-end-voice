@@ -1,0 +1,15 @@
+@import './assets/style/global.scss';
+@import './assets/style/common.scss';
+
+// 注入 shadow dom 全局样式
+.ai-theme {
+    @extend .ai-learn !optional;
+
+    @extend .ai-learn-chat !optional;
+
+    @extend .ai-learn-header !optional;
+}
+
+.ai-icon-theme {
+    @extend .ai-learn-chat-icon !optional;
+}

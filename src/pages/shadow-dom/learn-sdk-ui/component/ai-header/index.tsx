@@ -2,7 +2,7 @@ import React from 'react';
 import {CHAT_MODE_TYPE, type ChatModeType} from '../../store/chat-store/initialState';
 import {useStyle} from '../../../hooks/useStyle';
 import AiChatHeaderSvg from './img/ai-chat-header.svg';
-import style from './style.module.scss';
+import style from './style.scss?inline';
 
 interface HeaderProps {
     onClose?: (value: ChatModeType) => void;

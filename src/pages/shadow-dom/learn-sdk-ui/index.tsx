@@ -10,10 +10,10 @@ function createShadowRoot(element: HTMLElement): ShadowRoot {
 }
 
 function main() {
-    const rootElement = document.createElement('learning-app');
+    const rootElement = document.createElement('learn-app');
     const shadowRoot = createShadowRoot(rootElement);
 
-    const container = document.createElement('learning-app-root');
+    const container = document.createElement('learn-app-root');
     shadowRoot.appendChild(container);
 
     const root = createRoot(container);
@@ -27,4 +27,8 @@ function main() {
     document.body.appendChild(rootElement);
 }
 
-void main();
+// void main();
+
+export function runSdkUi() {
+    void main();
+}

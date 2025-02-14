@@ -1,4 +1,4 @@
-@use './variable.scss';
+@import './variable.scss';
 
 .ai-learning {
     --learn-bg-color: $bg-color;

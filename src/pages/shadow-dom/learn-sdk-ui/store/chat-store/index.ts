@@ -5,7 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {createSelectors, create, immer} from '..';
-import {getTodoTask} from '../../api';
+// import {getTodoTask} from '../../api';
 import {formatTime, formatDiffDay} from '../../../utils/tools';
 import {type State, initialChatState, ChatModeType} from './initialState';
 // import {message} from '../../../hooks/useApp';
@@ -33,7 +33,8 @@ export const createChatStore = () => createSelectors(create(immer<ChatStore>((se
     },
 
     fetchTodoTask: async () => {
-        const {data = []} = await getTodoTask();
+        // const {data = []} = await getTodoTask();
+        const data: any[] = [];
         const {updateRecommend} = get();
 
         const list = data

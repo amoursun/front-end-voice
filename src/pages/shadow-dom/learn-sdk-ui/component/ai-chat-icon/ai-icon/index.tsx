@@ -3,7 +3,7 @@ import cx from 'classnames';
 import {ChatModeType} from '../../../store/chat-store/initialState';
 import {useStyle} from '../../../../hooks/useStyle';
 // import AiChatLogoSvg from '../img/ai-chat-logo.svg';
-import style from './style.module.scss';
+import style from './style.scss?inline';
 
 interface AiIconProps {
     className?: string;

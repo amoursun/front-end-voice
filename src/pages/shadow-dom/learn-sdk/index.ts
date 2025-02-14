@@ -4,7 +4,6 @@ import {LearnInstance} from './core';
 
 function initLNSDKInstance() {
     const context = getLNSDKContext();
-    debugger;
     context._sdkBuildTime = '@${sdkBuildTime}$@';
 
     const learnSDKInstance = new LearnInstance({});

@@ -5,7 +5,7 @@ import {createCache, StyleProvider} from '@ant-design/cssinjs';
 import AiContainer from '../ai-container';
 import {useShadow} from '../../context/shadow-context';
 import {useStyle} from '../../../hooks/useStyle';
-import style from './style.module.scss';
+import style from './style.scss?inline';
 
 export const Provider = ({
     children = null as React.ReactNode,

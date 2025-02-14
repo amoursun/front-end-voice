@@ -67,6 +67,7 @@ export default defineConfig({
       // 配置当前的模块化行为是模块化还是全局化 (有hash就是开启了模块化的一个标志, 因为他可以保证产生不同的hash值来控制我们的样式类名不被覆盖)
       scopeBehaviour: 'local',
       // 自定义生成哈希名称的规则，例如：更改哈希名称的长度等
+      // generateScopedName: '[name]__[local]___[hash:base64:5]',
       generateScopedName: '[name]_[local]_[hash:base64:5]',
       // generateScopedName: (name, filename, css) => {
       //     // name -> 代表的是你此刻css文件中的类名
