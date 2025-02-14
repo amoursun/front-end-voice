@@ -1,26 +1,19 @@
 @import './assets/style/global.scss';
 
-$bg-color: #FFF;
-$border-color: #000;
-$header-bg-color: #75C2E6;
-$chat-bg-color: rgba(73, 87, 242, 0.08);
-$icon-shadow: rgba(0, 0, 0, .15);
-$icon-shadow-hover: rgba(51, 119, 255, .5);
-
 // 注入 shadow dom 全局样式
 .ai-theme {
-    --learn-bg-color: $bg-color;
+    --learn-bg-color: #FFF;
 
-    --learn-button-bg-color: $bg-color;
-    --learn-button-border-color: $border-color;
+    --learn-button-bg-color: #FFF;
+    --learn-button-border-color: #000;
 
-    --learn-chat-bg-color: $chat-bg-color;
+    --learn-chat-bg-color: rgba(73, 87, 242, 0.08)
 
-    --learn-header-bg-color: $header-bg-color;
+    --learn-header-bg-color: #75C2E6;
 
 }
 
 .ai-icon-theme {
-    --learn-chat-icon-shadow: $icon-shadow;
-    --learn-chat-icon-shadow-hover: $icon-shadow-hover;
+    --learn-chat-icon-shadow: rgba(0, 0, 0, .15);
+    --learn-chat-icon-shadow-hover: rgba(51, 119, 255, .5);
 }
