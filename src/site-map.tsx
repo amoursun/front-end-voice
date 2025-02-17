@@ -264,6 +264,19 @@ export const SITE_MAP_SHADOW_DOM  = {
     path: '/shadow-dom',
 };
 
+export const SITE_MAP_IFRAME_MESSAGECHANNEL  = {
+    entry: ENTRY_MAIN,
+    key: 'iframe-messagechannel',
+    label: () => 'iframe messagechannel通信',
+    path: '/iframe-messagechannel',
+};
+export const SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD  = {
+    entry: ENTRY_MAIN,
+    key: 'iframe-messagechannel-child',
+    label: () => 'iframe messagechannel child',
+    path: '/iframe-messagechannel-child',
+};
+
 
 export const SITE_MAP_MAIN = {
     label: () => '主菜单',
@@ -290,6 +303,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_WEB_WORKER,
         SITE_MAP_INTERSECTION_OBSERVER,
         SITE_MAP_VIRTUAL_LIST,
+        SITE_MAP_IFRAME_MESSAGECHANNEL,
     ],
 };
 

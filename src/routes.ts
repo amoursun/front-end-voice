@@ -1,4 +1,5 @@
 import React from 'react';
+import { SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD } from './site-map';
 import {
     SITE_MAP_SPEECH_RECOGNITION,
     SITE_MAP_SPEECH_SYNTHESIS,
@@ -38,6 +39,9 @@ import {
 
     SITE_MAP_WEBGL_SOUL_PLANET,
     SITE_MAP_SHADOW_DOM,
+
+    SITE_MAP_IFRAME_MESSAGECHANNEL,
+    SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD,
 
 } from './site-map';
 
@@ -204,6 +208,16 @@ export const routes = [
         key: SITE_MAP_SHADOW_DOM.key,
         path: SITE_MAP_SHADOW_DOM.path,
         component: React.lazy(() => import('./pages/shadow-dom/index')),
-    }
+    },
 
+    {
+        key: SITE_MAP_IFRAME_MESSAGECHANNEL.key,
+        path: SITE_MAP_IFRAME_MESSAGECHANNEL.path,
+        component: React.lazy(() => import('./pages/iframe-messagechannel/index')),
+    },
+    {
+        key: SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD.key,
+        path: SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD.path,
+        component: React.lazy(() => import('./pages/iframe-messagechannel/child/index')),
+    },
 ];
