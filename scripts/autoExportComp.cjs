@@ -24,7 +24,7 @@ fs.readdir(_exportPath)
                     fs.existsSync(`${_exportPath}/${item}/index.tsx`)
                 ) {
                     const itemHump = toHump(item);
-                    exportStr = `${exportStr}export { default as ${itemHump} } from './${item}\n';`;
+                    exportStr = `${exportStr}export { default as ${itemHump} } from './${item}';\n`;
                 }
             });
             exportStr += '\n';
