@@ -36,12 +36,12 @@ export function IframeMessageChannelChild() {
         {(data || []).map((item, index) => {
             return (
                 <div className={style.item} key={item.id || index}>
-                    <span>id: {item.id}</span>
-                    <span>name: {item.name}</span>
-                    <span>age: {item.age}</span>
-                    <span>address: {item.address}</span>
-                    <span>phone: {item.phone}</span>
-                    <span>email: {item.email}</span>
+                    <div>id: {item.id}</div>
+                    <div>name: {item.name}</div>
+                    <div>age: {item.age}</div>
+                    <div>address: {item.address}</div>
+                    <div>phone: {item.phone}</div>
+                    <div>email: {item.email}</div>
                 </div>
             );
         })}
