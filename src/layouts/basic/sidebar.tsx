@@ -9,12 +9,14 @@ export interface RouteItem extends RouteProps {
     key: string;
     path: string;
     url?: string;
+    hiddenSidebar?: boolean;
     component?: React.ComponentType | React.LazyExoticComponent<React.ComponentType<any>>;
 }
 interface SideMenuProps extends RouteComponentProps {
     className?: string;
     routes: RouteItem[];
-}type MenuItem = Required<MenuProps>['items'][number];
+}
+type MenuItem = Required<MenuProps>['items'][number];
 export const Sidebar = withRouter((props: SideMenuProps) => {
     const {menu, selectedIds} = useMenu(props);
     const collapsed = true;

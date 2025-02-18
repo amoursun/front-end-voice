@@ -1,5 +1,4 @@
 import React from 'react';
-import { SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD } from './site-map';
 import {
     SITE_MAP_SPEECH_RECOGNITION,
     SITE_MAP_SPEECH_SYNTHESIS,
@@ -42,7 +41,6 @@ import {
 
     SITE_MAP_IFRAME_MESSAGECHANNEL,
     SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD,
-
 } from './site-map';
 
 export const routes = [
@@ -218,6 +216,7 @@ export const routes = [
     {
         key: SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD.key,
         path: SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD.path,
+        hiddenSidebar: true,
         component: React.lazy(() => import('./pages/iframe-messagechannel/child/index')),
     },
 ];

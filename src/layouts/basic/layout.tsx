@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import {Layout} from 'antd';
 import './style.scss';
 import {BasicLayoutContext} from './context';
-import {siderWidth} from './sidebar';
+// import {siderWidth} from './sidebar';
+// import {SidebarBox} from './sidebar-box';
 
 const {Header, Content, Footer, Sider} = Layout;
 interface LayoutPageProps {
@@ -34,16 +35,7 @@ export const LayoutPage = (props: LayoutPageProps) => {
                     {renderBreadcrumb?.()}
                 </div>
                 <Layout>
-                    <Sider
-                        className={'sidebar'}
-                        theme={'light'}
-                        width={siderWidth}
-                        collapsible
-                        collapsed={collapsed}
-                        onCollapse={(value) => setCollapsed(value)}
-                    >
-                        {renderSidebar?.()}
-                    </Sider>
+                    {renderSidebar?.()}
                     <BasicLayoutContext.Provider value={{scrollRef}}>
                         <Content className={'main-content'} ref={scrollRef}>
                             {renderContent?.()}

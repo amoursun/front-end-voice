@@ -1,9 +1,9 @@
 import React from 'react';
 import {HashRouter, Redirect, Route, Switch as RouteSwitch} from 'react-router-dom';
 import {ConfigProvider} from 'antd';
-
 import {LayoutPage} from './layout';
 import {RouteItem, Sidebar} from './sidebar';
+import {SidebarBox} from './sidebar-box';
 import {Header} from './header';
 import './style.scss';
 
@@ -27,7 +27,9 @@ export const BasicLayout = (props: BasicLayoutProps) => {
     
     const renderSidebar = () => {
         return (
-            <Sidebar routes={routes || []} />
+            <SidebarBox routes={routes || []}>
+                <Sidebar routes={routes || []} />
+            </SidebarBox>
         );
     };
 
