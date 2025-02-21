@@ -51,10 +51,21 @@ export const sliceFile = (file: File) => {
     const workerChunkCount = Math.ceil(chunkLength / thread);
     let finishCount = 0;
     for (let i = 0; i < thread; i++) {
-        const worker = new Worker(new URL(
+        const workerPath = new URL(
             './worker.ts',
             import.meta.url
-        ));
+        );
+        let worker: Worker;
+        if (import.meta.env.DEV) {
+            worker = new Worker(workerPath.href, {
+                type: 'module',
+            });
+        }
+        else {
+            worker = new Worker(workerPath.href, {
+                type: 'classic',
+            });
+        }
         // 计算每个线程的开始索引和结束索引
         const startIndex = i * workerChunkCount;
         let endIndex = startIndex + workerChunkCount;
@@ -138,7 +149,7 @@ export const uploadFile = (chunks: IChunkItem[] ) => {
     const enqueue = requestQueue(6);
     for (let i = 0; i < chunks.length; i++) {
         const request: IRequestPromiseFactory = () => axios.post(
-            '/api/file/upload',
+            'http://localhost:3001/api/file/upload',
             handleFormData(chunks[i]),
             {
                 headers: {

@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev:bigfile": "node ./big-chunk-file/index.js",
+    "dev:chunkFile": "node ./chunk-file/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

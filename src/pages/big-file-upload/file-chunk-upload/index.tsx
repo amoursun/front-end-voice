@@ -6,6 +6,9 @@ import {sliceFile, uploadFile, handleEvent} from './util-file';
 export function FileChunkUpload() {
   const [progress, setProgress] = useState(0);
   const fileRef = useRef<HTMLInputElement | null>(null);
+  const handleChange = () => {
+      setProgress(0);
+  };
   const handleUpload = () => {
     const target = fileRef.current as unknown as {files: File[]};
     const file = target?.files[0];
@@ -19,7 +22,8 @@ export function FileChunkUpload() {
         const {addEventListener} = handleEvent()
 
         const listener = addEventListener(window, ({detail}) => {
-          setProgress((detail as number) / chunkLength);
+          const numStr = ((detail as number) / chunkLength).toFixed(2);
+          setProgress(+numStr);
           // // 上传完成，关闭事件监听
           if(detail === chunkLength) {
             listener();
@@ -33,7 +37,7 @@ export function FileChunkUpload() {
     <div className={style.fileChunkUpload}>
       <h1>大文件分片上传</h1>
       <div className={style.content}>
-        <input type="file" ref={fileRef} />
+        <input type="file" ref={fileRef} onChange={handleChange} />
         <Button onClick={handleUpload}>提交</Button>
         <p>进度：{progress * 100}%</p>
       </div>

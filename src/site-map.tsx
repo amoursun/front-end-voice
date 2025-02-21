@@ -92,13 +92,13 @@ export const SITE_WEB_IMAGE_ANNOTATION_TOOL = {
 export const SITE_BIG_FILE_CHUNK_UPLOAD = {
     entry: ENTRY_MAIN,
     key: 'big-file-chunk-upload',
-    label: () => '大文件分片上传1',
+    label: () => '大文件分片上传chunk',
     path: '/big-file-upload/chunk',
 };
 export const SITE_BIG_FILE_UNIT_UPLOAD = {
     entry: ENTRY_MAIN,
     key: 'big-file-unit-upload',
-    label: () => '大文件分片上传2',
+    label: () => '大文件分片上传',
     path: '/big-file-upload/unit',
 };
 export const SITE_MAP_BIG_FILE_UPLOAD = {

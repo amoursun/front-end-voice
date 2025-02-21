@@ -9,10 +9,21 @@ export function LoadCountWorker() {
     const [loading, setLoading] = useState(false);
     const handleCount = () => {
         setLoading(true);
-        const worker = new Worker(
-            new URL('./worker.ts',
+        const workerPath = new URL(
+            './worker.ts',
             import.meta.url
-        ));
+        );
+        let worker: Worker;
+        if (import.meta.env.DEV) {
+            worker = new Worker(workerPath.href, {
+                type: 'module',
+            });
+        }
+        else {
+            worker = new Worker(workerPath.href, {
+                type: 'classic',
+            });
+        }
         if (worker) {
             console.time('NormalWorker');
             worker.postMessage(total);

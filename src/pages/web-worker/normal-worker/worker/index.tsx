@@ -9,10 +9,24 @@ export function CountWorker() {
     const [value, setValue] = useState('');
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        ref.current = new Worker(
-            new URL('./worker.ts',
+        // ref.current = new Worker(
+        //     new URL('./worker.ts',
+        //     import.meta.url
+        // ));
+        const workerPath = new URL(
+            './worker.ts',
             import.meta.url
-        ));
+        );
+        if (import.meta.env.DEV) {
+            ref.current = new Worker(workerPath.href, {
+                type: 'module',
+            });
+        }
+        else {
+            ref.current = new Worker(workerPath.href, {
+                type: 'classic',
+            });
+        }
     }, [ref]);
     const handleCount = () => {
         setLoading(true);
