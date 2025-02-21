@@ -12,7 +12,7 @@ words = jieba.cut(text) # 使用jieba库对文本进行分词
 wordStr = ''.join(words) # 将分词结果转化为字符串 .strip()去除字符串两端的空格
 print(type(wordStr))
 # 添加字体文件 随便找一个字体文件就行 不然不支持中文
-font_path = path.join(path.dirname(__file__), 'font.ttf')
+font_path = path.join(path.dirname(__file__), 'font/font.ttf')
 if not path.exists(font_path):
     print("Font file {font_path} does not exist.")
     sys.exit(1)
