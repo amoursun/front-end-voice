@@ -9,7 +9,8 @@
     "build": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "export:comp": "node ./scripts/autoExportComp.cjs"
+    "export:comp": "node ./server/auto-export-comp/index.js",
+    "server:reptile": "node ./server/reptile-pa-chong/index.js"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",
@@ -27,6 +28,7 @@
     "mobx-react": "^9.1.1",
     "monaco-editor": "^0.48.0",
     "monaco-themes": "^0.4.4",
+    "puppeteer": "^24.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-monaco-editor": "^0.55.0",

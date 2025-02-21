@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const _exportPath = path.resolve(__dirname, '../src/components');
+const _exportPath = path.resolve(__dirname, '../../src/components');
 
 function toHump(value) {
     return value.toLocaleLowerCase().replace(/-(\w)/g, (all, letter) => {
