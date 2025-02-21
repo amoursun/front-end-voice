@@ -5,7 +5,7 @@ const fs = require('fs');
 const cors = require('cors');
 
 // 设置上传文件的临时存储目录
-const upload = multer({dest: './uploads/'});
+const upload = multer({dest: './chunk-file/uploads/'});
 function getFilename(dir, name) {
     return path.join(__dirname, dir, name);  
 }
