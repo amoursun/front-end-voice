@@ -5,4 +5,6 @@ function getId() {
         + (seq++).toString(36);
 }
 
-module.exports = getId;
+module.exports = {
+    getId,
+};

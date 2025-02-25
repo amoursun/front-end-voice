@@ -1,12 +1,31 @@
 
 export const ENTRY_MAIN = 'main';
 
-export const SITE_MAP_SOCKET_GROUP = {
-    label: () => 'socket群聊',
-    key: 'socket-group',
-    path: '/socket-group',
+export const SITE_MAP_SOCKET_GROUP_MAIN = {
+    label: () => '默认群聊',
+    key: 'socket-group-main',
+    path: '/socket-group/main',
     entry: ENTRY_MAIN,
 };
+export const SITE_MAP_SOCKET_GROUP_CHART = {
+    label: () => 'chat群聊',
+    key: 'socket-group-chat',
+    path: '/socket-group/chat',
+    entry: ENTRY_MAIN,
+};
+export const SITE_MAP_SOCKET_GROUP = {
+    entry: ENTRY_MAIN,
+    key: 'socket-group',
+    label: () => 'socket群聊',
+    path: '/socket-group',
+    children: [
+        SITE_MAP_SOCKET_GROUP_MAIN,
+        SITE_MAP_SOCKET_GROUP_CHART,
+    ],
+};
+
+
+
 export const SITE_MAP_SPEECH_RECOGNITION = {
     entry: ENTRY_MAIN,
     key: 'speech-recognition',

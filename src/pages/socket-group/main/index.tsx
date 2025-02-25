@@ -3,9 +3,9 @@ import {Button, Input} from 'antd';
 import style from './style.module.scss';
 
 const {TextArea} = Input;
-function SocketGroup() {
+function SocketGroupMain() {
   return (
-    <div className={style.socketGroup}>
+    <div className={style.socketGroupMain}>
       <TextArea
         autoSize={{minRows: 5, maxRows: 15}}
       />
@@ -13,4 +13,4 @@ function SocketGroup() {
   )
 }
 
-export default SocketGroup;
+export default SocketGroupMain;

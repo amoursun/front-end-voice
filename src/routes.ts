@@ -2,7 +2,10 @@ import React from 'react';
 import {
     SITE_MAP_SPEECH_RECOGNITION,
     SITE_MAP_SPEECH_SYNTHESIS,
-    SITE_MAP_SOCKET_GROUP,
+
+    SITE_MAP_SOCKET_GROUP_MAIN,
+    SITE_MAP_SOCKET_GROUP_CHART,
+
     SITE_MAP_MEDIA_DEVICE,
     SITE_MAP_AUDIO_CONTEXT,
     SITE_MAP_IMG_VIDEO_PREVIEW,
@@ -54,11 +57,18 @@ export const routes = [
         path: SITE_MAP_SPEECH_SYNTHESIS.path,
         component: React.lazy(() => import('./pages/speech-synthesis/index')),
     },
+
     {
-        key: SITE_MAP_SOCKET_GROUP.key,
-        path: SITE_MAP_SOCKET_GROUP.path,
-        component: React.lazy(() => import('./pages/socket-group/index')),
+        key: SITE_MAP_SOCKET_GROUP_MAIN.key,
+        path: SITE_MAP_SOCKET_GROUP_MAIN.path,
+        component: React.lazy(() => import('./pages/socket-group/main/index')),
     },
+    {
+        key: SITE_MAP_SOCKET_GROUP_CHART.key,
+        path: SITE_MAP_SOCKET_GROUP_CHART.path,
+        component: React.lazy(() => import('./pages/socket-group/chat/index')),
+    },
+
     {
         key: SITE_MAP_MEDIA_DEVICE.key,
         path: SITE_MAP_MEDIA_DEVICE.path,

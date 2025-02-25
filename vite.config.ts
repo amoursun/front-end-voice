@@ -8,7 +8,7 @@ import {monacoEditorPlugin} from './vite-plugin/plugin-monaco-editor';
 export default defineConfig({
   resolve: {
     alias: {
-      // 'src': path.resolve(__dirname, 'src'),
+      'src': path.resolve(__dirname, 'src'),
       '@': path.resolve(__dirname),
     },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
