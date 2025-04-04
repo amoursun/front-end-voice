@@ -43,7 +43,7 @@ export function useOrgTree(
          */
         const queryOrgTree = async () => {
             setLoading(true);
-            const data = await apiMockPromise<OrgTreeVO>(orgTreeData, 2000);
+            const data = await apiMockPromise<OrgTreeVO>(orgTreeData, 2);
             setTreeData(data);
             setLoading(false);
         };

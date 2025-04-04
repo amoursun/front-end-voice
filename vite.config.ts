@@ -2,6 +2,7 @@ import {defineConfig, UserConfig, Plugin} from 'vite';
 import path from 'path';
 import react from '@vitejs/plugin-react';
 import workerLoader from 'worker-loader';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import {monacoEditorPlugin} from './vite-plugin/plugin-monaco-editor';
 
 // https://vitejs.dev/config/
@@ -33,6 +34,11 @@ export default defineConfig({
         label: 'graphql',
         entry: 'monaco-graphql/dist/graphql.worker',
       }],
+    }),
+    createSvgIconsPlugin({
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/svg-icon')],  // SVG 存放路径
+      symbolId: 'icon-[name]',  // 符号 ID 命名规则
+      inject: 'body-last'       // SVG 插入位置
     }),
   ],
   server: {

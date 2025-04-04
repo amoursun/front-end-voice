@@ -27,7 +27,7 @@ export const OrgTree: FC<IOrgTreeProps> = () => {
     const openedNode = useRef<OrgTreeVO | null>(null);
     const [checkKeys, setCheckKeys] = useState<string[]>([]);
     const {
-        treeData: data,
+        treeData,
         locationOrgId,
         loading,
     } = useOrgTree(true);
@@ -45,14 +45,14 @@ export const OrgTree: FC<IOrgTreeProps> = () => {
             </div>
             <Skeleton active loading={loading}>
                 {
-                    data ? (
+                    treeData ? (
                         <div className="org-tree-container">
                             <BiTree<OrgTreeVO>
                                 params={{
-                                    data,
+                                    data: treeData,
                                     style: {
                                         cardWidth: 180,
-                                        cardHeight: 160,
+                                        cardHeight: 225,
                                     },
                                     // focusId: String(38219), // 测试
                                     focusId: String(openedNode.current?.orgId || locationOrgId || ''),

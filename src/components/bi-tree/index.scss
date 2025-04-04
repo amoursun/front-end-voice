@@ -16,12 +16,16 @@ $border-color: #ccc;
     }
     user-select: none;
     min-height: 320px;
+    width: 100%;
+    color: $font-color;
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding-bottom: 20px;
     .person-info-wrap,
     .placeholder-info-wrap {
         width: $card-width;
     }
-    width: 100%;
-    color: $font-color;
+    
     .tree-info-wrap {
         width: 100%;
         position: relative;

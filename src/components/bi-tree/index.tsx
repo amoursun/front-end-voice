@@ -2,6 +2,7 @@ import React, {FC, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import cx from 'classnames';
 import {useLocalObservable, observer} from 'mobx-react';
 import SvgIcon from 'src/components/svg-icon';
+import { LeftOutlined, PlusCircleOutlined, PlusOutlined, RightOutlined } from '@ant-design/icons';
 import {Person} from './components/Person';
 import {
     DirectionType,
@@ -11,6 +12,7 @@ import {
     TreeStyle,
     Params,
     defaultTreeStyle,
+    DefaultTreeNode,
 } from './types';
 
 import './index.scss';
@@ -100,13 +102,13 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
         };
     }, [treeStyle]);
 
-    // useEffect(() => {
-    //     store.init();
-    // }, []);
+    useEffect(() => {
+        store.init();
+    }, []);
 
     return (
         <div className={cx(className, 'bi-tree-container')}>
-            {/* <div
+            <div
                 className="tree-info-wrap"
                 style={{
                     minWidth: `${treeStyle.minWidth}px`,
@@ -128,7 +130,7 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
                                     ) : null
                                 }
                                 <Person<T>
-                                    personData={treeData}
+                                    personData={treeData as DefaultTreeNode<T>}
                                     showMinus={treeData?.isOpen}
                                     showOpenBtn={treeData.childFlag}
                                     hierarchy={HierarchyType.First}
@@ -154,7 +156,8 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
                                                             HierarchyType.Second
                                                         )}
                                                     >
-                                                        <SvgIcon name="arrow-left" size={26} color="#8a919f" />
+                                                        {/* <SvgIcon name="arrow-left" size={26} color="#8a919f" /> */}
+                                                        <LeftOutlined style={{fontSize: '26px', color: '#8a919f'}}/>
                                                     </span>
                                                 ) : null
                                             }
@@ -162,7 +165,7 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
                                         {secondData.map((item, index) => (
                                             <Person<T>
                                                 key={item ? item.id : index}
-                                                personData={item}
+                                                personData={item as DefaultTreeNode<T>}
                                                 personIndex={index}
                                                 isActive={activePerson.data?.id === item?.id}
                                                 showMinus={item?.isOpen}
@@ -192,7 +195,8 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
                                                                 DirectionType.Next,
                                                                 HierarchyType.Second
                                                             )}>
-                                                            <SvgIcon name="arrow-right" size={26} color="#8a919f" />
+                                                            {/* <SvgIcon name="arrow-right" size={26} color="#8a919f" /> */}
+                                                            <RightOutlined style={{fontSize: '26px', color: '#8a919f'}}/>
                                                         </span>
                                                     ) : null
                                             }
@@ -217,7 +221,8 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
                                                             HierarchyType.Third
                                                         )}
                                                     >
-                                                        <SvgIcon name="arrow-left" size={26} color="#8a919f" />
+                                                        {/* <SvgIcon name="arrow-left" size={26} color="#8a919f" /> */}
+                                                        <LeftOutlined style={{fontSize: '26px', color: '#8a919f'}}/>
                                                     </span>
                                                 ) : null
                                             }
@@ -225,7 +230,7 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
                                         {thirdData.map((item, index) => (
                                             <Person<T>
                                                 key={item ? item.id : index}
-                                                personData={item}
+                                                personData={item as DefaultTreeNode<T>}
                                                 personIndex={index}
                                                 hierarchy={HierarchyType.Third}
                                                 isActive={item && activePerson?.data?.id === item.id}
@@ -256,7 +261,8 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
                                                             HierarchyType.Third
                                                         )}
                                                     >
-                                                        <SvgIcon name="arrow-right" size={26} color="#8a919f" />
+                                                        {/* <SvgIcon name="arrow-right" size={26} color="#8a919f" /> */}
+                                                        <RightOutlined style={{fontSize: '26px', color: '#8a919f'}}/>
                                                     </span>
                                                 ) : null
                                             }
@@ -267,7 +273,7 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
                         </div>
                     ) : null
                 }
-            </div> */}
+            </div>
         </div>
     );
 });

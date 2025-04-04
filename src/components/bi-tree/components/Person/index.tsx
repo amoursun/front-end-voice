@@ -3,11 +3,12 @@ import {observer} from 'mobx-react';
 import cx from 'classnames';
 import SvgIcon from 'src/components/svg-icon';
 import {Card} from '../Card';
-import {HierarchyType, defaultTreeNode, TreeStyle} from '../../types';
+import {HierarchyType, DefaultTreeNode, TreeStyle} from '../../types';
 import './style.scss';
+import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 
 interface PersonProps<T> {
-    personData: defaultTreeNode<T>;
+    personData: DefaultTreeNode<T>;
     hierarchy: HierarchyType;
     isActive?: boolean;
     showOpenBtn?: boolean;
@@ -29,7 +30,7 @@ interface PersonProps<T> {
     };
     onPersonClick?: (params: {
         hierarchy: HierarchyType;
-        personData: defaultTreeNode<T>;
+        personData: DefaultTreeNode<T>;
         isOpen: boolean;
     }) => void;
 }
@@ -156,11 +157,27 @@ export const Person = observer(<T, >({
                     // data-sub={personData.children || ''}
                     onClick={handleShowSubordinate}
                 >
-                    <SvgIcon
+                    {/* <SvgIcon
                         name={showMinus ? 'circle-pie-minus' : 'circle-pie-add'}
                         size={18}
                         color={showMinus ? '#3999f7' : '#8a919f'}
-                    />
+                    /> */}
+                    {showMinus ? (
+                        <MinusCircleOutlined
+                            style={{
+                                fontSize: '18px',
+                                color: '#3999f7',
+                            }}
+                        />
+                    ) : (
+                        <PlusCircleOutlined
+                            style={{
+                                fontSize: '18px',
+                                color: '#8a919f',
+                            }}
+                        />
+                    )}
+                    
                     {hasThird && (
                         <span
                             className="tree-vertical-line"

@@ -2,6 +2,7 @@
 import { BooleanFlag } from 'src/constants';
 import { OrgTreeVO } from './types';
 
+
 export const orgTreeData: OrgTreeVO = {
     'orgId': 2319,
     'orgName': '百目',

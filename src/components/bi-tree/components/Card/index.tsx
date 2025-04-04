@@ -3,16 +3,16 @@ import {observer} from 'mobx-react';
 import cx from 'classnames';
 import {isFunction} from 'lodash-es';
 import {Avatar} from 'antd';
-import {defaultTreeNode, TreeStyle} from '../../types';
+import {DefaultTreeNode, TreeStyle} from '../../types';
 
 import './style.scss';
 
 interface CardProps<T> {
-    data: defaultTreeNode<T>;
+    data: DefaultTreeNode<T>;
     innerParams?: {
         style: TreeStyle;
         appendHTML?: ((data: any) => string) | string;
-        renderNode?: (data: defaultTreeNode<T>) => React.ReactNode;
+        renderNode?: (data: DefaultTreeNode<T>) => React.ReactNode;
     };
     isActive?: boolean;
 }
@@ -28,7 +28,7 @@ export const Card = observer(<T, >({data, innerParams, isActive = false}: CardPr
             return appendHTML(data);
         }
 
-        return appendHTML.replace(/\${(.+?)}/g, (_, tag) => data[tag as keyof defaultTreeNode<T>] as string);
+        return appendHTML.replace(/\${(.+?)}/g, (_, tag) => data[tag as keyof DefaultTreeNode<T>] as string);
     };
 
     const handleClick = (e: React.MouseEvent) => {
@@ -50,7 +50,7 @@ export const Card = observer(<T, >({data, innerParams, isActive = false}: CardPr
         }),
     };
 
-    const cardNode = (data: defaultTreeNode<T>) => {
+    const cardNode = (data: DefaultTreeNode<T>) => {
         const {orgName, image, orgLeader} = data;
         return (
             <div className="inner-content">

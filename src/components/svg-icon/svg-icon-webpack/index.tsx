@@ -3,6 +3,15 @@ import cx from 'classnames';
 import './style.scss';
 
 
+const importAll = (requireContext: __WebpackModuleApi.RequireContext) => {
+    requireContext.keys().forEach(requireContext);
+};
+try {
+    importAll(require.context('./svg', true, /\.svg$/));
+} catch (error) {
+    console.warn(error);
+}
+
 interface ISvgIconProps {
     name: string;
     className?: string;
@@ -11,7 +20,7 @@ interface ISvgIconProps {
     color?: string;
 }
 
-export const SvgIcon: FC<ISvgIconProps> = (props) => {
+const SvgIcon: FC<ISvgIconProps> = (props) => {
     const {className, name, size = 20, color, onClick, ...othersProps} = props;
 
     const handleClick = () => {

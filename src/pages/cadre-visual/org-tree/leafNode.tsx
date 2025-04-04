@@ -5,12 +5,14 @@ import {OrgTreeVO} from 'src/components/bi-tree/types';
 import {BooleanFlag} from 'src/constants';
 import SvgIcon from 'src/components/svg-icon';
 import {calculateOpacityColor} from 'src/utils/css/calc-shadow-color';
+import avatarJpg from 'src/assets/avatar.jpeg?url';
+
 
 export const renderNode = (data: OrgTreeVO) => {
     const {
         orgName,
         chiefName,
-        image,
+        // image,
         permissionFlag,
         locationName,
         personCount,
@@ -29,7 +31,7 @@ export const renderNode = (data: OrgTreeVO) => {
                 positionResultName ? (
                     <div
                         className="position-result-tag"
-                        style={{backgroundColor: positionResultColor}}
+                        style={{backgroundColor: positionResultColor || undefined}}
                     >{positionResultName}</div>
                 ) : null
             }
@@ -44,7 +46,7 @@ export const renderNode = (data: OrgTreeVO) => {
                         <div className="content-org-info">
                             <div className="leader-info">
                                 <Avatar
-                                    src={image}
+                                    src={avatarJpg}
                                     size={'small'}
                                     alt={orgName}
                                     draggable={false}
