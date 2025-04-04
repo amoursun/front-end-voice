@@ -13,8 +13,17 @@ export default defineConfig({
     },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
   },
+  cacheDir: 'temp/.vite', // 存储缓存文件的目录
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [
+          // 'transform-decorators-legacy',
+          // 替代 { "version": "2023-05" }
+          ['@babel/plugin-proposal-decorators', {legacy: true}]
+        ]
+      }
+    }),
     workerLoader(),
     monacoEditorPlugin({
       forceBuildCDN: true,

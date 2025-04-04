@@ -1,0 +1,169 @@
+@import 'src/style/common.scss';
+
+// 组织树叶子节点 style
+.org-report-tree-container {
+    .brick-section-content {
+        background: #f7f8fa;
+        padding: 16px 0 32px;
+    }
+
+    .org-tree-operations {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+    }
+
+}
+.tree-node-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: $main-font-color;
+    font-size: 12px;
+    line-height: normal;
+
+    .position-result-tag {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        padding: 2px 6px;
+        border-radius: 8px 0;
+        color: #fff;
+    }
+
+    .content-bottom {
+        flex: 1;
+        // padding: 10px 0;
+        text-align: center;
+        color: #999;
+        background-color: #f9f9fa;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &.hidden-content {
+            background-color: #fff;
+        }
+
+        .position-detail-container {
+
+            .org-tree-tag-container {
+                font-size: 11px;
+                color: #666;
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: center;
+
+                span {
+                    display: inline-block;
+                    max-width: 150px;
+                    @include text-ellipsis();
+                }
+                
+            }
+
+            .position-result-title {
+                color: #999;
+                font-size: 11px;
+                text-align: center;
+            }
+
+            .position-result-list {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                padding: 8px 6px;
+                overflow: hidden;
+
+                .position-result-item {
+                    text-align: center;
+                    border-radius: 4px;
+                    width: calc((100% - 6px) / 3);
+                    padding: 2px 0 3px;
+                    margin-bottom: 3px;
+
+                    .org-count {
+                        color: $main-font-color;
+                        font-weight: 500;
+                    }
+
+                    .position-result-name {
+                        font-size: 10px;
+                        color: #666;
+                        @include text-ellipsis();
+                    }
+                }
+            }
+            
+        }
+    }
+
+    .content-top {
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        align-items: center;
+        height: 126px;
+        padding-top: 22px;
+
+        &.no-permission-content {
+            height: 110px;
+        }
+
+        .no-permission {
+            color: #999;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .content-org-name {
+            font-weight: 500;
+            font-size: 14px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+            @include text-ellipsis();
+        }
+
+        .content-org-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .leader-info {
+                display: flex;
+                align-items: center;
+
+                .potential {
+                    margin-right: 4px;
+                }
+
+                .leader-name {
+                    margin-left: 6px;
+                }
+            }
+
+            .location-info {
+                color: $main-active-color;
+                display: inline-block;
+                padding: 0 8px;
+                border-radius: 2px;
+                background: #f2f5ff;
+                margin: 5px 0;
+            }
+
+            .group-size {
+                color: #666;
+                margin: 3px 0 6px;
+            }
+
+            
+        }
+    }
+
+    
+}
+

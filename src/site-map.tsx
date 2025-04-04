@@ -297,6 +297,14 @@ export const SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD  = {
 };
 
 
+export const SITE_MAP_ORG_TREE = {
+    entry: ENTRY_MAIN,
+    key: 'org-tree',
+    label: () => '组织树',
+    path: '/org-tree',
+};
+
+
 export const SITE_MAP_MAIN = {
     label: () => '主菜单',
     entry: ENTRY_MAIN,
@@ -323,6 +331,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_INTERSECTION_OBSERVER,
         SITE_MAP_VIRTUAL_LIST,
         SITE_MAP_IFRAME_MESSAGECHANNEL,
+        SITE_MAP_ORG_TREE,
     ],
 };
 

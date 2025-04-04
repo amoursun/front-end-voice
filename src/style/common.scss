@@ -1,0 +1,10 @@
+
+$main-active-color: #4c84ff;
+
+$main-font-color: #333;
+
+@mixin text-ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

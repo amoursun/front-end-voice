@@ -44,6 +44,8 @@ import {
 
     SITE_MAP_IFRAME_MESSAGECHANNEL,
     SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD,
+
+    SITE_MAP_ORG_TREE,
 } from './site-map';
 
 export const routes = [
@@ -228,5 +230,18 @@ export const routes = [
         path: SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD.path,
         hiddenSidebar: true,
         component: React.lazy(() => import('./pages/iframe-messagechannel/child/index')),
+    },
+
+    {
+        key: SITE_MAP_ORG_TREE.key,
+        path: SITE_MAP_ORG_TREE.path,
+        component: React.lazy(() => import('./pages/cadre-visual/index')),
+    },
+
+    {
+        key: 'test',
+        path: '/test',
+        hiddenSidebar: true,
+        component: React.lazy(() => import('./pages/test/index')),
     },
 ];
