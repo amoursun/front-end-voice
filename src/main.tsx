@@ -1,3 +1,5 @@
+
+import 'virtual:svg-icons-register';
 import {start} from './common';
 import {BasicLayout} from './layouts/basic';
 import {routes} from './routes';

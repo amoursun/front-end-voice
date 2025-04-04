@@ -2,7 +2,7 @@ import React, {FC, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import cx from 'classnames';
 import {useLocalObservable, observer} from 'mobx-react';
 import SvgIcon from 'src/components/svg-icon';
-import { LeftOutlined, PlusCircleOutlined, PlusOutlined, RightOutlined } from '@ant-design/icons';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {Person} from './components/Person';
 import {
     DirectionType,
@@ -125,7 +125,7 @@ export const BiTree = observer(<T, >(props: BiTreeProps<T>) => {
                                             className="go-top"
                                             onClick={() => goTop(treeData)}
                                         >
-                                            <SvgIcon name="arrow-double-up" size={10} color="#fff" />
+                                            {/* <SvgIcon name="arrow-double-up" size={10} color="#fff" /> */}
                                         </span>
                                     ) : null
                                 }
