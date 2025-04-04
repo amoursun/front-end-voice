@@ -30,7 +30,7 @@ export const OrgTree: FC<IOrgTreeProps> = () => {
         treeData: data,
         locationOrgId,
         loading,
-    } = useOrgTree();
+    } = useOrgTree(true);
 
     return (
         <div className="org-tree-root">
