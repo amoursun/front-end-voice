@@ -40,6 +40,11 @@ export default defineConfig({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/svg-icon')],  // SVG 存放路径
       symbolId: 'icon-[name]',  // 符号 ID 命名规则
       // inject: 'body-last'       // SVG 插入位置
+      svgoOptions: {
+        plugins: [
+          { name: 'removeAttrs', params: { attrs: ['class', 'data-name'] }},
+        ],
+      }
     }),
     svgr({ svgrOptions: { icon: true } }),
   ],
