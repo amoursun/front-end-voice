@@ -32,9 +32,10 @@ const formatTreeData = (treeData: OrgTreeVO): DefaultTreeNode<OrgTreeVO> | null 
 
 
 
-export function useOrgTree(
-    talentReviewFlag?: boolean
-) {
+export function useOrgTree(params: {
+    talentReviewFlag?: boolean,
+}) {
+    const {talentReviewFlag} = params || {};
     const [treeData, setTreeData] = useState<OrgTreeVO>();
     const [loading, setLoading] = useState(false);
 
@@ -44,13 +45,14 @@ export function useOrgTree(
          */
         const queryOrgTree = async () => {
             setLoading(true);
-            const data = await apiMockPromise<OrgTreeVO>(formatOrgTreeData, 1.5);
+            const data = await apiMockPromise<OrgTreeVO>(
+                talentReviewFlag ? orgTreeData : formatOrgTreeData,
+                1.5
+            );
             setTreeData(data);
             setLoading(false);
         };
-        if (!isNil(talentReviewFlag)) {
-            void queryOrgTree();
-        }
+        void queryOrgTree();
     }, [talentReviewFlag]);
 
     return {

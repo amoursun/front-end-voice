@@ -8,7 +8,7 @@ import {calculateOpacityColor} from 'src/utils/css/calc-shadow-color';
 import avatarJpg from 'src/assets/avatar.jpeg?url';
 
 
-export const renderNode = (data: OrgTreeVO) => {
+export const renderNode = (data: OrgTreeVO & {showPosition: boolean}) => {
     const {
         orgName,
         chiefName,
@@ -21,6 +21,7 @@ export const renderNode = (data: OrgTreeVO) => {
         positionResultList,
         orgTreeTagList,
         mainFlag,
+        showPosition,
     } = data || {};
     // 无权
     const isLocked = permissionFlag === BooleanFlag.False;
@@ -63,7 +64,7 @@ export const renderNode = (data: OrgTreeVO) => {
                 }
             </div>
             <div className={cx('content-bottom', {
-                'hidden-content': !isLocked && isEmpty(orgTreeTagList),
+                'hidden-content': !showPosition && !isLocked && isEmpty(orgTreeTagList),
             })}>
                 {isLocked ? (
                     <div className="locked-content">
@@ -87,7 +88,7 @@ export const renderNode = (data: OrgTreeVO) => {
                             }
                         </div>
                         {
-                            !isEmpty(positionResultList) && (
+                            showPosition && !isEmpty(positionResultList) && (
                                 <>
                                     <div className="position-result-title">下级组织岗位适配度汇总</div>
                                     <div className="position-result-list">

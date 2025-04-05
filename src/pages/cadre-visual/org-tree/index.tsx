@@ -3,7 +3,7 @@ import {Skeleton, Checkbox, Empty } from 'antd';
 import {BiTree} from 'src/components/bi-tree';
 import {OrgTreeVO} from 'src/components/bi-tree/types';
 import {useOrgTree} from './use-org-tree';
-import {renderNode} from './leafNode';
+import {renderNode} from './leaf-node';
 
 import './style.scss';
 
@@ -30,7 +30,10 @@ export const OrgTree: FC<IOrgTreeProps> = () => {
         treeData,
         locationOrgId,
         loading,
-    } = useOrgTree(true);
+    } = useOrgTree({
+        talentReviewFlag: checkKeys.includes(CheckboxGroupOptions[1].value),
+    });
+    const showPosition = checkKeys.includes(CheckboxGroupOptions[0].value);
 
     return (
         <div className="org-tree-root">
@@ -52,12 +55,15 @@ export const OrgTree: FC<IOrgTreeProps> = () => {
                                     data: treeData,
                                     style: {
                                         cardWidth: 180,
-                                        cardHeight: 225,
+                                        cardHeight: showPosition ? 225 : 180,
                                     },
                                     // focusId: String(38219), // 测试
                                     focusId: String(openedNode.current?.orgId || locationOrgId || ''),
                                     renderNode: (data) => {
-                                        return renderNode(data);
+                                        return renderNode({
+                                            ...data,
+                                            showPosition: showPosition,
+                                        });
                                     },
                                     onCardClick: ({data, collapse, hierarchy}) => {
                                         openedNode.current = data;
