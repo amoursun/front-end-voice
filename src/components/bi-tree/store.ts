@@ -74,8 +74,14 @@ export class Store<T> extends BaseStore<Store<T>> {
         const currentSecondIndex = currentIndex - startIndex; // 当前点击第二层数据在页面上的索引
         const pageNum = endIndex - startIndex + 1; // 一页显示个数
         const data = this.thirdAll.slice(thirdStartIndex, thirdEndIndex + 1);
-        let backThird: Array<DefaultTreeNode<T>> = Array.from({length: pageNum}); // 生成一个一页显示个数的数组
-        if (data.length < pageNum) { // 第三层数据个数小于一页显示个数
+        const backThird: Array<DefaultTreeNode<T>> = Array.from({length: pageNum}); // 生成一个一页显示个数的数组
+        if (this.thirdAll.length < pageNum) {
+            /** 不足一页，数据顺序不调整 */
+            data.forEach((item, index) => {
+                backThird.splice(index, 1, item);
+            });
+        }
+        else if (data.length < pageNum) { // 第三层数据个数小于一页显示个数
             if (pageNum - currentSecondIndex < data.length) { // 当前点击索引后的数据个数小于第三层数据个数
                 backThird.splice(pageNum - data.length, data.length);
             }
@@ -85,7 +91,7 @@ export class Store<T> extends BaseStore<Store<T>> {
             });
         }
         else {
-            backThird = data;
+            return data;
         }
         return backThird;
     }
