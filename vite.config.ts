@@ -48,6 +48,9 @@ export default defineConfig({
     }),
     svgr({ svgrOptions: { icon: true } }),
   ],
+  worker: {
+    format: 'es' // 默认输出 ES 模块
+  },
   server: {
     hmr: true, // 启用热模块替换
     port: 3000, // 设置开发服务器的端口号
