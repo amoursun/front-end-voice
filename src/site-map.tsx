@@ -304,6 +304,36 @@ export const SITE_MAP_ORG_TREE = {
     path: '/org-tree',
 };
 
+export const SITE_MAP_TEXT_TO_TEXT = {
+    entry: ENTRY_MAIN,
+    key: 'text-to-text',
+    label: () => '文字「文本化」',
+    path: '/text-to-text',
+};
+export const SITE_MAP_IMAGE_TO_TEXT = {
+    entry: ENTRY_MAIN,
+    key: 'image-to-text',
+    label: () => '图片「文本化」',
+    path: '/image-to-text',
+};
+export const SITE_MAP_VIDEO_TO_TEXT = {
+    entry: ENTRY_MAIN,
+    key: 'video-to-text',
+    label: () => '视频「文本化」',
+    path: '/video-to-text',
+};
+export const SITE_MAP_TEXT_IMAGE = {
+    entry: ENTRY_MAIN,
+    key: 'text-image',
+    label: () => '文字、图片、视频进行「文本化」',
+    path: '/text-image',
+    children: [
+        SITE_MAP_TEXT_TO_TEXT,
+        SITE_MAP_IMAGE_TO_TEXT,
+        SITE_MAP_VIDEO_TO_TEXT,
+    ],
+};
+
 
 export const SITE_MAP_MAIN = {
     label: () => '主菜单',
@@ -332,6 +362,7 @@ export const SITE_MAP_MAIN = {
         SITE_MAP_VIRTUAL_LIST,
         SITE_MAP_IFRAME_MESSAGECHANNEL,
         SITE_MAP_ORG_TREE,
+        SITE_MAP_TEXT_IMAGE,
     ],
 };
 

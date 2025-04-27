@@ -46,6 +46,11 @@ import {
     SITE_MAP_IFRAME_MESSAGECHANNEL_CHILD,
 
     SITE_MAP_ORG_TREE,
+
+    SITE_MAP_TEXT_IMAGE,
+    SITE_MAP_TEXT_TO_TEXT,
+    SITE_MAP_IMAGE_TO_TEXT,
+    SITE_MAP_VIDEO_TO_TEXT,
 } from './site-map';
 
 export const routes = [
@@ -236,6 +241,23 @@ export const routes = [
         key: SITE_MAP_ORG_TREE.key,
         path: SITE_MAP_ORG_TREE.path,
         component: React.lazy(() => import('./pages/cadre-visual/index')),
+    },
+
+    // 文字、图片、视频进行「文本化」
+    {
+        key: SITE_MAP_TEXT_TO_TEXT.key,
+        path: SITE_MAP_TEXT_TO_TEXT.path,
+        component: React.lazy(() => import('./pages/text-image/text/index')),
+    },
+    {
+        key: SITE_MAP_IMAGE_TO_TEXT.key,
+        path: SITE_MAP_IMAGE_TO_TEXT.path,
+        component: React.lazy(() => import('./pages/text-image/image/index')),
+    },
+    {
+        key: SITE_MAP_VIDEO_TO_TEXT.key,
+        path: SITE_MAP_VIDEO_TO_TEXT.path,
+        component: React.lazy(() => import('./pages/text-image/video/index')),
     },
 
     {
