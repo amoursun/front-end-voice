@@ -1,4 +1,4 @@
-import { createSource } from './core/source';
+import { createSource } from './source';
 import { Painter, PainterOptions } from './painter';
 
 export type TextImageOption = {
